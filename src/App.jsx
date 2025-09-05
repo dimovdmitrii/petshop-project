@@ -1,5 +1,4 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Main from "./pages/main";
@@ -10,7 +9,7 @@ import Basket from "./pages/basket";
 
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Header />
 
       <Routes>
@@ -21,7 +20,7 @@ const App = () => {
         <Route path="/basket" element={<Basket />} />
       </Routes>
       <Footer />
-    </Router>
+    </BrowserRouter>
   );
 };
 

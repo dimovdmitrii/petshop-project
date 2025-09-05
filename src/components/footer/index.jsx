@@ -19,9 +19,7 @@ const Footer = () => {
       >
         Contact
       </Typography>
-
       <Box className={styles.infoGrid}>
-        {/* Phone */}
         <Box className={styles.infoBlock1}>
           <Typography
             component="p"
@@ -36,7 +34,6 @@ const Footer = () => {
           >
             Phone
           </Typography>
-
           <Typography
             component="p"
             sx={{
@@ -51,8 +48,6 @@ const Footer = () => {
             +49 30 915-88492
           </Typography>
         </Box>
-
-        {/* Socials */}
         <Box className={styles.infoBlock2}>
           <Typography
             component="p"
@@ -72,8 +67,6 @@ const Footer = () => {
             <img src={WhatsappIcon} alt="WhatsApp" className={styles.icon} />
           </Box>
         </Box>
-
-        {/* Address */}
         <Box className={styles.infoBlock1}>
           <Typography
             component="p"
@@ -102,8 +95,6 @@ const Footer = () => {
             Wallstraße 9-13, 10179 Berlin, Deutschland
           </Typography>
         </Box>
-
-        {/* Working Hours */}
         <Box className={styles.infoBlock2}>
           <Typography
             component="p"
@@ -133,8 +124,6 @@ const Footer = () => {
           </Typography>
         </Box>
       </Box>
-
-      {/* Map */}
       <Box className={styles.mapWrapper}>
         <iframe
           title="IT Career Hub Location"

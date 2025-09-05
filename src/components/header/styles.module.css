@@ -1,0 +1,62 @@
+.header {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 40px;
+  background-color: #fff;
+}
+
+.logo {
+  height: 40px;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #111111;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #2f5fff; /* Акцентный цвет */
+}
+
+.cartIconWrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.cartIcon {
+  height: 28px;
+  width: 28px;
+}
+
+.cartCount {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: #2f5fff;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 2px 7px;
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+  user-select: none;
+}
+@media (max-width: 410px) {
+  .header {
+    padding: 10px;
+  }
+}

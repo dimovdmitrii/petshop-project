@@ -1,9 +1,10 @@
 import styles from "./styles.module.css";
+import MainBanner from "../../components/mainBanner";
 
 function Main() {
   return (
     <div className={styles.container}>
-      <h1>Main Page</h1>
+      <MainBanner />
     </div>
   );
 }

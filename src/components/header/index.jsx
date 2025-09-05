@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom"; // импортируем необходимые хуки и компоненты
+import { NavLink, useNavigate } from "react-router-dom";
 import LogoIcon from "../../assets/icons/logo.svg";
 import CartIcon from "../../assets/icons/basket=empty.svg";
 import styles from "./styles.module.css";
 
 const Header = () => {
   const [cartCount, setCartCount] = useState(0);
-  const navigate = useNavigate(); // для программной навигации
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedCartCount = localStorage.getItem("cartCount");
@@ -20,27 +20,40 @@ const Header = () => {
     localStorage.setItem("cartCount", count);
   };
 
-  // Обработчик клика по корзине
   const handleCartClick = () => {
     navigate("/basket");
   };
 
+  const navLinks = [
+    { to: "/", label: "Main Page" },
+    { to: "/categories", label: "Categories" },
+    { to: "/products", label: "All products" },
+    { to: "/sales", label: "All sales" },
+  ];
+
   return (
     <header className={styles.header}>
-      <Link to="/">
+      <NavLink to="/">
         <img
           src={LogoIcon}
           alt="Logo"
           className={styles.logo}
           style={{ cursor: "pointer" }}
         />
-      </Link>
+      </NavLink>
 
       <nav className={styles.nav}>
-        <Link to="/">Main Page</Link>
-        <Link to="/categories">Categories</Link>
-        <Link to="/products">All products</Link>
-        <Link to="/sales">All sales</Link>
+        {navLinks.map((link) => (
+          <NavLink
+            key={link.to}
+            to={link.to}
+            className={({ isActive }) =>
+              isActive ? `${styles.active}` : undefined
+            }
+          >
+            {link.label}
+          </NavLink>
+        ))}
       </nav>
 
       <div

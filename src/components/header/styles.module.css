@@ -9,25 +9,29 @@
 }
 
 .logo {
-  height: 40px;
+  height: 70px;
+  width: 70px;
   cursor: pointer;
 }
 
 .nav {
   display: flex;
-  gap: 24px;
+  gap: 32px;
 }
 
 .nav a {
   text-decoration: none;
-  color: #111111;
+  color: #282828;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  line-height: 130%;
   transition: color 0.3s ease;
 }
-
-.nav a:hover {
-  color: #2f5fff; /* Акцентный цвет */
+.nav a:hover,
+.nav a.active {
+  color: rgba(13, 80, 255, 1);
 }
 
 .cartIconWrapper {
@@ -36,8 +40,8 @@
 }
 
 .cartIcon {
-  height: 28px;
-  width: 28px;
+  height: 48px;
+  width: 48px;
 }
 
 .cartCount {
@@ -58,5 +62,29 @@
 @media (max-width: 410px) {
   .header {
     padding: 10px;
+  }
+  .logo {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+  }
+  .cartIcon {
+    height: 28px;
+    width: 28px;
+  }
+  .nav a {
+    font-size: 12px;
+  }
+  .nav {
+    gap: 10px;
+  }
+}
+@media (max-width: 720px) {
+  .nav {
+    display: flex;
+    gap: 16px;
+  }
+  .nav a {
+    font-size: 14px;
   }
 }

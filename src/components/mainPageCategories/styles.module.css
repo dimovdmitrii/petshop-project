@@ -1,0 +1,361 @@
+.categoriesSection {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 40px 106px 40px;
+
+}
+
+.container {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.title {
+    font-family: Montserrat;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%;
+    color: #282828;
+    margin: 0;
+}
+
+.allCategoriesBtn {
+  color: #8B8B8B;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #DDD;
+  text-decoration: none;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+font-weight: 500;
+line-height: 126%;
+  transition: all 0.3s ease;  
+  cursor: pointer;
+}
+
+.allCategoriesBtn:hover {
+  background: #dee2e6;
+  color: #212529;
+  transform: translateY(-1px);
+}
+
+.swiperContainer {
+  position: relative;
+  padding: 0 0 50px 0;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 200px;
+  overflow: visible; /* Убеждаемся, что кнопки навигации видны */
+}
+
+.swiper {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+
+.swiperSlide {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.navButton {
+  position: absolute;
+  top: 175px; /* Позиционируем по середине изображения (350px / 2 = 175px) */
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.navButton:hover {
+  background: #f8f9fa;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.navButton::after,
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 10px !important;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Дополнительные селекторы для переопределения стилей Swiper */
+:global(.swiper-button-prev::after),
+:global(.swiper-button-next::after) {
+  font-size: 10px !important;
+}
+
+.swiper-button-prev {
+  left: 16px;
+}
+
+.swiper-button-next {
+  right: 16px;
+}
+
+.pagination {
+  position: relative;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #dee2e6;
+  opacity: 1;
+  margin: 0 6px;
+  transition: all 0.3s ease;
+}
+
+.pagination .swiper-pagination-bullet-active {
+  background: #007bff;
+  transform: scale(1.2);
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  color: #dc3545;
+}
+
+@media (max-width: 1200px) {
+  .categoriesSection {
+    padding: 28px;
+  }
+  
+  .title {
+    font-size: 28px;
+  }
+  
+  .allCategoriesBtn {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .categoriesSection {
+    padding: 24px 40px; /* Увеличиваем боковые отступы для кнопок */
+  }
+  
+  .header {
+    margin-bottom: 24px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .swiperContainer {
+    padding: 0 0 50px 0;
+    min-height: 200px;
+    overflow: visible; /* Убеждаемся, что кнопки видны */
+  }
+  
+  .swiper-button-prev {
+    left: 20px; /* Увеличиваем отступ для лучшего позиционирования */
+  }
+  
+  .swiper-button-next {
+    right: 20px; /* Увеличиваем отступ для лучшего позиционирования */
+  }
+  
+  .navButton {
+    width: 40px;
+    height: 40px;
+    top: 140px; /* Позиционируем по середине изображения (280px / 2 = 140px) */
+  }
+  
+  .navButton::after,
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .categoriesSection {
+    padding: 10px;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .title {
+    font-size: 22px;
+  }
+  
+  .allCategoriesBtn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .swiperContainer {
+    padding: 0 0 50px 0;
+    min-height: 200px;
+  }
+  
+  .swiper-button-prev {
+    left: 8px;
+  }
+  
+  .swiper-button-next {
+    right: 8px;
+  }
+  
+  .navButton {
+    width: 36px;
+    height: 36px;
+    top: 120px; /* Позиционируем по середине изображения (240px / 2 = 120px) */
+  }
+  
+  .navButton::after,
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 10px !important;
+  }
+  
+  .pagination {
+    margin-top: 72px;
+  }
+}
+
+@media (max-width: 480px) {
+  .categoriesSection {
+    padding: 16px;
+  }
+  
+  .header {
+    margin-bottom: 16px;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+  .allCategoriesBtn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .swiperContainer {
+    padding: 0 0 60px 0;
+    min-height: 350px;
+  }
+  
+  .swiper-button-prev {
+    left: 4px;
+  }
+  
+  .swiper-button-next {
+    right: 4px;
+  }
+  
+  .navButton {
+    width: 32px;
+    height: 32px;
+    top: 100px; /* Позиционируем по середине изображения (200px / 2 = 100px) */
+  }
+  
+  .navButton::after,
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 10px !important;
+  }
+  
+  .pagination {
+    margin-top: 64px;
+  }
+  
+  .pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+  }
+}
+
+@media (max-width: 320px) {
+  .categoriesSection {
+    padding: 12px;
+  }
+  
+  .title {
+    font-size: 18px;
+  }
+  
+  .allCategoriesBtn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  
+  .swiperContainer {
+    padding: 0 0 50px 0;
+    min-height: 300px;
+  }
+  
+  .swiper-button-prev {
+    left: 2px;
+  }
+  
+  .swiper-button-next {
+    right: 2px;
+  }
+  
+  .navButton {
+    width: 28px;
+    height: 28px;
+    top: 80px; /* Позиционируем по середине изображения (160px / 2 = 80px) */
+  }
+  
+  .navButton::after,
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 10px !important;
+  }
+  
+  .pagination {
+    margin-top: 60px;
+  }
+  
+  .pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    margin: 0 3px;
+  }
+}

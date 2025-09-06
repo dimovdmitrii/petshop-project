@@ -1,0 +1,120 @@
+.categoryCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 0; /* Убираем border-radius с карточки */
+  overflow: visible; /* Меняем на visible, чтобы не обрезать изображение */
+  background: #fff;
+  width: 316px;
+  height: 392px; /* 350px (изображение) + 16px (промежуток) + 26px (название) */
+  padding: 0;
+}
+
+.categoryCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.imageContainer {
+  width: 316px;
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px; /* Добавляем border-radius только к нижней части */
+}
+
+.categoryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.categoryCard:hover .categoryImage {
+  transform: scale(1.05);
+}
+
+.categoryTitle {
+  color: var(--txt-black, #282828);
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  margin: 16px 0 0 0;
+  padding: 0;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .categoryCard {
+    width: 280px;
+    height: 352px; /* 280px (изображение) + 16px (промежуток) + 26px (название) + 30px (отступы) */
+  }
+
+  .imageContainer {
+    width: 280px;
+    height: 280px;
+    border-radius: 12px; /* Добавляем border-radius для адаптивного размера */
+  }
+}
+
+@media (max-width: 768px) {
+  .categoryCard {
+    width: 240px;
+    height: 312px; /* 240px (изображение) + 16px (промежуток) + 26px (название) + 30px (отступы) */
+  }
+
+  .imageContainer {
+    width: 240px;
+    height: 240px;
+    border-radius: 12px; /* Добавляем border-radius для адаптивного размера */
+  }
+
+  .categoryTitle {
+    font-size: 18px; /* Пропорционально уменьшаем с 20px */
+  }
+}
+
+@media (max-width: 480px) {
+  .categoryCard {
+    width: 200px;
+    height: 272px; /* 200px (изображение) + 16px (промежуток) + 26px (название) + 30px (отступы) */
+  }
+
+  .imageContainer {
+    width: 200px;
+    height: 200px;
+    border-radius: 12px; /* Добавляем border-radius для адаптивного размера */
+  }
+
+  .categoryTitle {
+    font-size: 16px; /* Пропорционально уменьшаем с 20px */
+  }
+}
+
+@media (max-width: 320px) {
+  .categoryCard {
+    width: 160px;
+    height: 232px; /* 160px (изображение) + 16px (промежуток) + 26px (название) + 30px (отступы) */
+  }
+
+  .imageContainer {
+    width: 160px;
+    height: 160px;
+    border-radius: 12px; /* Добавляем border-radius для адаптивного размера */
+  }
+
+  .categoryTitle {
+    font-size: 14px; /* Пропорционально уменьшаем с 20px */
+  }
+}

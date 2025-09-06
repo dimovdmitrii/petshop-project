@@ -1,0 +1,271 @@
+.productCard {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  width: 316px;
+  height: 422px;
+  background-color: #fff;
+  border-radius: var(--radius-big, 12px);
+  border: 1px solid var(--grey-divider, #DDD);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.productCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.imageContainer {
+  position: relative;
+  width: 316px;
+  height: 284px;
+  overflow: hidden;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+.discountBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: #2451C6;
+  color: var(--txt-white, #FFF);
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%;
+  letter-spacing: 0.6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  min-width: 50px;
+  text-align: center;
+}
+
+.productInfo {
+  padding: 20px 16px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.productTitle {
+  overflow: hidden;
+  color: var(--txt-black, #282828);
+  text-overflow: ellipsis;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  margin: 0;
+  min-height: 52px;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.currentPrice {
+  color: var(--txt-black, #282828);
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%;
+}
+
+.oldPrice {
+  color: #8B8B8B;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  text-decoration: line-through;
+}
+
+@media (max-width: 1200px) {
+  .productCard {
+    width: 100%;
+    max-width: 280px;
+    height: 380px;
+  }
+  
+  .imageContainer {
+    width: 100%;
+    height: 250px;
+  }
+  
+  .discountBadge {
+    font-size: 18px;
+    padding: 6px 10px;
+  }
+  
+  .productTitle {
+    font-size: 18px;
+    min-height: 46px;
+  }
+  
+  .currentPrice {
+    font-size: 18px;
+  }
+  
+  .oldPrice {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .productCard {
+    max-width: 240px;
+    height: 340px;
+  }
+  
+  .imageContainer {
+    height: 220px;
+  }
+  
+  .discountBadge {
+    font-size: 16px;
+    padding: 5px 8px;
+    top: 12px;
+    right: 12px;
+  }
+  
+  .productInfo {
+    padding: 16px 12px 12px 12px;
+    gap: 10px;
+  }
+  
+  .productTitle {
+    font-size: 16px;
+    min-height: 40px;
+  }
+  
+  .currentPrice {
+    font-size: 16px;
+  }
+  
+  .oldPrice {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .productCard {
+    max-width: 200px;
+    height: 300px;
+  }
+  
+  .imageContainer {
+    height: 180px;
+  }
+  
+  .discountBadge {
+    font-size: 14px;
+    padding: 4px 6px;
+    top: 8px;
+    right: 8px;
+  }
+  
+  .productInfo {
+    padding: 12px 10px 10px 10px;
+    gap: 8px;
+  }
+  
+  .productTitle {
+    font-size: 14px;
+    min-height: 36px;
+  }
+  
+  .currentPrice {
+    font-size: 14px;
+  }
+  
+  .oldPrice {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .productCard {
+    max-width: 100%;
+    height: 280px;
+  }
+  
+  .imageContainer {
+    height: 160px;
+  }
+  
+  .discountBadge {
+    font-size: 12px;
+    padding: 3px 5px;
+    top: 6px;
+    right: 6px;
+  }
+  
+  .productInfo {
+    padding: 10px 8px 8px 8px;
+    gap: 6px;
+  }
+  
+  .productTitle {
+    font-size: 13px;
+    min-height: 32px;
+  }
+  
+  .currentPrice {
+    font-size: 13px;
+  }
+  
+  .oldPrice {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 320px) {
+  .productCard {
+    height: 260px;
+  }
+  
+  .imageContainer {
+    height: 140px;
+  }
+  
+  .discountBadge {
+    font-size: 10px;
+    padding: 2px 4px;
+    top: 4px;
+    right: 4px;
+  }
+  
+  .productInfo {
+    padding: 8px 6px 6px 6px;
+    gap: 4px;
+  }
+  
+  .productTitle {
+    font-size: 12px;
+    min-height: 28px;
+  }
+  
+  .currentPrice {
+    font-size: 12px;
+  }
+  
+  .oldPrice {
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,179 @@
+.salesSection {
+  width: 100%;
+  background-color: #fff;
+  padding: 40px 0;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #ddd;
+  z-index: 0;
+}
+.allSalesBtn {
+    color: #8B8B8B;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #DDD;
+    text-decoration: none;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+  font-weight: 500;
+  line-height: 126%;
+    transition: all 0.3s ease;  
+    cursor: pointer;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.allSalesBtn:hover {
+    background: #dee2e6;
+    color: #212529;
+    transform: translateY(-1px);
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.loading, .error {
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 20px;
+  color: #555;
+  padding: 40px 0;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 24px;
+  }
+  
+  .productsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 0 20px;
+  }
+  
+  .title {
+    font-size: 48px;
+  }
+  
+  .allSalesBtn {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .salesSection {
+    padding: 32px 0;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .header {
+    margin-bottom: 32px;
+  }
+  
+  .header::after {
+    display: none;
+  }
+  
+  .title {
+    padding-right: 0;
+    font-size: 36px;
+  }
+  
+  .allSalesBtn {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .salesSection {
+    padding: 24px 0;
+  }
+  
+  .container {
+    padding: 0 12px;
+  }
+  
+  .header {
+    margin-bottom: 24px;
+  }
+  
+  .title {
+    font-size: 28px;
+  }
+  
+  .allSalesBtn {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  
+  .productsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0 8px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .allSalesBtn {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+  
+  .productsGrid {
+    gap: 8px;
+  }
+}

@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 import MainBanner from "../../components/mainPageBanner";
 import MainPageCategories from "../../components/mainPageCategories";
 import MainPageDiscount from "../../components/mainPageDiscount";
+import MainPageSales from "../../components/mainPageSales";
 
 function Main() {
   return (
@@ -9,6 +10,7 @@ function Main() {
       <MainBanner />
       <MainPageCategories />
       <MainPageDiscount />
+      <MainPageSales />
     </div>
   );
 }

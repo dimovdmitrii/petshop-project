@@ -60,30 +60,28 @@
   .footer {
     padding: 20px;
   }
-  
-  /* Дополнительное уменьшение для очень маленьких экранов */
+
   .title {
-    font-size: 24px !important; /* Еще меньше для мобильных */
+    font-size: 24px !important;
     margin-bottom: 20px !important;
   }
-  
+
   .infoBlock1 p:first-child,
   .infoBlock2 p:first-child {
-    font-size: 8px !important; /* Еще меньше для мобильных */
+    font-size: 8px !important;
   }
-  
+
   .infoBlock1 p:last-child,
   .infoBlock2 p:last-child {
-    font-size: 16px !important; /* Еще меньше для мобильных */
+    font-size: 16px !important;
   }
-  
+
   .infoBlock1,
   .infoBlock2 {
     padding: 20px;
     min-height: 120px;
   }
 }
-
 @media (max-width: 410px) {
   .footer {
     padding: 10px;
@@ -98,21 +96,15 @@
   .infoGrid {
     grid-template-columns: 1fr;
   }
-  
-  /* Уменьшаем размеры шрифтов для Typography компонентов */
   .title {
-    font-size: 32px !important; /* 64px / 2 = 32px */
+    font-size: 32px !important;
   }
-  
-  /* Стили для заголовков блоков (Phone, Socials, Address, Working Hours) */
   .infoBlock1 p:first-child,
   .infoBlock2 p:first-child {
-    font-size: 10px !important; /* 20px / 2 = 10px */
+    font-size: 10px !important;
   }
-  
-  /* Стили для основного контента (номера телефонов, адреса, время работы) */
   .infoBlock1 p:last-child,
   .infoBlock2 p:last-child {
-    font-size: 20px !important; /* 40px / 2 = 20px */
+    font-size: 20px !important;
   }
 }

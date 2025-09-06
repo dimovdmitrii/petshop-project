@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 80px 40px 106px 40px;
+  padding: 80px 40px 66px 40px;
 
 }
 
@@ -17,6 +17,18 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #DDD;
+  z-index: -1;
 }
 
 .title {
@@ -27,6 +39,10 @@
     line-height: 110%;
     color: #282828;
     margin: 0;
+    background-color: #fff;
+    padding-right: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .allCategoriesBtn {
@@ -43,6 +59,9 @@ font-weight: 500;
 line-height: 126%;
   transition: all 0.3s ease;  
   cursor: pointer;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
 }
 
 .allCategoriesBtn:hover {
@@ -211,6 +230,14 @@ line-height: 126%;
     margin-bottom: 20px;
   }
   
+  .header::after {
+    display: none;
+  }
+  
+  .title {
+    padding-right: 0;
+  }
+  
   .title {
     font-size: 22px;
   }
@@ -252,6 +279,14 @@ line-height: 126%;
   
   .header {
     margin-bottom: 16px;
+  }
+  
+  .header::after {
+    display: none;
+  }
+  
+  .title {
+    padding-right: 0;
   }
   
   .title {
@@ -299,8 +334,13 @@ line-height: 126%;
     padding: 12px;
   }
   
+  .header::after {
+    display: none;
+  }
+  
   .title {
     font-size: 18px;
+    padding-right: 0;
   }
   
   .allCategoriesBtn {

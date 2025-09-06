@@ -6,8 +6,8 @@
   width: 316px;
   height: 422px;
   background-color: #fff;
-  border-radius: var(--radius-big, 12px);
-  border: 1px solid var(--grey-divider, #DDD);
+  border-radius: 12px;
+  border: 1px solid #DDD;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -35,22 +35,23 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  background-color: #2451C6;
-  color: var(--txt-white, #FFF);
+  background-color: rgba(13, 80, 255, 1);
+  color: #FFF;
   font-family: Montserrat;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: 130%;
   letter-spacing: 0.6px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  min-width: 50px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(13, 80, 255, 1);
+  min-width: 66px;
   text-align: center;
 }
 
 .productInfo {
-  padding: 20px 16px 16px 16px;
+  padding: 20px 32px 32px 32px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -58,16 +59,16 @@
 }
 
 .productTitle {
-  overflow: hidden;
-  color: var(--txt-black, #282828);
+  overflow: hidden;   
+  white-space: nowrap;
   text-overflow: ellipsis;
   font-family: Montserrat;
+  color:#282828;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: 130%;
-  margin: 0;
-  min-height: 52px;
+  
 }
 
 .priceContainer {
@@ -78,18 +79,18 @@
 }
 
 .currentPrice {
-  color: var(--txt-black, #282828);
+  color:#282828;
   font-family: Montserrat;
-  font-size: 20px;
+  font-size: 40px;
   font-style: normal;
   font-weight: 600;
-  line-height: 130%;
+  line-height: 110%;
 }
 
 .oldPrice {
   color: #8B8B8B;
   font-family: Montserrat;
-  font-size: 16px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: 130%;

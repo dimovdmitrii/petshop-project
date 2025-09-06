@@ -20,29 +20,23 @@ const MainPageSales = () => {
         }
         
         const allProducts = await response.json();
-        console.log('All products from API:', allProducts); // Для отладки
+        console.log('All products:', allProducts);
         
-        // Фильтруем товары со скидкой (у которых есть и price, и discountPrice)
-        const productsWithDiscount = allProducts.filter(product => {
-          console.log('Checking product:', product.title, 'price:', product.price, 'discountPrice:', product.discountPrice);
-          return product.price && product.discountPrice && product.discountPrice < product.price;
-        });
+        // Фильтруем товары со скидкой (у которых есть и price, и discont_price, и discont_price не null)
+        const productsWithDiscount = allProducts.filter(product => 
+          product.price && 
+          product.discont_price && 
+          product.discont_price !== null && 
+          product.discont_price < product.price
+        );
         
-        console.log('Products with discount:', productsWithDiscount); // Для отладки
+        console.log('Products with discount:', productsWithDiscount);
         
-        // Берем случайные 4 товара
-        let selectedProducts;
-        if (productsWithDiscount.length > 0) {
-          const shuffled = productsWithDiscount.sort(() => 0.5 - Math.random());
-          selectedProducts = shuffled.slice(0, 4);
-        } else {
-          // Если нет товаров со скидкой, берем любые 4 товара
-          console.log('No products with discount found, showing any 4 products');
-          const shuffled = allProducts.sort(() => 0.5 - Math.random());
-          selectedProducts = shuffled.slice(0, 4);
-        }
+        // Берем случайные 4 товара только из товаров со скидкой
+        const shuffled = productsWithDiscount.sort(() => 0.5 - Math.random());
+        const selectedProducts = shuffled.slice(0, 4);
         
-        console.log('Selected products for display:', selectedProducts); // Для отладки
+        console.log('Selected products:', selectedProducts);
         setSalesProducts(selectedProducts);
       } catch (err) {
         setError(err.message);

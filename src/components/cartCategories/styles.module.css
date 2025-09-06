@@ -54,7 +54,7 @@
   width: 100%;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .categoryCard {
     width: 280px;
     height: 352px;
@@ -62,11 +62,23 @@
 
   .imageContainer {
     width: 280px;
-    height: 280px;
+    height: 310px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
+  .categoryCard {
+    width: 260px;
+    height: 332px;
+  }
+
+  .imageContainer {
+    width: 260px;
+    height: 290px;
+  }
+}
+
+@media (max-width: 1200px) {
   .categoryCard {
     width: 240px;
     height: 312px;
@@ -75,6 +87,18 @@
   .imageContainer {
     width: 240px;
     height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .categoryCard {
+    width: 220px;
+    height: 292px;
+  }
+
+  .imageContainer {
+    width: 220px;
+    height: 220px;
   }
 
   .categoryTitle {

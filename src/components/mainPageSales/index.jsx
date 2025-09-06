@@ -75,14 +75,24 @@ const MainPageSales = () => {
         <div className={styles.header}>
           <Typography sx={{
         fontFamily: 'Montserrat, sans-serif',
-        fontSize: '64px',
+        fontSize: {
+          xs: '24px',
+          sm: '28px', 
+          md: '34px',
+          lg: '64px',
+          xl: '64px'
+        },
         fontStyle: 'normal',
         fontWeight: 700,
         lineHeight: '110%',
         color: '#282828',
         margin: 0,
         backgroundColor: '#fff',
-        paddingRight: '20px',
+        paddingRight: {
+          xs: 0,
+          sm: 0,
+          md: '20px'
+        },
         position: 'relative',
         zIndex: 1,
       }} className={styles.title}>Sale</Typography>

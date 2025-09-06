@@ -28,6 +28,20 @@
   background-color: #ddd;
   z-index: 0;
 }
+
+.title {
+  font-family: Montserrat;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%;
+  color: #282828;
+  margin: 0;
+  background-color: #fff;
+  padding-right: 20px;
+  position: relative;
+  z-index: 1;
+}
 .allSalesBtn {
     color: #8B8B8B;
     padding: 8px 16px;
@@ -57,6 +71,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 32px;
+  justify-items: center;
 }
 
 .loading, .error {
@@ -75,16 +90,13 @@
   .productsGrid {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    justify-items: center;
   }
 }
 
 @media (max-width: 900px) {
   .container {
     padding: 0 20px;
-  }
-  
-  .title {
-    font-size: 48px;
   }
   
   .allSalesBtn {
@@ -95,6 +107,7 @@
   .productsGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    justify-items: center;
   }
 }
 
@@ -115,11 +128,6 @@
     display: none;
   }
   
-  .title {
-    padding-right: 0;
-    font-size: 36px;
-  }
-  
   .allSalesBtn {
     font-size: 14px;
     padding: 6px 12px;
@@ -128,6 +136,7 @@
   .productsGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+    justify-items: center;
   }
 }
 
@@ -144,10 +153,6 @@
     margin-bottom: 24px;
   }
   
-  .title {
-    font-size: 28px;
-  }
-  
   .allSalesBtn {
     font-size: 12px;
     padding: 5px 10px;
@@ -156,16 +161,13 @@
   .productsGrid {
     grid-template-columns: 1fr;
     gap: 12px;
+    justify-items: center;
   }
 }
 
 @media (max-width: 320px) {
   .container {
     padding: 0 8px;
-  }
-  
-  .title {
-    font-size: 24px;
   }
   
   .allSalesBtn {
@@ -175,5 +177,6 @@
   
   .productsGrid {
     gap: 8px;
+    justify-items: center;
   }
 }

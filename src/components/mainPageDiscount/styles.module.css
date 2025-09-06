@@ -123,7 +123,7 @@
     padding: 0 20px;
   }  
   .discount {
-    padding: 20px 20px 0 20px;
+    padding: 20px 20px 20px 20px;
     gap: 20px;
   }  
   .title {
@@ -156,7 +156,7 @@
     padding: 0 16px;
   }  
   .discount {
-    padding: 16px 16px 0 16px;
+    padding: 16px 16px 16px 16px;
     gap: 16px;
   }  
   .title {
@@ -179,7 +179,7 @@
     padding: 0 12px;
   }  
   .discount {
-    padding: 12px 12px 0 12px;
+    padding: 12px 12px 12px 12px;
     gap: 12px;
   }  
   .title {

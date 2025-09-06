@@ -3,7 +3,8 @@
   flex-direction: column;
   text-decoration: none;
   color: inherit;
-  width: 316px;
+  width: 100%;
+  max-width: 316px;
   height: 422px;
   background-color: #fff;
   border-radius: 12px;
@@ -19,7 +20,7 @@
 
 .imageContainer {
   position: relative;
-  width: 316px;
+  width: 100%;
   height: 284px;
   overflow: hidden;
 }
@@ -99,38 +100,40 @@
 
 @media (max-width: 1200px) {
   .productCard {
-    width: 100%;
-    max-width: 280px;
     height: 380px;
   }
   
   .imageContainer {
-    width: 100%;
     height: 250px;
   }
   
   .discountBadge {
     font-size: 18px;
     padding: 6px 10px;
+    top: 12px;
+    right: 12px;
+  }
+  
+  .productInfo {
+    padding: 16px 24px 24px 24px;
+    gap: 10px;
   }
   
   .productTitle {
     font-size: 18px;
-    min-height: 46px;
   }
   
   .currentPrice {
-    font-size: 18px;
+    font-size: 32px;
   }
   
   .oldPrice {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
 @media (max-width: 900px) {
   .productCard {
-    max-width: 240px;
     height: 340px;
   }
   
@@ -141,32 +144,30 @@
   .discountBadge {
     font-size: 16px;
     padding: 5px 8px;
-    top: 12px;
-    right: 12px;
+    top: 10px;
+    right: 10px;
   }
   
   .productInfo {
-    padding: 16px 12px 12px 12px;
-    gap: 10px;
+    padding: 16px 20px 20px 20px;
+    gap: 8px;
   }
   
   .productTitle {
     font-size: 16px;
-    min-height: 40px;
   }
   
   .currentPrice {
-    font-size: 16px;
+    font-size: 28px;
   }
   
   .oldPrice {
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 
 @media (max-width: 768px) {
   .productCard {
-    max-width: 200px;
     height: 300px;
   }
   
@@ -182,17 +183,16 @@
   }
   
   .productInfo {
-    padding: 12px 10px 10px 10px;
-    gap: 8px;
+    padding: 12px 16px 16px 16px;
+    gap: 6px;
   }
   
   .productTitle {
     font-size: 14px;
-    min-height: 36px;
   }
   
   .currentPrice {
-    font-size: 14px;
+    font-size: 24px;
   }
   
   .oldPrice {
@@ -202,12 +202,12 @@
 
 @media (max-width: 480px) {
   .productCard {
-    max-width: 100%;
-    height: 280px;
+    max-width: 280px;
+    height: 240px;
   }
   
   .imageContainer {
-    height: 160px;
+    height: 140px;
   }
   
   .discountBadge {
@@ -218,31 +218,35 @@
   }
   
   .productInfo {
-    padding: 10px 8px 8px 8px;
-    gap: 6px;
+    padding: 8px 16px 12px 16px;
+    gap: 1px;
   }
   
   .productTitle {
-    font-size: 13px;
-    min-height: 32px;
+    font-size: 14px;
+  }
+  
+  .priceContainer {
+    margin-top: 0;
   }
   
   .currentPrice {
-    font-size: 13px;
+    font-size: 22px;
   }
   
   .oldPrice {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 320px) {
   .productCard {
-    height: 260px;
+    max-width: 240px;
+    height: 200px;
   }
   
   .imageContainer {
-    height: 140px;
+    height: 120px;
   }
   
   .discountBadge {
@@ -253,20 +257,23 @@
   }
   
   .productInfo {
-    padding: 8px 6px 6px 6px;
-    gap: 4px;
+    padding: 6px 12px 8px 12px;
+    gap: 1px;
   }
   
   .productTitle {
-    font-size: 12px;
-    min-height: 28px;
+    font-size: 13px;
+  }
+  
+  .priceContainer {
+    margin-top: 0;
   }
   
   .currentPrice {
-    font-size: 12px;
+    font-size: 20px;
   }
   
   .oldPrice {
-    font-size: 10px;
+    font-size: 11px;
   }
 }

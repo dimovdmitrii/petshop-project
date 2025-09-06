@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Typography, TextField, Button } from "@mui/material";
 import imgDiscount from "../../assets/images/image-disk.svg";
 import styles from "./styles.module.css";

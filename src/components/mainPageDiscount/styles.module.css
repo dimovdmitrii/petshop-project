@@ -49,7 +49,6 @@
   max-width: 783px;
   display: block;
 }
-
 .form {
   display: flex;
   flex-direction: column;
@@ -60,176 +59,140 @@
   width: 100%;
   max-width: 516px;
 }
-
 .form > *:last-child {
   margin-top: 16px;  
 }
-
 .input {
   width: 100%;
 }
-
 .submitButton {
   border-radius: 6px; 
   transition: all 0.3s ease;
 }
-
 .submitButton:hover {
   background: #000;
   color: #FFF;
 }
-
 .submitButton:disabled {
   background: #FFF;
   color: #2451C6;
 }
-
 @media (max-width: 1200px) {
   .discount {
     width: 100%;
     padding: 24px 24px 0 24px;
-  }
-  
+  }  
   .title {
     font-size: 48px;
-  }
-  
+  }  
   .content {
     gap: 30px;
-  }
-  
+  }  
   .petsImage {
     max-width: 600px;
     width: 100%;
     height: auto;
-  }
-  
+  }  
   .form {
     width: 100%;
     max-width: 450px;
-  }
-  
+  }  
   .form > *:last-child {
     margin-top: 0 !important;
   }
 }
-
 @media (max-width: 900px) {
   .discount {
     padding: 20px 20px 0 20px;
-  }
-  
+  }  
   .title {
     font-size: 36px;
-  }
-  
+  }  
   .petsImage {
     max-width: 500px;
-  }
-  
+  }  
   .form {
     max-width: 400px;
-  }
-  
+  }  
   .form > *:last-child {
     margin-top: 0 !important;
   }
 }
-
 @media (max-width: 768px) {
   .discountContainer {
     padding: 0 20px;
-  }
-  
+  }  
   .discount {
     padding: 20px 20px 0 20px;
     gap: 20px;
-  }
-  
+  }  
   .title {
     font-size: 32px;
-  }
-  
+  }  
   .content {
     flex-direction: column;
     align-items: center;
     gap: 24px;
-  }
-  
+  }  
   .imageContainer {
     margin-left: 0;
-  }
-  
+  }  
   .petsImage {
     max-width: 400px;
     width: 100%;
     height: auto;
-  }
-  
+  }  
   .form {
     min-width: 100%;
     width: 100%;
     max-width: 400px;
-  }
-  
+  }  
   .form > *:last-child {
     margin-top: 0 !important;
   }
 }
-
 @media (max-width: 480px) {
   .discountContainer {
     padding: 0 16px;
-  }
-  
+  }  
   .discount {
     padding: 16px 16px 0 16px;
     gap: 16px;
-  }
-  
+  }  
   .title {
     font-size: 24px;
-  }
-  
+  }  
   .petsImage {
     max-width: 300px;
     width: 100%;
     height: auto;
-  }
-  
+  }  
   .form {
     max-width: 100%;
-  }
-  
+  }  
   .form > *:last-child {
     margin-top: 0 !important;
   }
 }
-
 @media (max-width: 320px) {
   .discountContainer {
     padding: 0 12px;
-  }
-  
+  }  
   .discount {
     padding: 12px 12px 0 12px;
     gap: 12px;
-  }
-  
+  }  
   .title {
     font-size: 20px;
-  }
-  
+  }  
   .petsImage {
     max-width: 250px;
     width: 100%;
     height: auto;
-  }
-  
+  }  
   .form {
     max-width: 100%;
-  }
-  
+  }  
   .form > *:last-child {
     margin-top: 0 !important;
   }

@@ -1,4 +1,4 @@
-function NotFpundPage() {
-  return <h1>NotFpundPage Page</h1>;
+function NotFounPage() {
+  return <h1>NotFounPage Page</h1>;
 }
-export default NotFpundPage;
+export default NotFounPage;

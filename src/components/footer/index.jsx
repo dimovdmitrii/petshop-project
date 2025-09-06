@@ -4,62 +4,49 @@ import WhatsappIcon from "../../assets/icons/ic-whatsapp.svg";
 import { Box, Typography } from "@mui/material";
 
 const Footer = () => {
+  const titleStyles = {
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "64px",
+    fontWeight: 700,
+    lineHeight: 1.1,
+    marginBottom: "40px",
+    fontStyle: "normal",
+  };
+
+  const labelStyles = {
+    color: "#8B8B8B",
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "20px",
+    fontWeight: 500,
+    fontStyle: "normal",
+    lineHeight: 1.3,
+  };
+
+  const valueStyles = {
+    color: "#282828",
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "40px",
+    fontWeight: 600,
+    fontStyle: "normal",
+    lineHeight: "1.1",
+  };
+
   return (
     <Box component="footer" className={styles.footer}>
-      <Typography
-        sx={{
-          fontFamily: "Montserrat, sans-serif",
-          fontSize: "64px",
-          fontWeight: 700,
-          lineHeight: 1.1,
-          marginBottom: "40px",
-          fontStyle: "normal",
-        }}
-        className={styles.title}
-      >
+      <Typography sx={titleStyles} className={styles.title}>
         Contact
       </Typography>
       <Box className={styles.infoGrid}>
         <Box className={styles.infoBlock1}>
-          <Typography
-            component="p"
-            sx={{
-              color: "#8B8B8B",
-              fontFamily: "Montserrat, sans-serif",
-              fontSize: "20px",
-              fontWeight: 500,
-              fontStyle: "normal",
-              lineHeight: 1.3,
-            }}
-          >
+          <Typography component="p" sx={labelStyles}>
             Phone
           </Typography>
-          <Typography
-            component="p"
-            sx={{
-              color: "#282828",
-              fontFamily: "Montserrat, sans-serif",
-              fontSize: "40px",
-              fontWeight: 600,
-              fontStyle: "normal",
-              lineHeight: "1.1",
-            }}
-          >
+          <Typography component="p" sx={valueStyles}>
             +49 30 915-88492
           </Typography>
         </Box>
         <Box className={styles.infoBlock2}>
-          <Typography
-            component="p"
-            sx={{
-              color: "#8B8B8B",
-              fontFamily: "Montserrat, sans-serif",
-              fontSize: "20px",
-              fontWeight: 500,
-              fontStyle: "normal",
-              lineHeight: 1.3,
-            }}
-          >
+          <Typography component="p" sx={labelStyles}>
             Socials
           </Typography>
           <Box className={styles.socialIcons}>
@@ -68,58 +55,18 @@ const Footer = () => {
           </Box>
         </Box>
         <Box className={styles.infoBlock1}>
-          <Typography
-            component="p"
-            sx={{
-              color: "#8B8B8B",
-              fontFamily: "Montserrat, sans-serif",
-              fontSize: "20px",
-              fontWeight: 500,
-              fontStyle: "normal",
-              lineHeight: 1.3,
-            }}
-          >
+          <Typography component="p" sx={labelStyles}>
             Address
           </Typography>
-          <Typography
-            component="p"
-            sx={{
-              color: "#282828",
-              fontFamily: "Montserrat, sans-serif",
-              fontSize: "40px",
-              fontWeight: 600,
-              fontStyle: "normal",
-              lineHeight: "1.1",
-            }}
-          >
+          <Typography component="p" sx={valueStyles}>
             Wallstraße 9-13, 10179 Berlin, Deutschland
           </Typography>
         </Box>
         <Box className={styles.infoBlock2}>
-          <Typography
-            component="p"
-            sx={{
-              color: "#8B8B8B",
-              fontFamily: "Montserrat, sans-serif",
-              fontSize: "20px",
-              fontWeight: 500,
-              fontStyle: "normal",
-              lineHeight: 1.3,
-            }}
-          >
+          <Typography component="p" sx={labelStyles}>
             Working Hours
           </Typography>
-          <Typography
-            component="p"
-            sx={{
-              color: "#282828",
-              fontFamily: "Montserrat, sans-serif",
-              fontSize: "40px",
-              fontWeight: 600,
-              fontStyle: "normal",
-              lineHeight: "1.1",
-            }}
-          >
+          <Typography component="p" sx={valueStyles}>
             24 hours a day
           </Typography>
         </Box>

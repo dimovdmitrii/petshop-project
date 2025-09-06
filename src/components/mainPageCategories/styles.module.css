@@ -197,11 +197,6 @@ line-height: 126%;
     top: 140px;
   }
   
-  .navButton::after,
-  .swiper-button-prev::after,
-  .swiper-button-next::after {
-    font-size: 10px !important;
-  }
 }
 
 @media (max-width: 768px) {
@@ -244,11 +239,6 @@ line-height: 126%;
     top: 120px;
   }
   
-  .navButton::after,
-  .swiper-button-prev::after,
-  .swiper-button-next::after {
-    font-size: 10px !important;
-  }
   
   .pagination {
     margin-top: 72px;
@@ -292,11 +282,6 @@ line-height: 126%;
     top: 100px;
   }
   
-  .navButton::after,
-  .swiper-button-prev::after,
-  .swiper-button-next::after {
-    font-size: 10px !important;
-  }
   
   .pagination {
     margin-top: 64px;
@@ -342,11 +327,6 @@ line-height: 126%;
     top: 80px;
   }
   
-  .navButton::after,
-  .swiper-button-prev::after,
-  .swiper-button-next::after {
-    font-size: 10px !important;
-  }
   
   .pagination {
     margin-top: 60px;

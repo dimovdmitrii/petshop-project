@@ -1,8 +1,106 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Box, Typography, TextField, FormControlLabel, Checkbox, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import CartSales from '../cartSales';
 import styles from './styles.module.css';
+
+// Константы стилей
+const TYPOGRAPHY_STYLES = {
+  title: {
+    fontFamily: 'Montserrat, sans-serif',
+    fontSize: { xs: "24px", sm: "32px", md: "64px", lg: "64px" },
+    fontWeight: 700,
+    color: "#282828",          
+    lineHeight: "110%",
+    margin: "40px 0 40px 0"
+  },
+  filterLabel: {
+    color: '#282828',
+    fontFamily: 'Montserrat, sans-serif',
+    fontSize: '20px',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    lineHeight: '130%',
+  },
+  menuItem: {
+    fontFamily: 'Montserrat',
+    fontSize: '16px',
+    fontWeight: 500,
+  }
+};
+
+const TEXT_FIELD_STYLES = {
+  width: "112px",
+  height: "36px",
+  '& .MuiInputBase-root': {
+    height: "36px",
+    borderRadius: "6px",
+    border: "1px solid #DDD",
+    padding: "8px 16px",
+  },
+  '& .MuiInputBase-input': {
+    fontFamily: 'Montserrat',
+    fontSize: '16px',
+    fontWeight: 500,
+    padding: 0,
+  },
+  '& .MuiInputBase-input::placeholder': {
+    fontFamily: 'Montserrat',
+    fontSize: '16px',
+    fontWeight: 500,
+    opacity: 0.7,
+  },
+  '& .MuiOutlinedInput-notchedOutline': {
+    border: 'none',
+  }
+};
+
+// Кастомные стили для чекбокса
+const CustomCheckboxIcon = styled('span')(({ theme }) => ({
+  borderRadius: 6,
+  width: 36,
+  height: 36,
+  border: '1px solid #DDD',
+  backgroundColor: '#fff',
+  '&:hover': {
+    backgroundColor: '#f5f5f5',
+  },
+}));
+
+const CustomCheckedIcon = styled(CustomCheckboxIcon)({
+  backgroundColor: '#0D50FF',
+  border: '1px solid #0D50FF',
+  '&::before': {
+    display: 'block',
+    width: 36,
+    height: 36,
+    backgroundImage:
+      "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath" +
+      " fill-rule='evenodd' clip-rule='evenodd' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='%23fff'/%3E%3C/svg%3E\")",
+    content: '""',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: '20px 20px',
+  },
+  '&:hover': {
+    backgroundColor: '#0B45E6',
+  },
+});
+
+// Кастомный чекбокс компонент
+function CustomCheckbox(props) {
+  return (
+    <Checkbox
+      sx={{ '&:hover': { bgcolor: 'transparent' } }}
+      disableRipple
+      color="default"
+      checkedIcon={<CustomCheckedIcon />}
+      icon={<CustomCheckboxIcon />}
+      {...props}
+    />
+  );
+}
 
 const CategoryProducts = () => {
   const { id } = useParams();
@@ -34,26 +132,22 @@ const CategoryProducts = () => {
         let productsData = [];
         let categoryName = '';
 
+        // Определяем источник данных
         if (Array.isArray(data)) {
           productsData = data;
-          if (data.length > 0 && data[0].category) {
-            categoryName = data[0].category.title || data[0].category.name;
-          }
         } else if (data.data && Array.isArray(data.data)) {
-          // API возвращает {category: {...}, data: [...]}
           productsData = data.data;
-          if (data.category) {
-            categoryName = data.category.title || data.category.name;
-          } else if (data.data.length > 0 && data.data[0].category) {
-            categoryName = data.data[0].category.title || data.data[0].category.name;
-          }
         } else if (data.products && Array.isArray(data.products)) {
           productsData = data.products;
-          if (data.products.length > 0 && data.products[0].category) {
-            categoryName = data.products[0].category.title || data.products[0].category.name;
-          }
+        }
+
+        // Определяем название категории
+        if (data.category) {
+          categoryName = data.category.title || data.category.name;
         } else if (data.title || data.name) {
           categoryName = data.title || data.name;
+        } else if (productsData.length > 0 && productsData[0].category) {
+          categoryName = productsData[0].category.title || productsData[0].category.name;
         }
 
         setProducts(productsData);
@@ -145,15 +239,8 @@ const CategoryProducts = () => {
 
       {/* Заголовок */}
       <Typography 
-        variant="h1" 
         className={styles.title}
-        sx={{
-          fontSize: { xs: "24px", sm: "32px", md: "48px", lg: "64px" },
-          fontWeight: 700,
-          color: "#282828",
-          margin: "0 0 40px 0",
-          lineHeight: "110%"
-        }}
+        sx={TYPOGRAPHY_STYLES.title}
       >
         {categoryName}
       </Typography>
@@ -161,14 +248,17 @@ const CategoryProducts = () => {
       {/* Фильтры */}
       <Box className={styles.filtersContainer}>
         <Box className={styles.priceFilter}>
-          <Typography variant="body1" className={styles.filterLabel}>Price</Typography>
+          <Typography sx={TYPOGRAPHY_STYLES.filterLabel} className={styles.filterLabel}>Price</Typography>
           <TextField
             type="number"
             placeholder="from"
             value={priceFrom}
             onChange={(e) => setPriceFrom(e.target.value)}
             size="small"
-            sx={{ width: "100px", marginRight: "8px" }}
+            sx={{ 
+              ...TEXT_FIELD_STYLES,
+              marginRight: "8px",
+            }}
           />
           <TextField
             type="number"
@@ -176,34 +266,79 @@ const CategoryProducts = () => {
             value={priceTo}
             onChange={(e) => setPriceTo(e.target.value)}
             size="small"
-            sx={{ width: "100px" }}
+            sx={TEXT_FIELD_STYLES}
           />
         </Box>
 
         <FormControlLabel
           control={
-            <Checkbox
+            <CustomCheckbox
               checked={discountedOnly}
               onChange={(e) => setDiscountedOnly(e.target.checked)}
             />
           }
-          label="Discounted items"
-          className={styles.discountCheckbox}
+          label={
+            <Typography sx={TYPOGRAPHY_STYLES.filterLabel}>
+              Discounted items
+            </Typography>
+          }
+          labelPlacement="start"
+          sx={{
+            margin: 0,
+            gap: '16px', // Добавляем отступ 16px между лейблом и чекбоксом
+            '& .MuiFormControlLabel-label': {
+              marginLeft: 0,
+            }
+          }}
         />
 
-        <FormControl size="small" sx={{ minWidth: 120 }}>
-          <InputLabel>Sorted</InputLabel>
-          <Select
-            value={sortBy}
-            label="Sorted"
-            onChange={(e) => setSortBy(e.target.value)}
-          >
-            <MenuItem value="default">by default</MenuItem>
-            <MenuItem value="newest">newest</MenuItem>
-            <MenuItem value="price-high-low">price: high-low</MenuItem>
-            <MenuItem value="price-low-high">price: low-high</MenuItem>
-          </Select>
-        </FormControl>
+        <Box className={styles.sortContainer} >
+          <Typography sx={TYPOGRAPHY_STYLES.filterLabel} className={styles.filterLabel}>Sorted</Typography>
+          <FormControl size="small" sx={{ minWidth: 200 }}>
+            <Select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              displayEmpty
+              sx={{
+                width: '200px',
+                height: '36px',
+                '& .MuiSelect-select': {
+                  fontFamily: 'Montserrat',
+                  fontSize: '16px',
+                  fontWeight: 500,
+                  color: '#282828',
+                  padding: '8px 8px 8px 16px',
+                  height: '36px',
+                  display: 'flex',
+                  alignItems: 'center',
+                },
+                '& .MuiOutlinedInput-notchedOutline': {
+                  border: '1px solid #DDD',
+                  borderRadius: '6px',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#282828',
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#282828',
+                }
+              }}
+            >
+              <MenuItem value="default" sx={TYPOGRAPHY_STYLES.menuItem}>
+                by default
+              </MenuItem>
+              <MenuItem value="newest" sx={TYPOGRAPHY_STYLES.menuItem}>
+                newest
+              </MenuItem>
+              <MenuItem value="price-high-low" sx={TYPOGRAPHY_STYLES.menuItem}>
+                price: high-low
+              </MenuItem>
+              <MenuItem value="price-low-high" sx={TYPOGRAPHY_STYLES.menuItem}>
+                price: low-high
+              </MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
       </Box>
 
       {/* Сетка продуктов */}

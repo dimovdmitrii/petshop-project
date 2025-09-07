@@ -15,7 +15,7 @@
 
 .productCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); */
 }
 
 .imageContainer {
@@ -23,6 +23,23 @@
   width: 100%;
   height: 284px;
   overflow: hidden;
+}
+
+.addToCartContainer {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.productCard:hover .addToCartContainer {
+  opacity: 1;
+}
+
+.addToCartButton {
+  white-space: nowrap;
 }
 
 .productImage {
@@ -107,6 +124,10 @@
     height: 250px;
   }
   
+  .addToCartContainer {
+    bottom: 12px;
+  }
+  
   .discountBadge {
     font-size: 18px;
     padding: 6px 10px;
@@ -139,6 +160,10 @@
   
   .imageContainer {
     height: 220px;
+  }
+  
+  .addToCartContainer {
+    bottom: 10px;
   }
   
   .discountBadge {
@@ -175,6 +200,10 @@
     height: 180px;
   }
   
+  .addToCartContainer {
+    bottom: 8px;
+  }
+  
   .discountBadge {
     font-size: 14px;
     padding: 4px 6px;
@@ -208,6 +237,10 @@
   
   .imageContainer {
     height: 140px;
+  }
+  
+  .addToCartContainer {
+    bottom: 6px;
   }
   
   .discountBadge {
@@ -247,6 +280,10 @@
   
   .imageContainer {
     height: 120px;
+  }
+  
+  .addToCartContainer {
+    bottom: 4px;
   }
   
   .discountBadge {

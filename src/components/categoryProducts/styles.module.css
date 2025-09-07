@@ -5,32 +5,92 @@
   min-height: 80vh;
 }
 
-.header {
-  margin-bottom: 40px;
+/* Хлебные крошки */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 20px;
 }
 
-.backLink {
-  display: inline-block;
+.breadcrumbLink {
+  padding: 8px 16px;
+  border: 1px solid #DDD;
+  border-radius: 6px;
+  background-color: #F1F3F4;
   color: #8B8B8B;
   text-decoration: none;
   font-family: Montserrat;
   font-size: 16px;
   font-weight: 500;
-  margin-bottom: 20px;
-  transition: color 0.3s ease;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
 }
 
-.backLink:hover {
+.breadcrumbLink:hover {
+  background-color: #DDD;
   color: #282828;
+}
+
+.breadcrumbCurrent {
+  padding: 8px 16px;
+  border: 1px solid #DDD;
+  border-radius: 6px;
+  background-color: #F1F3F4;
+  color: #282828;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumbSeparator {
+  width: 16px;
+  height: 1px;
+  background-color: #DDD;
+  margin: 0 -1px;
+  position: relative;
+  z-index: 0;
 }
 
 .title {
   font-family: Montserrat;
-  font-size: 48px;
   font-weight: 700;
   color: #282828;
-  margin: 0;
+  margin: 0 0 40px 0;
   line-height: 110%;
+}
+
+/* Фильтры */
+.filtersContainer {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.priceFilter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterLabel {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  color: #282828;
+  margin-right: 8px;
+}
+
+.discountCheckbox {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  color: #282828;
 }
 
 .loading, .error {
@@ -59,69 +119,27 @@
 
 .productsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px;
   margin-top: 40px;
 }
 
-.productCard {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+@media (max-width: 1200px) {
+  .productsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
 }
 
-.productCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.productImage {
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
-  position: relative;
-}
-
-.productImage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.productCard:hover .productImage img {
-  transform: scale(1.05);
-}
-
-.productInfo {
-  padding: 24px;
-}
-
-.productTitle {
-  font-family: Montserrat;
-  font-size: 20px;
-  font-weight: 600;
-  color: #282828;
-  margin: 0 0 12px 0;
-  line-height: 130%;
-}
-
-.productPrice {
-  font-family: Montserrat;
-  font-size: 24px;
-  font-weight: 700;
-  color: #2451C6;
-  margin: 0 0 12px 0;
-}
-
-.productDescription {
-  font-family: Montserrat;
-  font-size: 14px;
-  color: #8B8B8B;
-  line-height: 150%;
-  margin: 0;
+@media (max-width: 900px) {
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .filtersContainer {
+    gap: 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -129,29 +147,16 @@
     padding: 20px;
   }
   
-  .title {
-    font-size: 32px;
+  .filtersContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
   
-  .productsGrid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  
-  .productImage {
-    height: 200px;
-  }
-  
-  .productInfo {
-    padding: 16px;
-  }
-  
-  .productTitle {
-    font-size: 18px;
-  }
-  
-  .productPrice {
-    font-size: 20px;
+  .priceFilter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
 
@@ -160,16 +165,19 @@
     padding: 16px;
   }
   
-  .title {
-    font-size: 24px;
-  }
-  
   .productsGrid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
   
-  .productImage {
-    height: 180px;
+  .breadcrumbs {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .breadcrumbLink,
+  .breadcrumbCurrent {
+    font-size: 14px;
+    padding: 6px 12px;
   }
 }

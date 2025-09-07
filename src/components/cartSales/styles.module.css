@@ -32,6 +32,9 @@
   transform: translateX(-50%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  width: 90%;
+  display: flex;
+  justify-content: center;
 }
 
 .productCard:hover .addToCartContainer {

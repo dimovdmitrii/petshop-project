@@ -54,19 +54,20 @@ const CartSales = ({ product }) => {
         
         {/* Кнопка Add to cart */}
         <div className={styles.addToCartContainer}>
-          <Button
+          <Button 
             className={`${styles.addToCartButton} ${isAdded ? styles.added : ''}`}
             onClick={handleAddToCart}
             sx={{
-              backgroundColor: isAdded ? '#fff' : '#339933',
-              color: isAdded ? '#282828' : '#fff',
-              border: isAdded ? '1px solid #282828' : 'none',
+              width: '100%',
+              backgroundColor: isAdded ? '#282828' : '#0D50FF',
+              color: '#fff',
+              border: 'none',
               '&:hover': {
-                backgroundColor: isAdded ? '#fff' : '#282828',
+                backgroundColor: isAdded ? '#282828' : '#282828',
                 color: '#fff',
               },
               fontFamily: 'Montserrat',
-              fontSize: '18px',
+              fontSize: '20px',
               fontWeight: 600,
               textTransform: 'none',
               padding: '16px 32px',

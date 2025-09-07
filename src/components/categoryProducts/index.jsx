@@ -173,9 +173,12 @@ const CategoryProducts = () => {
 
     // Применяем фильтры
     filtered = filtered.filter(product => {
-      // Фильтр по цене
-      if (priceFrom && product.price < parseFloat(priceFrom)) return false;
-      if (priceTo && product.price > parseFloat(priceTo)) return false;
+      // Определяем текущую цену (со скидкой или без)
+      const currentPrice = product.discont_price || product.price;
+      
+      // Фильтр по цене (используем текущую цену)
+      if (priceFrom && currentPrice < parseFloat(priceFrom)) return false;
+      if (priceTo && currentPrice > parseFloat(priceTo)) return false;
       
       // Фильтр по скидке
       if (discountedOnly && (!product.discont_price || product.discont_price >= product.price)) {

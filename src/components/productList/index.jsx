@@ -11,6 +11,7 @@ import {
   setPriceTo, 
   setDiscountedOnly, 
   setSortBy,
+  setCurrentContext,
   applyFilters,
   clearAllProductsError,
   clearCategoryProductsError
@@ -142,11 +143,15 @@ const ProductList = ({
   useEffect(() => {
     // Загружаем продукты в зависимости от endpoint
     if (apiEndpoint.includes('/products/all')) {
+      // Устанавливаем контекст для всех продуктов
+      dispatch(setCurrentContext('all'));
       // Если продукты уже загружены, не делаем повторный запрос
       if (allProducts.length === 0) {
         dispatch(fetchAllProducts());
       }
     } else if (apiEndpoint.includes('/categories/')) {
+      // Устанавливаем контекст для продуктов категории
+      dispatch(setCurrentContext('category'));
       // Извлекаем ID категории из endpoint
       const categoryId = apiEndpoint.split('/categories/')[1];
       dispatch(fetchProductsByCategory(categoryId));

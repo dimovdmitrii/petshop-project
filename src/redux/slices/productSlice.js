@@ -88,6 +88,9 @@ const productSlice = createSlice({
       sortBy: 'default'
     },
     
+    // Текущий контекст (какие продукты показывать)
+    currentContext: 'all', // 'all' или 'category'
+    
     // Отфильтрованные продукты
     filteredProducts: []
   },
@@ -116,6 +119,9 @@ const productSlice = createSlice({
     setSortBy: (state, action) => {
       state.filters.sortBy = action.payload;
     },
+    setCurrentContext: (state, action) => {
+      state.currentContext = action.payload; // 'all' или 'category'
+    },
     resetFilters: (state) => {
       state.filters = {
         priceFrom: '',
@@ -127,11 +133,13 @@ const productSlice = createSlice({
     
     // Применение фильтров и сортировки
     applyFilters: (state) => {
-      let products = [...state.allProducts];
+      let products = [];
       
-      // Если есть продукты категории, используем их
-      if (state.categoryProducts.length > 0) {
+      // Определяем, какие продукты использовать на основе контекста
+      if (state.currentContext === 'category' && state.categoryProducts.length > 0) {
         products = [...state.categoryProducts];
+      } else if (state.currentContext === 'all' && state.allProducts.length > 0) {
+        products = [...state.allProducts];
       }
       
       // Применяем фильтры
@@ -244,6 +252,7 @@ export const {
   setPriceTo,
   setDiscountedOnly,
   setSortBy,
+  setCurrentContext,
   resetFilters,
   applyFilters,
   clearAllProducts,

@@ -1,8 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Box, Typography, TextField, FormControlLabel, Checkbox, Select, MenuItem, FormControl } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CartSales from '../cartSales';
+import { 
+  fetchAllProducts, 
+  fetchProductsByCategory, 
+  setPriceFrom, 
+  setPriceTo, 
+  setDiscountedOnly, 
+  setSortBy,
+  applyFilters,
+  clearAllProductsError,
+  clearCategoryProductsError
+} from '../../redux/slices/productSlice';
 import styles from './styles.module.css';
 
 // Константы стилей
@@ -108,101 +120,64 @@ const ProductList = ({
   apiEndpoint, 
   showFilters = true 
 }) => {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
   
-  // Фильтры
-  const [priceFrom, setPriceFrom] = useState('');
-  const [priceTo, setPriceTo] = useState('');
-  const [discountedOnly, setDiscountedOnly] = useState(false);
-  const [sortBy, setSortBy] = useState('default');
+  // Получаем состояние из Redux
+  const {
+    allProducts,
+    categoryProducts,
+    filteredProducts,
+    filters,
+    allProductsLoading,
+    categoryProductsLoading,
+    allProductsError,
+    categoryProductsError
+  } = useSelector(state => state.products);
+
+  // Определяем, какой тип загрузки использовать
+  const isLoading = apiEndpoint.includes('/products/all') ? allProductsLoading : categoryProductsLoading;
+  const error = apiEndpoint.includes('/products/all') ? allProductsError : categoryProductsError;
+  const products = apiEndpoint.includes('/products/all') ? allProducts : categoryProducts;
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(apiEndpoint);
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
-        
-        const data = await response.json();
-        
-        // Обрабатываем данные с API
-        let productsData = [];
-
-        // Определяем источник данных
-        if (Array.isArray(data)) {
-          productsData = data;
-        } else if (data.data && Array.isArray(data.data)) {
-          productsData = data.data;
-        } else if (data.products && Array.isArray(data.products)) {
-          productsData = data.products;
-        }
-
-        setProducts(productsData);
-        setFilteredProducts(productsData);
-      } catch (err) {
-        setError(err.message);
-        setProducts([]);
-        setFilteredProducts([]);
-      } finally {
-        setLoading(false);
+    // Загружаем продукты в зависимости от endpoint
+    if (apiEndpoint.includes('/products/all')) {
+      // Если продукты уже загружены, не делаем повторный запрос
+      if (allProducts.length === 0) {
+        dispatch(fetchAllProducts());
       }
-    };
-
-    fetchProducts();
-  }, [apiEndpoint]);
-
-  // Функция фильтрации и сортировки
-  const applyFiltersAndSort = () => {
-    let filtered = [...products];
-
-    // Применяем фильтры
-    filtered = filtered.filter(product => {
-      // Определяем текущую цену (со скидкой или без)
-      const currentPrice = product.discont_price || product.price;
-      
-      // Фильтр по цене (используем текущую цену)
-      if (priceFrom && currentPrice < parseFloat(priceFrom)) return false;
-      if (priceTo && currentPrice > parseFloat(priceTo)) return false;
-      
-      // Фильтр по скидке
-      if (discountedOnly && (!product.discont_price || product.discont_price >= product.price)) {
-        return false;
-      }
-      
-      return true;
-    });
-
-    // Применяем сортировку
-    if (sortBy !== 'default') {
-      filtered.sort((a, b) => {
-        switch (sortBy) {
-          case 'newest':
-            return new Date(b.createdAt || 0) - new Date(a.createdAt || 0);
-          case 'price-high-low':
-            return (b.discont_price || b.price) - (a.discont_price || a.price);
-          case 'price-low-high':
-            return (a.discont_price || a.price) - (b.discont_price || b.price);
-          default:
-            return 0;
-        }
-      });
+    } else if (apiEndpoint.includes('/categories/')) {
+      // Извлекаем ID категории из endpoint
+      const categoryId = apiEndpoint.split('/categories/')[1];
+      dispatch(fetchProductsByCategory(categoryId));
     }
-
-    setFilteredProducts(filtered);
-  };
+  }, [apiEndpoint, dispatch, allProducts.length]);
 
   // Применяем фильтры при изменении
   useEffect(() => {
-    applyFiltersAndSort();
-  }, [products, priceFrom, priceTo, discountedOnly, sortBy]);
+    if (products.length > 0) {
+      dispatch(applyFilters());
+    }
+  }, [products, filters, dispatch]);
 
-  if (loading) {
+  // Обработчики для фильтров
+  const handlePriceFromChange = (e) => {
+    dispatch(setPriceFrom(e.target.value));
+  };
+
+  const handlePriceToChange = (e) => {
+    dispatch(setPriceTo(e.target.value));
+  };
+
+  const handleDiscountedChange = (e) => {
+    dispatch(setDiscountedOnly(e.target.checked));
+  };
+
+  const handleSortChange = (e) => {
+    dispatch(setSortBy(e.target.value));
+  };
+
+  if (isLoading) {
     return (
       <div className={styles.container}>
         <div className={styles.loading}>Loading products...</div>
@@ -250,98 +225,98 @@ const ProductList = ({
       {/* Фильтры */}
       {showFilters && (
         <Box className={styles.filtersContainer}>
-          <Box className={styles.priceFilter}>
-            <Typography sx={TYPOGRAPHY_STYLES.filterLabel} className={styles.filterLabel}>Price</Typography>
-            <TextField
-              type="number"
-              placeholder="from"
-              value={priceFrom}
-              onChange={(e) => setPriceFrom(e.target.value)}
-              size="small"
-              sx={{ 
-                ...TEXT_FIELD_STYLES,
-                marginRight: "8px",
-              }}
-            />
-            <TextField
-              type="number"
-              placeholder="to"
-              value={priceTo}
-              onChange={(e) => setPriceTo(e.target.value)}
-              size="small"
-              sx={TEXT_FIELD_STYLES}
-            />
-          </Box>
-
-          <FormControlLabel
-            control={
-              <CustomCheckbox
-                checked={discountedOnly}
-                onChange={(e) => setDiscountedOnly(e.target.checked)}
-              />
-            }
-            label={
-              <Typography sx={TYPOGRAPHY_STYLES.filterLabel}>
-                Discounted items
-              </Typography>
-            }
-            labelPlacement="start"
-            sx={{
-              margin: 0,
-              gap: '16px',
-              '& .MuiFormControlLabel-label': {
-                marginLeft: 0,
-              }
+        <Box className={styles.priceFilter}>
+          <Typography sx={TYPOGRAPHY_STYLES.filterLabel} className={styles.filterLabel}>Price</Typography>
+          <TextField
+            type="number"
+            placeholder="from"
+            value={filters.priceFrom}
+            onChange={handlePriceFromChange}
+            size="small"
+            sx={{ 
+              ...TEXT_FIELD_STYLES,
+              marginRight: "8px",
             }}
           />
+          <TextField
+            type="number"
+            placeholder="to"
+            value={filters.priceTo}
+            onChange={handlePriceToChange}
+            size="small"
+            sx={TEXT_FIELD_STYLES}
+          />
+        </Box>
 
-          <Box className={styles.sortContainer}>
-            <Typography sx={TYPOGRAPHY_STYLES.filterLabel} className={styles.filterLabel}>Sorted</Typography>
-            <FormControl size="small" sx={{ minWidth: 200 }}>
-              <Select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                displayEmpty
-                sx={{
-                  width: '200px',
+        <FormControlLabel
+          control={
+            <CustomCheckbox
+              checked={filters.discountedOnly}
+              onChange={handleDiscountedChange}
+            />
+          }
+          label={
+            <Typography sx={TYPOGRAPHY_STYLES.filterLabel}>
+              Discounted items
+            </Typography>
+          }
+          labelPlacement="start"
+          sx={{
+            margin: 0,
+            gap: '16px',
+            '& .MuiFormControlLabel-label': {
+              marginLeft: 0,
+            }
+          }}
+        />
+
+        <Box className={styles.sortContainer}>
+          <Typography sx={TYPOGRAPHY_STYLES.filterLabel} className={styles.filterLabel}>Sorted</Typography>
+          <FormControl size="small" sx={{ minWidth: 200 }}>
+            <Select
+              value={filters.sortBy}
+              onChange={handleSortChange}
+              displayEmpty
+              sx={{
+                width: '200px',
+                height: '36px',
+                '& .MuiSelect-select': {
+                  fontFamily: 'Montserrat',
+                  fontSize: '16px',
+                  fontWeight: 500,
+                  color: '#282828',
+                  padding: '8px 8px 8px 16px',
                   height: '36px',
-                  '& .MuiSelect-select': {
-                    fontFamily: 'Montserrat',
-                    fontSize: '16px',
-                    fontWeight: 500,
-                    color: '#282828',
-                    padding: '8px 8px 8px 16px',
-                    height: '36px',
-                    display: 'flex',
-                    alignItems: 'center',
-                  },
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    border: '1px solid #DDD',
-                    borderRadius: '6px',
-                  },
-                  '&:hover .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#282828',
-                  },
-                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#282828',
-                  }
-                }}
-              >
-                <MenuItem value="default" sx={TYPOGRAPHY_STYLES.menuItem}>
-                  by default
-                </MenuItem>
-                <MenuItem value="newest" sx={TYPOGRAPHY_STYLES.menuItem}>
-                  newest
-                </MenuItem>
-                <MenuItem value="price-high-low" sx={TYPOGRAPHY_STYLES.menuItem}>
-                  price: high-low
-                </MenuItem>
-                <MenuItem value="price-low-high" sx={TYPOGRAPHY_STYLES.menuItem}>
-                  price: low-high
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
+                  display: 'flex',
+                  alignItems: 'center',
+                },
+                '& .MuiOutlinedInput-notchedOutline': {
+                  border: '1px solid #DDD',
+                  borderRadius: '6px',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#282828',
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#282828',
+                }
+              }}
+            >
+              <MenuItem value="default" sx={TYPOGRAPHY_STYLES.menuItem}>
+                by default
+              </MenuItem>
+              <MenuItem value="newest" sx={TYPOGRAPHY_STYLES.menuItem}>
+                newest
+              </MenuItem>
+              <MenuItem value="price-high-low" sx={TYPOGRAPHY_STYLES.menuItem}>
+                price: high-low
+              </MenuItem>
+              <MenuItem value="price-low-high" sx={TYPOGRAPHY_STYLES.menuItem}>
+                price: low-high
+              </MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
         </Box>
       )}
 

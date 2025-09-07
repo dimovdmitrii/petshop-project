@@ -7,7 +7,19 @@ export const fetchAllProducts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get('http://localhost:3333/products/all');
-      return response.data;
+      const data = response.data;
+      
+      // Обрабатываем данные с API
+      let productsData = [];
+      if (Array.isArray(data)) {
+        productsData = data;
+      } else if (data.data && Array.isArray(data.data)) {
+        productsData = data.data;
+      } else if (data.products && Array.isArray(data.products)) {
+        productsData = data.products;
+      }
+      
+      return productsData;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
@@ -19,7 +31,19 @@ export const fetchProductsByCategory = createAsyncThunk(
   async (categoryId, { rejectWithValue }) => {
     try {
       const response = await axios.get(`http://localhost:3333/categories/${categoryId}`);
-      return response.data;
+      const data = response.data;
+      
+      // Обрабатываем данные с API
+      let productsData = [];
+      if (Array.isArray(data)) {
+        productsData = data;
+      } else if (data.data && Array.isArray(data.data)) {
+        productsData = data.data;
+      } else if (data.products && Array.isArray(data.products)) {
+        productsData = data.products;
+      }
+      
+      return productsData;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }

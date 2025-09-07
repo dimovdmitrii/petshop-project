@@ -20,11 +20,6 @@ const CartSales = ({ product }) => {
   // Вычисляем процент скидки
   const discountPercentage = calculateDiscountPercentage(product.price, product.discont_price);
   const hasDiscount = discountPercentage > 0;
-  
-  // Отладочная информация
-  console.log('CartSales product:', product);
-  console.log('Product has discount:', hasDiscount);
-  console.log('Discount percentage:', discountPercentage);
 
   const handleAddToCart = (e) => {
     e.preventDefault(); // Предотвращаем переход по ссылке
@@ -32,7 +27,6 @@ const CartSales = ({ product }) => {
     
     // Добавляем товар в корзину через Redux
     dispatch(addToBasket(product));
-    console.log('Adding to cart:', product);
     setIsAdded(true);
     
     // Через 2 секунды возвращаем кнопку в исходное состояние
@@ -49,7 +43,6 @@ const CartSales = ({ product }) => {
           alt={product.title}
           className={styles.productImage}
           onError={(e) => {
-            console.log('Image load error for:', product.image);
             e.target.src = '/placeholder-image.png';
           }}
         />

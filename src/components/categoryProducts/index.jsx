@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import ProductList from '../productList';
+import { API_URL } from '../../config/api';
 
 const CategoryProducts = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const CategoryProducts = () => {
     <ProductList
       title="Category Products"
       breadcrumbs={breadcrumbs}
-      apiEndpoint={`http://localhost:3333/categories/${id}`}
+      apiEndpoint={`${API_URL}/categories/${id}`}
       showFilters={true}
       dynamicTitle={true}
       dynamicBreadcrumbs={true}

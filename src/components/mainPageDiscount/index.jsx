@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Typography, TextField, Button } from "@mui/material";
 import axios from "axios";
+import { API_URL } from "../../config/api";
 import imgDiscount from "../../assets/images/image-disk.svg";
 import styles from "./styles.module.css";
 
@@ -80,7 +81,7 @@ function MainPageDiscount() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3333/sale/send", formData);
+      const response = await axios.post(`${API_URL}/sale/send`, formData);
       
       if (response.status === 200) {
         setIsSubmitted(true);

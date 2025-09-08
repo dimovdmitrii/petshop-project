@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
 const CategoryCard = ({ category }) => {
@@ -6,7 +7,7 @@ const CategoryCard = ({ category }) => {
     <Link to={`/categories/${category.id}`} className={styles.categoryCard}>
       <div className={styles.imageContainer}>
         <img 
-          src={`http://localhost:3333${category.image}`} 
+          src={`${API_URL}${category.image}`} 
           alt={category.title} 
           className={styles.categoryImage}
         />

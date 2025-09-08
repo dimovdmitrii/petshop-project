@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Button } from '@mui/material';
 import { fetchProductById } from '../../redux/slices/productSlice';
 import { addToBasket } from '../../redux/slices/basketSlice';
+import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
 const CartPage = () => {
@@ -129,7 +130,7 @@ const CartPage = () => {
         <div className={styles.imageContainer}>
           {product.image ? (
             <img 
-              src={`http://localhost:3333${product.image}`} 
+              src={`${API_URL}${product.image}`} 
               alt={product.title}
               className={styles.productImage}
               onError={(e) => {

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import CartCategories from '../../components/cartCategories';
+import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
 const Categories = () => {
@@ -13,7 +14,7 @@ const Categories = () => {
     const fetchCategories = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:3333/categories/all');
+        const response = await fetch(`${API_URL}/categories/all`);
         
         if (!response.ok) {
           throw new Error('Failed to fetch categories');

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeFromBasket, updateQuantity } from '../../redux/slices/basketSlice';
+import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
 const CartBasket = ({ product }) => {
@@ -36,7 +37,7 @@ const CartBasket = ({ product }) => {
       {/* Product Image */}
       <div className={styles.imageContainer}>
         <img 
-          src={`http://localhost:3333${product.image}`} 
+          src={`${API_URL}${product.image}`} 
           alt={product.title}
           className={styles.productImage}
           onError={(e) => {

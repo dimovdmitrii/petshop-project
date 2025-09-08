@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addToBasket } from '../../redux/slices/basketSlice';
+import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
 // Функция для расчета процента скидки
@@ -42,7 +43,7 @@ const CartSales = ({ product }) => {
     <Link to={`/products/${product.id}`} className={styles.productCard}>
       <div className={styles.imageContainer}>
         <img
-          src={product.image && product.image.startsWith('http') ? product.image : `http://localhost:3333${product.image || '/placeholder-image.png'}`}
+          src={product.image && product.image.startsWith('http') ? product.image : `${API_URL}${product.image || '/placeholder-image.png'}`}
           alt={product.title}
           className={styles.productImage}
           onError={(e) => {

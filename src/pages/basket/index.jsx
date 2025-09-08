@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Button, Modal, Box } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { API_URL } from '../../config/api';
 import CartBasket from '../../components/cartBasket';
 import { clearBasket } from '../../redux/slices/basketSlice';
 import styles from './styles.module.css';
@@ -39,7 +40,7 @@ const Basket = () => {
       };
       
       // Отправляем запрос на бэкенд (не ждем ответа)
-      axios.post('http://localhost:3333/order/send', orderData)
+      axios.post(`${API_URL}/order/send`, orderData)
         .catch(error => {
           console.error('Error sending order:', error);
         });

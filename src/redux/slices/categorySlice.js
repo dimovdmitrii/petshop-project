@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API_URL } from '../../config/api';
 
 // Асинхронный thunk для получения категорий
 export const fetchCategories = createAsyncThunk(
   'categories/fetchCategories',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:3333/categories/all');
+      const response = await axios.get(`${API_URL}/categories/all`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);

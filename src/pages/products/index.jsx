@@ -1,4 +1,5 @@
 import ProductList from '../../components/productList';
+import { API_URL } from '../../config/api';
 
 const Products = () => {
   const breadcrumbs = [
@@ -10,7 +11,7 @@ const Products = () => {
     <ProductList
       title="All products"
       breadcrumbs={breadcrumbs}
-      apiEndpoint="http://localhost:3333/products/all"
+      apiEndpoint={`${API_URL}/products/all`}
       showFilters={true}
     />
   );

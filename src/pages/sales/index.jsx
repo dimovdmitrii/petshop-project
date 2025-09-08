@@ -1,4 +1,5 @@
 import ProductList from '../../components/productList';
+import { API_URL } from '../../config/api';
 
 const Sales = () => {
   const breadcrumbs = [
@@ -10,7 +11,7 @@ const Sales = () => {
     <ProductList
       title="Discounted items"
       breadcrumbs={breadcrumbs}
-      apiEndpoint="http://localhost:3333/products/all"
+      apiEndpoint={`${API_URL}/products/all`}
       showFilters={true}
       showDiscountFilter={false}
     />

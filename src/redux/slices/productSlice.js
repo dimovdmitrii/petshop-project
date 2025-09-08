@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API_URL } from '../../config/api';
 
 // Асинхронные thunks для работы с продуктами
 export const fetchAllProducts = createAsyncThunk(
   'products/fetchAllProducts',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:3333/products/all');
+      const response = await axios.get(`${API_URL}/products/all`);
       const data = response.data;
       
       // Обрабатываем данные с API
@@ -30,7 +31,7 @@ export const fetchProductsByCategory = createAsyncThunk(
   'products/fetchProductsByCategory',
   async (categoryId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3333/categories/${categoryId}`);
+      const response = await axios.get(`${API_URL}/categories/${categoryId}`);
       const data = response.data;
       
       // Обрабатываем данные с API
@@ -61,7 +62,7 @@ export const fetchProductById = createAsyncThunk(
   'products/fetchProductById',
   async (productId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3333/products/${productId}`);
+      const response = await axios.get(`${API_URL}/products/${productId}`);
       const data = response.data;
       
       // API возвращает массив, берем первый элемент
@@ -75,7 +76,7 @@ export const fetchProductById = createAsyncThunk(
       // Если у товара есть categoryId, получаем информацию о категории
       if (product && product.categoryId) {
         try {
-          const categoryResponse = await axios.get(`http://localhost:3333/categories/${product.categoryId}`);
+          const categoryResponse = await axios.get(`${API_URL}/categories/${product.categoryId}`);
           const categoryData = categoryResponse.data;
           
           // Обрабатываем данные категории согласно API структуре

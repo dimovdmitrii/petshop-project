@@ -35,15 +35,22 @@ export const fetchProductsByCategory = createAsyncThunk(
       
       // Обрабатываем данные с API
       let productsData = [];
+      let categoryData = null;
+      
       if (Array.isArray(data)) {
         productsData = data;
       } else if (data.data && Array.isArray(data.data)) {
         productsData = data.data;
+        categoryData = data.category || null;
       } else if (data.products && Array.isArray(data.products)) {
         productsData = data.products;
+        categoryData = data.category || null;
       }
       
-      return productsData;
+      return {
+        products: productsData,
+        category: categoryData
+      };
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
@@ -75,6 +82,9 @@ const productSlice = createSlice({
     categoryProductsLoading: false,
     categoryProductsError: null,
     
+    // Текущая категория
+    currentCategory: null,
+    
     // Отдельный продукт
     currentProduct: null,
     currentProductLoading: false,
@@ -90,6 +100,9 @@ const productSlice = createSlice({
     
     // Текущий контекст (какие продукты показывать)
     currentContext: 'all', // 'all' или 'category'
+    
+    // Режим отображения только товаров со скидкой
+    salesMode: false,
     
     // Отфильтрованные продукты
     filteredProducts: []
@@ -121,6 +134,9 @@ const productSlice = createSlice({
     },
     setCurrentContext: (state, action) => {
       state.currentContext = action.payload; // 'all' или 'category'
+    },
+    setSalesMode: (state, action) => {
+      state.salesMode = action.payload; // true или false
     },
     resetFilters: (state) => {
       state.filters = {
@@ -154,8 +170,13 @@ const productSlice = createSlice({
           return false;
         }
         
-        // Фильтр по скидке
-        if (state.filters.discountedOnly && (!product.discont_price || product.discont_price >= product.price)) {
+        // Фильтр по скидке (если не в режиме sales)
+        if (!state.salesMode && state.filters.discountedOnly && (!product.discont_price || product.discont_price >= product.price)) {
+          return false;
+        }
+        
+        // В режиме sales показываем только товары со скидкой
+        if (state.salesMode && (!product.discont_price || product.discont_price >= product.price)) {
           return false;
         }
         
@@ -188,6 +209,7 @@ const productSlice = createSlice({
     },
     clearCategoryProducts: (state) => {
       state.categoryProducts = [];
+      state.currentCategory = null;
       state.filteredProducts = [];
     },
     clearCurrentProduct: (state) => {
@@ -219,7 +241,8 @@ const productSlice = createSlice({
       })
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
         state.categoryProductsLoading = false;
-        state.categoryProducts = action.payload;
+        state.categoryProducts = action.payload.products;
+        state.currentCategory = action.payload.category;
         // Автоматически применяем фильтры после загрузки
         productSlice.caseReducers.applyFilters(state);
       })
@@ -253,6 +276,7 @@ export const {
   setDiscountedOnly,
   setSortBy,
   setCurrentContext,
+  setSalesMode,
   resetFilters,
   applyFilters,
   clearAllProducts,

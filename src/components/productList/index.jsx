@@ -12,6 +12,7 @@ import {
   setDiscountedOnly, 
   setSortBy,
   setCurrentContext,
+  setSalesMode,
   applyFilters,
   clearAllProductsError,
   clearCategoryProductsError
@@ -119,7 +120,10 @@ const ProductList = ({
   title, 
   breadcrumbs, 
   apiEndpoint, 
-  showFilters = true 
+  showFilters = true,
+  showDiscountFilter = true,
+  dynamicTitle = false,
+  dynamicBreadcrumbs = false
 }) => {
   const dispatch = useDispatch();
   
@@ -132,7 +136,8 @@ const ProductList = ({
     allProductsLoading,
     categoryProductsLoading,
     allProductsError,
-    categoryProductsError
+    categoryProductsError,
+    currentCategory
   } = useSelector(state => state.products);
 
   // Определяем, какой тип загрузки использовать
@@ -140,11 +145,26 @@ const ProductList = ({
   const error = apiEndpoint.includes('/products/all') ? allProductsError : categoryProductsError;
   const products = apiEndpoint.includes('/products/all') ? allProducts : categoryProducts;
 
+  // Динамические breadcrumbs и title
+  const finalBreadcrumbs = dynamicBreadcrumbs && currentCategory 
+    ? [
+        { text: 'Main page', link: '/' },
+        { text: 'Categories', link: '/categories' },
+        { text: currentCategory.title || currentCategory.name || 'Category' }
+      ]
+    : breadcrumbs;
+
+  const finalTitle = dynamicTitle && currentCategory 
+    ? (currentCategory.title || currentCategory.name || 'Category Products')
+    : title;
+
   useEffect(() => {
     // Загружаем продукты в зависимости от endpoint
     if (apiEndpoint.includes('/products/all')) {
       // Устанавливаем контекст для всех продуктов
       dispatch(setCurrentContext('all'));
+      // Устанавливаем режим sales если showDiscountFilter = false
+      dispatch(setSalesMode(!showDiscountFilter));
       // Если продукты уже загружены, не делаем повторный запрос
       if (allProducts.length === 0) {
         dispatch(fetchAllProducts());
@@ -152,11 +172,13 @@ const ProductList = ({
     } else if (apiEndpoint.includes('/categories/')) {
       // Устанавливаем контекст для продуктов категории
       dispatch(setCurrentContext('category'));
+      // Сбрасываем режим sales для категорий
+      dispatch(setSalesMode(false));
       // Извлекаем ID категории из endpoint
       const categoryId = apiEndpoint.split('/categories/')[1];
       dispatch(fetchProductsByCategory(categoryId));
     }
-  }, [apiEndpoint, dispatch, allProducts.length]);
+  }, [apiEndpoint, dispatch, allProducts.length, showDiscountFilter]);
 
   // Применяем фильтры при изменении
   useEffect(() => {
@@ -203,7 +225,7 @@ const ProductList = ({
     <div className={styles.container}>
       {/* Хлебные крошки */}
       <div className={styles.breadcrumbs}>
-        {breadcrumbs.map((crumb, index) => (
+        {finalBreadcrumbs.map((crumb, index) => (
           <div key={index} className={styles.breadcrumbItem}>
             {crumb.link ? (
               <Link to={crumb.link} className={styles.breadcrumbLink}>
@@ -212,7 +234,7 @@ const ProductList = ({
             ) : (
               <span className={styles.breadcrumbCurrent}>{crumb.text}</span>
             )}
-            {index < breadcrumbs.length - 1 && (
+            {index < finalBreadcrumbs.length - 1 && (
               <span className={styles.breadcrumbSeparator}></span>
             )}
           </div>
@@ -224,7 +246,7 @@ const ProductList = ({
         className={styles.title}
         sx={TYPOGRAPHY_STYLES.title}
       >
-        {title}
+        {finalTitle}
       </Typography>
 
       {/* Фильтры */}
@@ -253,27 +275,29 @@ const ProductList = ({
           />
         </Box>
 
-        <FormControlLabel
-          control={
-            <CustomCheckbox
-              checked={filters.discountedOnly}
-              onChange={handleDiscountedChange}
-            />
-          }
-          label={
-            <Typography sx={TYPOGRAPHY_STYLES.filterLabel}>
-              Discounted items
-            </Typography>
-          }
-          labelPlacement="start"
-          sx={{
-            margin: 0,
-            gap: '16px',
-            '& .MuiFormControlLabel-label': {
-              marginLeft: 0,
+        {showDiscountFilter && (
+          <FormControlLabel
+            control={
+              <CustomCheckbox
+                checked={filters.discountedOnly}
+                onChange={handleDiscountedChange}
+              />
             }
-          }}
-        />
+            label={
+              <Typography sx={TYPOGRAPHY_STYLES.filterLabel}>
+                Discounted items
+              </Typography>
+            }
+            labelPlacement="start"
+            sx={{
+              margin: 0,
+              gap: '16px',
+              '& .MuiFormControlLabel-label': {
+                marginLeft: 0,
+              }
+            }}
+          />
+        )}
 
         <Box className={styles.sortContainer}>
           <Typography sx={TYPOGRAPHY_STYLES.filterLabel} className={styles.filterLabel}>Sorted</Typography>

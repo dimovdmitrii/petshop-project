@@ -16,6 +16,8 @@ const CategoryProducts = () => {
       breadcrumbs={breadcrumbs}
       apiEndpoint={`http://localhost:3333/categories/${id}`}
       showFilters={true}
+      dynamicTitle={true}
+      dynamicBreadcrumbs={true}
     />
   );
 };

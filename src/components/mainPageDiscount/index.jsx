@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Typography, TextField, Button } from "@mui/material";
+import axios from "axios";
 import imgDiscount from "../../assets/images/image-disk.svg";
 import styles from "./styles.module.css";
 
@@ -79,15 +80,9 @@ function MainPageDiscount() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3333/sale/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
+      const response = await axios.post("http://localhost:3333/sale/send", formData);
+      
+      if (response.status === 200) {
         setIsSubmitted(true);
         setFormData({ name: "", phone: "", email: "" });
         setTimeout(() => setIsSubmitted(false), 3000);
@@ -98,7 +93,7 @@ function MainPageDiscount() {
   };
 
   return (
-    <div className={styles.discountContainer}>
+    <div id="discount-section" className={styles.discountContainer}>
       <div className={styles.discount}>
         <Typography
           className={styles.title}
@@ -155,8 +150,8 @@ function MainPageDiscount() {
               type="submit"
               className={styles.submitButton}
               sx={{
-                background: " #FFF",
-                color: " #282828",
+                background: isSubmitted ? "#FFF" : "#FFF",
+                color: isSubmitted ? "rgba(13, 80, 255, 1)" : "#282828",
                 textAlign: "center",
                 fontFamily: "Montserrat",
                 fontSize: {
@@ -178,8 +173,8 @@ function MainPageDiscount() {
                   xl: "58px",
                 },
                 "&:hover": {
-                  background: "#000",
-                  color: "#FFF",
+                  background: isSubmitted ? "#FFF" : "#000",
+                  color: isSubmitted ? "rgba(13, 80, 255, 1)" : "#FFF",
                 },
               }}
             >

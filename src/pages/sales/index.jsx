@@ -3,7 +3,7 @@ import ProductList from '../../components/productList';
 const Sales = () => {
   const breadcrumbs = [
     { text: 'Main page', link: '/' },
-    { text: 'Discounted items' }
+    { text: 'All sales' }
   ];
 
   return (

@@ -1,55 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Box, Typography, Button } from '@mui/material';
+import { fetchAllProducts } from '../../redux/slices/productSlice';
 import CartSales from '../cartSales';
 import styles from './styles.module.css';
 
 const MainPageSales = () => {
-  const [salesProducts, setSalesProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const { allProducts, allProductsLoading, allProductsError } = useSelector(state => state.products);
 
   useEffect(() => {
-    const fetchSalesProducts = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('http://localhost:3333/products/all');
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
-        
-        const allProducts = await response.json();
-        console.log('All products:', allProducts);
-        
-        // Фильтруем товары со скидкой (у которых есть и price, и discont_price, и discont_price не null)
-        const productsWithDiscount = allProducts.filter(product => 
-          product.price && 
-          product.discont_price && 
-          product.discont_price !== null && 
-          product.discont_price < product.price
-        );
-        
-        console.log('Products with discount:', productsWithDiscount);
-        
-        // Берем случайные 4 товара только из товаров со скидкой
-        const shuffled = productsWithDiscount.sort(() => 0.5 - Math.random());
-        const selectedProducts = shuffled.slice(0, 4);
-        
-        console.log('Selected products:', selectedProducts);
-        setSalesProducts(selectedProducts);
-      } catch (err) {
-        setError(err.message);
-        console.error('Error fetching sales products:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+    // Загружаем продукты только если они еще не загружены
+    if (allProducts.length === 0) {
+      dispatch(fetchAllProducts());
+    }
+  }, [dispatch, allProducts.length]);
 
-    fetchSalesProducts();
-  }, []);
+  // Фильтруем товары со скидкой и берем случайные 4
+  const salesProducts = allProducts
+    .filter(product => 
+      product.price && 
+      product.discont_price && 
+      product.discont_price !== null && 
+      product.discont_price < product.price
+    )
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 4);
 
-  if (loading) {
+  if (allProductsLoading) {
     return (
       <section className={styles.salesSection}>
         <div className={styles.container}>
@@ -59,11 +38,11 @@ const MainPageSales = () => {
     );
   }
 
-  if (error) {
+  if (allProductsError) {
     return (
       <section className={styles.salesSection}>
         <div className={styles.container}>
-          <div className={styles.error}>Error: {error}</div>
+          <div className={styles.error}>Error: {allProductsError}</div>
         </div>
       </section>
     );

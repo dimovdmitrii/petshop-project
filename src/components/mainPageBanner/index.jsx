@@ -2,6 +2,15 @@ import { Box, Typography, Button } from "@mui/material";
 import mainImg from "../../assets/images/main-img.png";
 
 function MainBanner() {
+  const scrollToDiscount = () => {
+    const discountSection = document.getElementById('discount-section');
+    if (discountSection) {
+      discountSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  };
   return (
     <Box
       sx={{
@@ -37,6 +46,7 @@ function MainBanner() {
       <Button
         variant="contained"
         color="primary"
+        onClick={scrollToDiscount}
         sx={{
           lineHeight: 1.3,
           fontFamily: "Montserrat, sans-serif",

@@ -1,8 +1,0 @@
-/* Стили для страницы sales наследуются от ProductList компонента */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Дополнительные стили для страницы sales, если потребуются */

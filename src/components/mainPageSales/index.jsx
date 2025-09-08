@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Typography, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import { fetchAllProducts } from '../../redux/slices/productSlice';
 import CartSales from '../cartSales';
 import styles from './styles.module.css';
@@ -52,7 +52,7 @@ const MainPageSales = () => {
     <section className={styles.salesSection}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <Typography className={styles.title}>Sale</Typography>
+          <h2 className={styles.title}>Sale</h2>
           <Link to="/sales" className={styles.allSalesBtn}>
             All sales
           </Link>

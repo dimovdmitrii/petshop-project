@@ -87,7 +87,7 @@
 
 .loading, .error {
   text-align: center;
-  font-family: Montserrat;
+  font-family: var(--font-family);
   font-size: 18px;
   color: #8B8B8B;
   padding: 40px;
@@ -103,7 +103,7 @@
 }
 
 .noProducts p {
-  font-family: Montserrat;
+  font-family: var(--font-family);
   font-size: 18px;
   color: #8B8B8B;
   margin: 0;

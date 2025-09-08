@@ -47,14 +47,14 @@
 
 .cartCount {
   position: absolute;
-  top: -6px;
-  right: -6px;
+  top: 6px;
+  right: 22px;
   background-color: #2f5fff;
   color: white;
   font-size: 12px;
   border-radius: 50%;
-  padding: 2px 7px;
-  min-width: 20px;
+  padding: 7px 10px;
+  min-width: 26px;
   text-align: center;
   font-weight: bold;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);

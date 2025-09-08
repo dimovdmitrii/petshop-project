@@ -58,7 +58,7 @@
   right: 16px;
   background-color: rgba(13, 80, 255, 1);
   color: #FFF;
-  font-family: Montserrat;
+  font-family: var(--font-family);
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -100,7 +100,7 @@
 
 .currentPrice {
   color:#282828;
-  font-family: Montserrat;
+  font-family: var(--font-family);
   font-size: 40px;
   font-style: normal;
   font-weight: 600;
@@ -109,7 +109,7 @@
 
 .oldPrice {
   color: #8B8B8B;
-  font-family: Montserrat;
+  font-family: var(--font-family);
   font-size: 20px;
   font-style: normal;
   font-weight: 500;

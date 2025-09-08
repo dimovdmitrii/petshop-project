@@ -1,9 +1,8 @@
 .categoriesSection {
   width: 100%;
-  max-width: 1440px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 80px 40px 66px 40px;
-
+  padding: 80px var(--container-padding) 66px var(--container-padding);
 }
 
 .container {
@@ -32,34 +31,34 @@
 }
 
 .title {
-    font-family: Montserrat;
-    font-size: 64px;
+    font-family: var(--font-family);
+    font-size: var(--font-size-title);
     font-style: normal;
     font-weight: 700;
     line-height: 110%;
-    color: #282828;
+    color: var(--color-primary);
     margin: 0;
-    background-color: #fff;
+    background-color: var(--color-white);
     padding-right: 20px;
     position: relative;
     z-index: 1;
 }
 
 .allCategoriesBtn {
-  color: #8B8B8B;
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: 1px solid #DDD;
+  color: var(--color-secondary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid var(--border-color);
   text-decoration: none;
   text-align: center;
-  font-family: Montserrat;
-  font-size: 16px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
   font-style: normal;
-font-weight: 500;
-line-height: 126%;
+  font-weight: 500;
+  line-height: 126%;
   transition: all 0.3s ease;  
   cursor: pointer;
-  background-color: #fff;
+  background-color: var(--color-white);
   position: relative;
   z-index: 1;
 }
@@ -73,7 +72,7 @@ line-height: 126%;
 .swiperContainer {
   position: relative;
   padding: 0 0 50px 0;
-  max-width: 1440px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
   min-height: 200px;
   overflow: visible;

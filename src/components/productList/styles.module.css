@@ -1,7 +1,7 @@
 .container {
-  max-width: 1440px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 40px;
+  padding: var(--container-padding);
 }
 
 /* Хлебные крошки */
@@ -19,14 +19,14 @@
 }
 
 .breadcrumbLink {
-  padding: 8px 16px;
-  border: 1px solid #DDD;
-  border-radius: 6px;
-  background-color: #FFF;
-  color: #8B8B8B;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  color: var(--color-secondary);
   text-decoration: none;
-  font-family: Montserrat;
-  font-size: 16px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
   font-weight: 500;
   position: relative;
   z-index: 1;
@@ -39,13 +39,13 @@
 }
 
 .breadcrumbCurrent {
-  padding: 8px 16px;
-  border: 1px solid #DDD;
-  border-radius: 6px;
-  background-color: #FFF;
-  color: #282828;
-  font-family: Montserrat;
-  font-size: 16px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
   font-weight: 500;
   position: relative;
   z-index: 1;

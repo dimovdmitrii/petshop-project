@@ -62,7 +62,46 @@ export const fetchProductById = createAsyncThunk(
   async (productId, { rejectWithValue }) => {
     try {
       const response = await axios.get(`http://localhost:3333/products/${productId}`);
-      return response.data;
+      const data = response.data;
+      
+      // API возвращает массив, берем первый элемент
+      let product = null;
+      if (Array.isArray(data) && data.length > 0) {
+        product = data[0];
+      } else {
+        product = data;
+      }
+
+      // Если у товара есть categoryId, получаем информацию о категории
+      if (product && product.categoryId) {
+        try {
+          const categoryResponse = await axios.get(`http://localhost:3333/categories/${product.categoryId}`);
+          const categoryData = categoryResponse.data;
+          
+          // Обрабатываем данные категории согласно API структуре
+          let category = null;
+          if (categoryData && categoryData.category) {
+            // API возвращает {category: {...}, data: [...]}
+            category = categoryData.category;
+          } else if (Array.isArray(categoryData) && categoryData.length > 0) {
+            // Если API возвращает массив
+            category = categoryData[0];
+          } else if (categoryData && categoryData.title) {
+            // Если API возвращает объект напрямую
+            category = categoryData;
+          }
+          
+          return {
+            ...product,
+            category: category
+          };
+                } catch (categoryError) {
+                  // Failed to fetch category, return product without category
+                  return product;
+                }
+      }
+      
+      return product;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }

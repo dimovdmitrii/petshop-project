@@ -8,6 +8,7 @@ import CategoryProducts from "./components/categoryProducts";
 import Products from "./pages/products";
 import Sales from "./pages/sales";
 import Basket from "./pages/basket";
+import CartPage from "./components/cartPage";
 import NotFounPage from "./pages/notFounPage";
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:id" element={<CategoryProducts />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<CartPage />} />
         <Route path="/sales" element={<Sales />} />
         <Route path="/basket" element={<Basket />} />
         <Route path="*" element={<NotFounPage />} />

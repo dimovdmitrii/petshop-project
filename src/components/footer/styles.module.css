@@ -1,8 +1,8 @@
 .footer {
-  max-width: 1440px;
-  padding: 40px 40px 80px 40px;
+  max-width: var(--container-max-width);
+  padding: var(--container-padding) var(--container-padding) 80px var(--container-padding);
   margin: 0 auto;
-  background-color: #fff;
+  background-color: var(--color-white);
 }
 .infoGrid {
   display: grid;

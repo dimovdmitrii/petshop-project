@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Typography, Button } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import { fetchAllProducts } from '../../redux/slices/productSlice';
 import CartSales from '../cartSales';
 import styles from './styles.module.css';
@@ -52,29 +52,7 @@ const MainPageSales = () => {
     <section className={styles.salesSection}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <Typography sx={{
-        fontFamily: 'Montserrat, sans-serif',
-        fontSize: {
-          xs: '24px',
-          sm: '28px', 
-          md: '34px',
-          lg: '64px',
-          xl: '64px'
-        },
-        fontStyle: 'normal',
-        fontWeight: 700,
-        lineHeight: '110%',
-        color: '#282828',
-        margin: 0,
-        backgroundColor: '#fff',
-        paddingRight: {
-          xs: 0,
-          sm: 0,
-          md: '20px'
-        },
-        position: 'relative',
-        zIndex: 1,
-      }} className={styles.title}>Sale</Typography>
+          <Typography className={styles.title}>Sale</Typography>
           <Link to="/sales" className={styles.allSalesBtn}>
             All sales
           </Link>

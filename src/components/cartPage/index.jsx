@@ -40,6 +40,8 @@ const CartPage = () => {
         image: product.image,
         quantity: quantity
       }));
+      // Сбрасываем счетчик после добавления
+      setQuantity(1);
     }
   };
 

@@ -13,9 +13,9 @@ const basketSlice = createSlice({
       const existingItem = state.items.find(item => item.id === product.id);
       
       if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += product.quantity;
       } else {
-        state.items.push({ ...product, quantity: 1 });
+        state.items.push({ ...product });
       }
       
       state.count = state.items.reduce((total, item) => total + item.quantity, 0);

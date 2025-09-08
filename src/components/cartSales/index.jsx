@@ -25,8 +25,11 @@ const CartSales = ({ product }) => {
     e.preventDefault(); // Предотвращаем переход по ссылке
     e.stopPropagation();
     
-    // Добавляем товар в корзину через Redux
-    dispatch(addToBasket(product));
+    // Добавляем товар в корзину через Redux с количеством 1
+    dispatch(addToBasket({
+      ...product,
+      quantity: 1
+    }));
     setIsAdded(true);
     
     // Через 2 секунды возвращаем кнопку в исходное состояние

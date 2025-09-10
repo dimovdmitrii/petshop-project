@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Button, Modal, Box } from '@mui/material';
@@ -15,6 +15,66 @@ const Basket = () => {
   const { items, total, count } = useSelector(state => state.basket);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // Обработчик изменения размера окна
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Функция для получения адаптивных стилей
+  const getResponsiveStyles = () => {
+    if (windowWidth <= 1000) {
+      return {
+        orderTitle: { fontSize: '24px' },
+        itemsCount: { fontSize: '24px' },
+        totalLabel: { fontSize: '24px' },
+        totalAmount: { fontSize: '24px' }
+      };
+    } else if (windowWidth <= 1100) {
+      return {
+        orderTitle: { fontSize: '26px' },
+        itemsCount: { fontSize: '26px' },
+        totalLabel: { fontSize: '26px' },
+        totalAmount: { fontSize: '26px' }
+      };
+    } else if (windowWidth <= 1300) {
+      return {
+        orderTitle: { fontSize: '28px' },
+        itemsCount: { fontSize: '28px' },
+        totalLabel: { fontSize: '28px' },
+        totalAmount: { fontSize: '28px' }
+      };
+    } else if (windowWidth <= 1320) {
+      return {
+        orderTitle: { fontSize: '30px' },
+        itemsCount: { fontSize: '30px' },
+        totalLabel: { fontSize: '30px' },
+        totalAmount: { fontSize: '30px' }
+      };
+    } else if (windowWidth <= 1439) {
+      return {
+        orderTitle: { fontSize: '32px' },
+        itemsCount: { fontSize: '32px' },
+        totalLabel: { fontSize: '32px' },
+        totalAmount: { fontSize: '32px' }
+      };
+    } else {
+      return {
+        orderTitle: { fontSize: '40px' },
+        itemsCount: { fontSize: '40px' },
+        totalLabel: { fontSize: '40px' },
+        totalAmount: { fontSize: '64px' }
+      };
+    }
+  };
+
+  const responsiveStyles = getResponsiveStyles();
 
   const {
     register,
@@ -109,40 +169,45 @@ const Basket = () => {
 
         {/* Order Details */}
         <div className={styles.orderDetails}>
-          <Typography sx={{
-    fontFamily: 'Montserrat',
-    fontSize: 40,
-    fontStyle: 'normal',
-    fontWeight: 700,
-    lineHeight: '110%',
-  }} >Order details</Typography>
+          <h3 style={{
+            fontFamily: 'Montserrat, sans-serif',
+            fontSize: responsiveStyles.orderTitle.fontSize,
+            fontStyle: 'normal',
+            fontWeight: 700,
+            lineHeight: '110%',
+            color: '#282828',
+            margin: 0
+          }}>Order details</h3>
           
           <div className={styles.summary}>
-            <Typography sx={{
-    color: '#8B8B8B',
-    fontFamily: 'Montserrat, sans-serif',
-    fontSize: 40,
-    fontStyle: 'normal',
-    fontWeight: 500,
-    lineHeight: '130%',
-  }} className={styles.itemsCount}>{count} items</Typography>
+            <p style={{
+              color: '#8B8B8B',
+              fontFamily: 'Montserrat, sans-serif',
+              fontSize: responsiveStyles.itemsCount.fontSize,
+              fontStyle: 'normal',
+              fontWeight: 500,
+              lineHeight: '130%',
+              margin: 0
+            }}>{count} items</p>
             <div className={styles.totalRow}>
-              <Typography sx={{
-    color: '#8B8B8B',
-    fontFamily: 'Montserrat, sans-serif',
-    fontSize: 40,
-    fontStyle: 'normal',
-    fontWeight: 500,
-    lineHeight: '130%',
-  }} className={styles.totalLabel}>Total</Typography>
-              <Typography sx={{
-    color: '#282828',
-    fontFamily: 'Montserrat, sans-serif',
-    fontSize: 64,
-    fontStyle: 'normal',
-    fontWeight: 700,
-    lineHeight: '110%',
-  }} className={styles.totalAmount}>${total.toFixed(2).replace('.', ',')}</Typography>
+              <p style={{
+                color: '#8B8B8B',
+                fontFamily: 'Montserrat, sans-serif',
+                fontSize: responsiveStyles.totalLabel.fontSize,
+                fontStyle: 'normal',
+                fontWeight: 500,
+                lineHeight: '130%',
+                margin: 0
+              }}>Total</p>
+              <p style={{
+                color: '#282828',
+                fontFamily: 'Montserrat, sans-serif',
+                fontSize: responsiveStyles.totalAmount.fontSize,
+                fontStyle: 'normal',
+                fontWeight: 700,
+                lineHeight: '110%',
+                margin: 0
+              }}>${total.toFixed(2).replace('.', ',')}</p>
             </div>
           </div>
 

@@ -4,6 +4,7 @@
   padding: var(--container-padding);
 }
 
+
 /* Breadcrumbs */
 .breadcrumbs {
   display: flex;
@@ -33,7 +34,7 @@
 }
 
 .breadcrumbLink:hover {
-  background-color: #DDD;
+  background-color: #ddd;
   color: #282828;
 }
 
@@ -52,7 +53,7 @@
 .breadcrumbSeparator {
   width: 16px;
   height: 1px;
-  background-color: #DDD;
+  background-color: #ddd;
   margin: 0 -1px;
   position: relative;
   z-index: 1;
@@ -70,7 +71,7 @@
 .imageContainer {
   width: 548px;
   height: 572px;
-  border-radius: 12px;  
+  border-radius: 12px;
   background: #f8f8f8;
   display: flex;
   align-items: center;
@@ -88,10 +89,10 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  max-width: 548px;
 }
 
 /* Price Section */
-
 
 .priceContainer {
   display: flex;
@@ -108,13 +109,13 @@
 .oldPrice {
   font-size: 28px;
   font-weight: 500;
-  color: #8B8B8B;
+  color: #8b8b8b;
   text-decoration: line-through;
   margin-left: 16px;
 }
 
 .discountBadge {
-  background: #0D50FF;
+  background: #0d50ff;
   border-radius: 6px;
   padding: 4px 8px;
   min-width: 63px;
@@ -145,7 +146,7 @@
 .quantityButton {
   width: 58px;
   height: 58px;
-  border: 1px solid #DDD;
+  border: 1px solid #ddd;
   border-radius: 6px;
   background: white;
   display: flex;
@@ -185,12 +186,12 @@
   margin: 0 16px;
   min-width: 24px;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 20px;
   font-weight: 600;
   color: #282828;
-  border-top: 1px solid #DDD;
-  border-bottom: 1px solid #DDD;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   width: 96px;
   height: 58px;
   display: flex;
@@ -260,11 +261,11 @@
   .container {
     padding: 32px;
   }
-  
+
   .productContent {
     gap: 32px;
   }
-  
+
   .imageContainer {
     width: 100%;
     max-width: 548px;
@@ -276,24 +277,24 @@
   .container {
     padding: 24px;
   }
-  
+
   .productContent {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  
+
   .imageContainer {
     width: 100%;
     max-width: 548px;
     height: 300px;
   }
-  
+
   .quantitySection {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
   }
-  
+
   .addToCartButton {
     width: 100%;
     max-width: 316px;
@@ -305,32 +306,32 @@
   .container {
     padding: 16px;
   }
-  
+
   .breadcrumbs {
     flex-wrap: wrap;
     gap: 8px;
   }
-  
+
   .breadcrumbLink,
   .breadcrumbCurrent {
     font-size: 14px;
     padding: 6px 12px;
   }
-  
+
   .imageContainer {
     width: 100%;
     max-width: 548px;
     height: 250px;
   }
-  
+
   .currentPrice {
     font-size: 32px;
   }
-  
+
   .oldPrice {
     font-size: 20px;
   }
-  
+
   .discountBadge {
     top: -4px;
     right: -4px;

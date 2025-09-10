@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from "./components/header";
 import Footer from "./components/footer";
-import ScrollToTop from "./components/ScrollToTop";
 import Main from "./pages/main";
 import Categories from "./pages/categories";
 import CategoryProducts from "./components/categoryProducts";
@@ -10,6 +11,18 @@ import Sales from "./pages/sales";
 import Basket from "./pages/basket";
 import CartPage from "./components/cartPage";
 import NotFounPage from "./pages/notFounPage";
+
+// Компонент для прокрутки в начало страницы при изменении маршрута
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Прокручиваем в начало страницы при изменении маршрута
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 const App = () => {
   return (

@@ -76,7 +76,6 @@
   background: #FFF;
   color: #2451C6;
 }
-/* Responsive styles */
 @media (max-width: 1200px) {
   .discount { width: 100%; padding: 24px 24px 0 24px; }
   .title { font-size: 48px; }

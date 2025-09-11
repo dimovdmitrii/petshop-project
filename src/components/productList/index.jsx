@@ -14,7 +14,6 @@ import {
 } from '../../redux/slices/productSlice';
 import styles from './styles.module.css';
 
-// Common styles
 const commonStyle = {
   fontFamily: 'Montserrat, sans-serif',
   fontWeight: 500

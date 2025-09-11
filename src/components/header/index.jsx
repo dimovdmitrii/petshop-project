@@ -4,7 +4,6 @@ import LogoIcon from "../../assets/icons/logo.svg";
 import CartIcon from "../../assets/icons/basket=empty.svg";
 import styles from "./styles.module.css";
 
-// Constants
 const NAV_LINKS = [
   { to: "/", label: "Main Page" },
   { to: "/categories", label: "Categories" },

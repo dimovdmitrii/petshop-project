@@ -11,7 +11,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// Constants
 const SHOW_NAVIGATION_THRESHOLD = 4;
 const SWIPER_BREAKPOINTS = {
   320: { slidesPerView: 1.7, spaceBetween: 4, centeredSlides: true },

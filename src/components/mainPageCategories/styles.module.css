@@ -163,7 +163,6 @@
   color: #dc3545;
 }
 
-/* Responsive styles */
 @media (max-width: 1200px) {
   .categoriesSection { padding: 28px; }
   .title { font-size: 28px; }

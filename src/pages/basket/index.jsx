@@ -68,13 +68,11 @@ const Basket = () => {
       
       axios.post(`${API_URL}/order/send`, orderData)
         .catch(error => {
-          console.error('Error sending order:', error);
         });
       
       setIsModalOpen(true);
       
     } catch (error) {
-      console.error('Error in form submission:', error);
     } finally {
       setIsSubmitting(false);
     }

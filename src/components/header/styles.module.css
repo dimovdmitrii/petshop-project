@@ -59,32 +59,64 @@
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
   user-select: none;
 }
-/* Responsive styles */
 @media (max-width: 720px) {
-  .nav { gap: 16px; }
-  .nav a { font-size: 14px; }
-  .header { padding: 25px; }
-  .logo { height: 55px; width: 55px; }
-  .cartIcon { height: 38px; width: 38px; }
+  .nav {
+    gap: 16px;
+  }
+  .nav a {
+    font-size: 14px;
+  }
+  .header {
+    padding: 25px;
+  }
+  .logo {
+    height: 55px;
+    width: 55px;
+  }
+  .cartIcon {
+    height: 38px;
+    width: 38px;
+  }
 }
 
 @media (max-width: 570px) {
-  .header { padding: 15px; }
+  .header {
+    padding: 15px;
+  }
 }
 
 @media (max-width: 500px) {
-  .logo { height: 40px; width: 40px; }
-  .cartIcon { height: 28px; width: 28px; }
-  .nav { gap: 10px; }
-  .nav a { font-size: 10px; }
+  .logo {
+    height: 40px;
+    width: 40px;
+  }
+  .cartIcon {
+    height: 28px;
+    width: 28px;
+  }
+  .nav {
+    gap: 10px;
+  }
+  .nav a {
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 425px) {
-  .header { padding: 5px; }
-  .nav a { font-size: 12px; }
+  .header {
+    padding: 5px;
+  }
+  .nav a {
+    font-size: 12px;
+  }
 }
-
+@media (max-width: 360px) {
+  .nav a {
+    font-size: 11px;
+  }
+}
 @media (max-width: 338px) {
-  .nav { gap: 10px; }
-  .nav a { font-size: 9px; }
+  .nav a {
+    font-size: 9px;
+  }
 }

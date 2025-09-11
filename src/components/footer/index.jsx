@@ -3,7 +3,6 @@ import InstagramIcon from "../../assets/icons/ic-instagram.svg";
 import WhatsappIcon from "../../assets/icons/ic-whatsapp.svg";
 import { Box, Typography } from "@mui/material";
 
-// Constants
 const CONTACT_DATA = [
   { label: "Phone", value: "+49 30 915-88492" },
   { label: "Socials", value: "socials", isSocial: true },

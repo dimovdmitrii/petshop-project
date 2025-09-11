@@ -3,7 +3,6 @@ import { Typography, Button, Box } from "@mui/material";
 import img404 from "../../assets/images/404.png";
 import styles from "./styles.module.css";
 
-// Common styles
 const commonStyle = {
   fontFamily: 'Montserrat, sans-serif',
   textAlign: 'center'

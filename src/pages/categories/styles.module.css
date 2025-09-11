@@ -63,7 +63,6 @@
   padding: 40px 0;
 }
 
-/* Responsive grid styles */
 @media (max-width: 1400px) { .categoriesGrid { gap: 28px; } }
 @media (max-width: 1300px) { .categoriesGrid { gap: 24px; } }
 @media (max-width: 1200px) { .categoriesGrid { grid-template-columns: repeat(3, 1fr); gap: 20px; } }

@@ -26,7 +26,6 @@ const Categories = () => {
         setState({ data, loading: false, error: null });
       } catch (err) {
         setState({ data: [], loading: false, error: err.message });
-        console.error('Error fetching categories:', err);
       }
     };
     fetchCategories();

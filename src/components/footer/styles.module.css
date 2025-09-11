@@ -47,7 +47,6 @@
   border-radius: 10px;
   overflow: hidden;
 }
-/* Responsive styles */
 @media (max-width: 768px) {
   .infoGrid { grid-template-columns: 1fr; }
   .title { font-size: 36px !important; }

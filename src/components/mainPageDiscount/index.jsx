@@ -5,7 +5,6 @@ import { API_URL } from "../../config/api";
 import imgDiscount from "../../assets/images/image-disk.svg";
 import styles from "./styles.module.css";
 
-// Constants
 const FONT_SIZES = { xs: "10px", sm: "12px", md: "12px", lg: "14px", xl: "20px" };
 const HEIGHTS = { xs: "36px", sm: "40px", md: "44px", lg: "50px", xl: "58px" };
 const PADDINGS = { xs: "10px 16px !important", sm: "12px 20px !important", md: "12px 20px !important", lg: "15px 28px !important", xl: "16px 32px !important" };
@@ -86,7 +85,6 @@ function MainPageDiscount() {
         setTimeout(() => setIsSubmitted(false), 3000);
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
     }
   };
 

@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { fetchCategories } from '../../redux/slices/categorySlice';
 import CategoryCard from '../cartCategories';
+import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
 import 'swiper/css';
@@ -28,7 +29,7 @@ const MainPageCategories = () => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  const showNavigation = categories.length > SHOW_NAVIGATION_THRESHOLD;
+  const showNavigation = Array.isArray(categories) && categories.length > SHOW_NAVIGATION_THRESHOLD;
 
   const renderHeader = () => (
     <div className={styles.header}>
@@ -57,23 +58,30 @@ const MainPageCategories = () => {
     </>
   );
 
-  if (loading) {
-    return (
-      <section className={styles.categoriesSection}>
-        <div className={styles.container}>
-          {renderHeader()}
-          <div className={styles.loading}>Loading categories...</div>
-        </div>
-      </section>
-    );
-  }
+  if (loading) return (
+    <section className={styles.categoriesSection}>
+      <div className={styles.container}>
+        {renderHeader()}
+        <div className={styles.loading}>Loading categories...</div>
+      </div>
+    </section>
+  );
 
-  if (error) {
+  if (error) return (
+    <section className={styles.categoriesSection}>
+      <div className={styles.container}>
+        {renderHeader()}
+        <div className={styles.error}>Error loading categories: {error}</div>
+      </div>
+    </section>
+  );
+
+  if (!Array.isArray(categories) || categories.length === 0) {
     return (
       <section className={styles.categoriesSection}>
         <div className={styles.container}>
           {renderHeader()}
-          <div className={styles.error}>Error loading categories: {error}</div>
+          <div className={styles.empty}>No categories found</div>
         </div>
       </section>
     );

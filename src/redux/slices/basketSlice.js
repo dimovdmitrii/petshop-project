@@ -11,33 +11,22 @@ const basketSlice = createSlice({
     addToBasket: (state, action) => {
       const product = action.payload;
       const existingItem = state.items.find(item => item.id === product.id);
-      
       if (existingItem) {
         existingItem.quantity += product.quantity;
       } else {
         state.items.push({ ...product });
       }
-      
       state.count = state.items.reduce((total, item) => total + item.quantity, 0);
-      state.total = state.items.reduce((total, item) => {
-        const price = item.discont_price || item.price;
-        return total + (price * item.quantity);
-      }, 0);
+      state.total = state.items.reduce((sum, item) => sum + ((item.discont_price || item.price) * item.quantity), 0);
     },
     removeFromBasket: (state, action) => {
-      const productId = action.payload;
-      state.items = state.items.filter(item => item.id !== productId);
-      
+      state.items = state.items.filter(item => item.id !== action.payload);
       state.count = state.items.reduce((total, item) => total + item.quantity, 0);
-      state.total = state.items.reduce((total, item) => {
-        const price = item.discont_price || item.price;
-        return total + (price * item.quantity);
-      }, 0);
+      state.total = state.items.reduce((sum, item) => sum + ((item.discont_price || item.price) * item.quantity), 0);
     },
     updateQuantity: (state, action) => {
       const { id, quantity } = action.payload;
       const item = state.items.find(item => item.id === id);
-      
       if (item) {
         if (quantity <= 0) {
           state.items = state.items.filter(item => item.id !== id);
@@ -45,12 +34,8 @@ const basketSlice = createSlice({
           item.quantity = quantity;
         }
       }
-      
       state.count = state.items.reduce((total, item) => total + item.quantity, 0);
-      state.total = state.items.reduce((total, item) => {
-        const price = item.discont_price || item.price;
-        return total + (price * item.quantity);
-      }, 0);
+      state.total = state.items.reduce((sum, item) => sum + ((item.discont_price || item.price) * item.quantity), 0);
     },
     clearBasket: (state) => {
       state.items = [];
@@ -65,6 +50,5 @@ export const { addToBasket, removeFromBasket, updateQuantity, clearBasket } = ba
 export const selectBasketItems = (state) => state.basket.items;
 export const selectBasketTotal = (state) => state.basket.total;
 export const selectBasketCount = (state) => state.basket.count;
-export const selectBasketIsEmpty = (state) => state.basket.items.length === 0;
 
 export default basketSlice.reducer;

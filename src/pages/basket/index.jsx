@@ -35,7 +35,7 @@ const Basket = () => {
   };
 
   const textStyle = (size, color = '#282828', weight = 700) => ({
-    fontFamily: 'Montserrat, sans-serif',
+    fontFamily: 'Montserrat',
     fontSize: `${size}px`,
     fontWeight: weight,
     lineHeight: weight === 700 ? '110%' : '130%',

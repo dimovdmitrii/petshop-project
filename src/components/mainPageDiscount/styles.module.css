@@ -13,14 +13,14 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  border-radius: var(--radius-big, 12px);
+  border-radius: 12px;
   background: linear-gradient(261deg, #2451C6 32.63%, #0D50FF 98.96%);
   position: relative;
   overflow: hidden;
 }
 
 .title {
-  color: var(--txt-white, #FFF);
+  color: #FFF;
   text-align: center;
   font-family: "Montserrat";
   font-size: 64px;

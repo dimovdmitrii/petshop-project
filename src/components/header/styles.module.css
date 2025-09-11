@@ -83,6 +83,13 @@
   .header {
     padding: 15px;
   }
+  .cartCount {
+    font-size: 10px;
+    padding: 5px 8px;
+    min-width: 20px;
+    top: 4px;
+    right: 18px;
+  }
 }
 
 @media (max-width: 500px) {
@@ -93,6 +100,13 @@
   .cartIcon {
     height: 28px;
     width: 28px;
+  }
+  .cartCount {
+    font-size: 9px;
+    padding: 4px 6px;
+    min-width: 18px;
+    top: 2px;
+    right: 14px;
   }
   .nav {
     gap: 10px;
@@ -111,6 +125,13 @@
   }
 }
 @media (max-width: 360px) {
+  .cartCount {
+    font-size: 8px;
+    padding: 3px 5px;
+    min-width: 16px;
+    top: 1px;
+    right: 12px;
+  }
   .nav a {
     font-size: 11px;
   }

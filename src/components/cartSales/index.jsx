@@ -6,12 +6,32 @@ import { addToBasket } from '../../redux/slices/basketSlice';
 import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
+const TIMEOUT_DURATION = 2000;
+
 const calculateDiscountPercentage = (originalPrice, discountPrice) => {
-  if (!originalPrice || !discountPrice || discountPrice >= originalPrice) {
-    return 0;
-  }
+  if (!originalPrice || !discountPrice || discountPrice >= originalPrice) return 0;
   return Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
 };
+
+const getImageSrc = (image) => {
+  if (!image) return '/placeholder-image.png';
+  return image.startsWith('http') ? image : `${API_URL}${image}`;
+};
+
+const getButtonStyles = (isAdded) => ({
+  width: '100%',
+  backgroundColor: isAdded ? '#282828' : '#0D50FF',
+  color: '#fff',
+  border: 'none',
+  '&:hover': { backgroundColor: '#282828', color: '#fff' },
+  fontFamily: 'Montserrat',
+  fontSize: '20px',
+  fontWeight: 600,
+  textTransform: 'none',
+  padding: '16px 32px',
+  borderRadius: '6px',
+  transition: 'all 0.3s ease',
+});
 
 const CartSales = ({ product }) => {
   const [isAdded, setIsAdded] = useState(false);
@@ -23,28 +43,19 @@ const CartSales = ({ product }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
-    dispatch(addToBasket({
-      ...product,
-      quantity: 1
-    }));
+    dispatch(addToBasket({ ...product, quantity: 1 }));
     setIsAdded(true);
-    
-    setTimeout(() => {
-      setIsAdded(false);
-    }, 2000);
+    setTimeout(() => setIsAdded(false), TIMEOUT_DURATION);
   };
 
   return (
     <Link to={`/products/${product.id}`} className={styles.productCard}>
       <div className={styles.imageContainer}>
         <img
-          src={product.image && product.image.startsWith('http') ? product.image : `${API_URL}${product.image || '/placeholder-image.png'}`}
+          src={getImageSrc(product.image)}
           alt={product.title}
           className={styles.productImage}
-          onError={(e) => {
-            e.target.src = '/placeholder-image.png';
-          }}
+          onError={(e) => { e.target.src = '/placeholder-image.png'; }}
         />
         {hasDiscount && (
           <div className={styles.discountBadge}>
@@ -56,23 +67,7 @@ const CartSales = ({ product }) => {
           <Button 
             className={`${styles.addToCartButton} ${isAdded ? styles.added : ''}`}
             onClick={handleAddToCart}
-            sx={{
-              width: '100%',
-              backgroundColor: isAdded ? '#282828' : '#0D50FF',
-              color: '#fff',
-              border: 'none',
-              '&:hover': {
-                backgroundColor: isAdded ? '#282828' : '#282828',
-                color: '#fff',
-              },
-              fontFamily: 'Montserrat',
-              fontSize: '20px',
-              fontWeight: 600,
-              textTransform: 'none',
-              padding: '16px 32px',
-              borderRadius: '6px',
-              transition: 'all 0.3s ease',
-            }}
+            sx={getButtonStyles(isAdded)}
           >
             {isAdded ? 'Added' : 'Add to cart'}
           </Button>

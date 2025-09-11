@@ -15,7 +15,6 @@
 
 .productCard:hover {
   transform: translateY(-4px);
-  
 }
 
 .imageContainer {
@@ -60,7 +59,6 @@
   color: #FFF;
   font-family: var(--font-family);
   font-size: 20px;
-  font-style: normal;
   font-weight: 600;
   line-height: 130%;
   letter-spacing: 0.6px;
@@ -86,7 +84,6 @@
   font-family: var(--font-family);
   color: var(--color-primary);
   font-size: var(--font-size-subtitle);
-  font-style: normal;
   font-weight: 500;
   line-height: 130%;
 }
@@ -102,7 +99,6 @@
   color:#282828;
   font-family: var(--font-family);
   font-size: 40px;
-  font-style: normal;
   font-weight: 600;
   line-height: 110%;
 }
@@ -111,208 +107,64 @@
   color: #8B8B8B;
   font-family: var(--font-family);
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
   line-height: 130%;
   text-decoration: line-through;
 }
 
 @media (max-width: 1200px) {
-  .productCard {
-    height: 380px;
-  }
-  
-  .imageContainer {
-    height: 250px;
-  }
-  
-  .addToCartContainer {
-    bottom: 12px;
-  }
-  
-  .discountBadge {
-    font-size: 18px;
-    padding: 6px 10px;
-    top: 12px;
-    right: 12px;
-  }
-  
-  .productInfo {
-    padding: 16px 24px 24px 24px;
-    gap: 10px;
-  }
-  
-  .productTitle {
-    font-size: 18px;
-  }
-  
-  .currentPrice {
-    font-size: 32px;
-  }
-  
-  .oldPrice {
-    font-size: 16px;
-  }
+  .productCard { height: 380px; }
+  .imageContainer { height: 250px; }
+  .addToCartContainer { bottom: 12px; }
+  .discountBadge { font-size: 18px; padding: 6px 10px; top: 12px; right: 12px; }
+  .productInfo { padding: 16px 24px 24px 24px; gap: 10px; }
+  .productTitle { font-size: 18px; }
+  .currentPrice { font-size: 32px; }
+  .oldPrice { font-size: 16px; }
 }
 
 @media (max-width: 900px) {
-  .productCard {
-    height: 340px;
-  }
-  
-  .imageContainer {
-    height: 220px;
-  }
-  
-  .addToCartContainer {
-    bottom: 10px;
-  }
-  
-  .discountBadge {
-    font-size: 16px;
-    padding: 5px 8px;
-    top: 10px;
-    right: 10px;
-  }
-  
-  .productInfo {
-    padding: 16px 20px 20px 20px;
-    gap: 8px;
-  }
-  
-  .productTitle {
-    font-size: 16px;
-  }
-  
-  .currentPrice {
-    font-size: 28px;
-  }
-  
-  .oldPrice {
-    font-size: 14px;
-  }
+  .productCard { height: 340px; }
+  .imageContainer { height: 220px; }
+  .addToCartContainer { bottom: 10px; }
+  .discountBadge { font-size: 16px; padding: 5px 8px; top: 10px; right: 10px; }
+  .productInfo { padding: 16px 20px 20px 20px; gap: 8px; }
+  .productTitle { font-size: 16px; }
+  .currentPrice { font-size: 28px; }
+  .oldPrice { font-size: 14px; }
 }
 
 @media (max-width: 768px) {
-  .productCard {
-    height: 300px;
-  }
-  
-  .imageContainer {
-    height: 180px;
-  }
-  
-  .addToCartContainer {
-    bottom: 8px;
-  }
-  
-  .discountBadge {
-    font-size: 14px;
-    padding: 4px 6px;
-    top: 8px;
-    right: 8px;
-  }
-  
-  .productInfo {
-    padding: 12px 16px 16px 16px;
-    gap: 6px;
-  }
-  
-  .productTitle {
-    font-size: 14px;
-  }
-  
-  .currentPrice {
-    font-size: 24px;
-  }
-  
-  .oldPrice {
-    font-size: 12px;
-  }
+  .productCard { height: 300px; }
+  .imageContainer { height: 180px; }
+  .addToCartContainer { bottom: 8px; }
+  .discountBadge { font-size: 14px; padding: 4px 6px; top: 8px; right: 8px; }
+  .productInfo { padding: 12px 16px 16px 16px; gap: 6px; }
+  .productTitle { font-size: 14px; }
+  .currentPrice { font-size: 24px; }
+  .oldPrice { font-size: 12px; }
 }
 
 @media (max-width: 480px) {
-  .productCard {
-    max-width: 280px;
-    height: 240px;
-  }
-  
-  .imageContainer {
-    height: 140px;
-  }
-  
-  .addToCartContainer {
-    bottom: 6px;
-  }
-  
-  .discountBadge {
-    font-size: 12px;
-    padding: 3px 5px;
-    top: 6px;
-    right: 6px;
-  }
-  
-  .productInfo {
-    padding: 8px 16px 12px 16px;
-    gap: 1px;
-  }
-  
-  .productTitle {
-    font-size: 14px;
-  }
-  
-  .priceContainer {
-    margin-top: 0;
-  }
-  
-  .currentPrice {
-    font-size: 22px;
-  }
-  
-  .oldPrice {
-    font-size: 12px;
-  }
+  .productCard { max-width: 280px; height: 240px; }
+  .imageContainer { height: 140px; }
+  .addToCartContainer { bottom: 6px; }
+  .discountBadge { font-size: 12px; padding: 3px 5px; top: 6px; right: 6px; }
+  .productInfo { padding: 8px 16px 12px 16px; gap: 1px; }
+  .productTitle { font-size: 14px; }
+  .priceContainer { margin-top: 0; }
+  .currentPrice { font-size: 22px; }
+  .oldPrice { font-size: 12px; }
 }
 
 @media (max-width: 320px) {
-  .productCard {
-    max-width: 240px;
-    height: 200px;
-  }
-  
-  .imageContainer {
-    height: 120px;
-  }
-  
-  .addToCartContainer {
-    bottom: 4px;
-  }
-  
-  .discountBadge {
-    font-size: 10px;
-    padding: 2px 4px;
-    top: 4px;
-    right: 4px;
-  }
-  
-  .productInfo {
-    padding: 6px 12px 8px 12px;
-    gap: 1px;
-  }
-  
-  .productTitle {
-    font-size: 13px;
-  }
-  
-  .priceContainer {
-    margin-top: 0;
-  }
-  
-  .currentPrice {
-    font-size: 20px;
-  }
-  
-  .oldPrice {
-    font-size: 11px;
-  }
+  .productCard { max-width: 240px; height: 200px; }
+  .imageContainer { height: 120px; }
+  .addToCartContainer { bottom: 4px; }
+  .discountBadge { font-size: 10px; padding: 2px 4px; top: 4px; right: 4px; }
+  .productInfo { padding: 6px 12px 8px 12px; gap: 1px; }
+  .productTitle { font-size: 13px; }
+  .priceContainer { margin-top: 0; }
+  .currentPrice { font-size: 20px; }
+  .oldPrice { font-size: 11px; }
 }

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { Typography, Button } from "@mui/material";
+import { fetchProductById } from "../../redux/slices/productSlice";
+import { addToBasket } from "../../redux/slices/basketSlice";
 import { API_URL } from "../../config/api";
 import styles from "./styles.module.css";
 
@@ -79,22 +82,22 @@ const STYLES = {
   },
 };
 
-const getBreadcrumbs = (product) => [
+const getBreadcrumbs = (p) => [
   { text: "Main page", link: "/" },
   { text: "Categories", link: "/categories" },
-  ...(product?.category
+  ...(p.category
     ? [
         {
-          text: product.category.title || product.category.name || "Category",
-          link: `/categories/${product.category.id || product.categoryId}`,
+          text: p.category.title || p.category.name || "Category",
+          link: `/categories/${p.category.id || p.categoryId}`,
         },
       ]
     : []),
   {
-    text: product?.title
-      ? product.title.length > 25
-        ? product.title.substring(0, 25).trim() + "..."
-        : product.title
+    text: p.title
+      ? p.title.length > 25
+        ? p.title.substring(0, 25).trim() + "..."
+        : p.title
       : "Product",
   },
 ];
@@ -104,61 +107,54 @@ const getDesc = (d, show) =>
 
 const CartPage = () => {
   const { id } = useParams();
-  const [state, setState] = useState({
-    product: null,
-    loading: true,
-    error: null,
-  });
+  const dispatch = useDispatch();
+  const { currentProduct, currentProductLoading, currentProductError } =
+    useSelector((state) => state.products);
   const [quantity, setQuantity] = useState(1);
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   useEffect(() => {
-    if (!id) return;
-
-    const fetchProduct = async () => {
-      setState({ product: null, loading: true, error: null });
-      try {
-        const response = await fetch(`${API_URL}/products/${id}`);
-        if (!response.ok) throw new Error("Failed to fetch product");
-        const data = await response.json();
-        setState({ product: data, loading: false, error: null });
-      } catch (err) {
-        setState({ product: null, loading: false, error: err.message });
-      }
-    };
-
-    fetchProduct();
-  }, [id]);
+    if (id) dispatch(fetchProductById(id));
+  }, [id, dispatch]);
 
   const handleQuantityChange = (change) => {
     const newQ = quantity + change;
     if (newQ >= 1) setQuantity(newQ);
   };
-
   const handleAddToCart = () => {
-    // можно сюда подключить Redux или localStorage
-    console.log("Add to cart:", state.product, quantity);
-    setQuantity(1);
+    if (currentProduct) {
+      dispatch(
+        addToBasket({
+          id: currentProduct.id,
+          title: currentProduct.title,
+          price: currentProduct.price,
+          discont_price: currentProduct.discont_price,
+          image: currentProduct.image,
+          quantity,
+        })
+      );
+      setQuantity(1);
+    }
   };
-
   const toggleDescription = () => setShowFullDescription(!showFullDescription);
 
-  if (state.loading)
+  if (currentProductLoading)
     return (
       <div className={styles.container}>
-        <Typography>Loading...</Typography>
+        <Typography>Загрузка...</Typography>
+      </div>
+    );
+  if (currentProductError || !currentProduct)
+    return (
+      <div className={styles.container}>
+        <Typography>Продукт не найден</Typography>
+        {currentProductError && (
+          <Typography>Ошибка: {currentProductError}</Typography>
+        )}
       </div>
     );
 
-  if (state.error || !state.product)
-    return (
-      <div className={styles.container}>
-        <Typography>Product not found</Typography>
-        {state.error && <Typography>Error: {state.error}</Typography>}
-      </div>
-    );
-
-  const product = state.product;
+  const product = currentProduct;
   const hasDiscount =
     product.discont_price && product.discont_price !== product.price;
   const discountPercent = hasDiscount
@@ -193,16 +189,13 @@ const CartPage = () => {
         <div className={styles.imageContainer}>
           {product.image ? (
             <img
-              src={
-                product.image.startsWith("http")
-                  ? product.image
-                  : `${API_URL}${product.image}`
-              }
+              src={`${API_URL}${product.image}`}
               alt={product.title}
               className={styles.productImage}
               onError={(e) => {
                 e.target.style.display = "none";
               }}
+              onLoad={() => {}}
             />
           ) : (
             <div style={STYLES.placeholder}>No image available</div>
@@ -246,22 +239,34 @@ const CartPage = () => {
                   onClick={() => handleQuantityChange(-1)}
                   className={styles.quantityButton}
                 >
-                  -
+                  <img
+                    src="/src/assets/icons/minus.svg"
+                    alt="minus"
+                    className={styles.quantityIcon}
+                  />
                 </button>
+
                 <Typography variant="body1" className={styles.quantityValue}>
                   {quantity}
                 </Typography>
+
                 <button
                   onClick={() => handleQuantityChange(1)}
                   className={styles.quantityButton}
                 >
-                  +
+                  <img
+                    src="/src/assets/icons/plus.svg"
+                    alt="plus"
+                    className={styles.quantityIcon}
+                  />
                 </button>
               </div>
             </div>
+
             <Button
               onClick={handleAddToCart}
               variant="contained"
+              className={styles.addToCartButton}
               sx={STYLES.addToCart}
             >
               Add to cart
@@ -279,7 +284,11 @@ const CartPage = () => {
               {displayDescription}
             </Typography>
             {shouldTruncate && (
-              <Button onClick={toggleDescription} sx={STYLES.readMore}>
+              <Button
+                onClick={toggleDescription}
+                className={styles.readMoreButton}
+                sx={STYLES.readMore}
+              >
                 {showFullDescription ? "Read less" : "Read more"}
               </Button>
             )}

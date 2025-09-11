@@ -174,6 +174,18 @@
   margin-top: 15px;
 }
 
+@media (max-width: 1600px) {
+  .cartItem { width: 720px; height: 170px; gap: 30px; }
+  .imageContainer { width: 190px; height: 170px; }
+  .productTitle { font-size: 19px; }
+  .currentPrice { font-size: 38px; }
+  .oldPrice { font-size: 19px; }
+  .controlsRow { gap: 30px; }
+  .quantityButton { width: 55px; height: 55px; }
+  .quantityValue { width: 92px; height: 55px; font-size: 19px; }
+  .quantityIcon { width: 23px; height: 23px; }
+}
+
 @media (max-width: 1439px) {
   .cartItem { width: 700px; height: 160px; gap: 28px; }
   .imageContainer { width: 180px; height: 160px; }
@@ -198,24 +210,94 @@
   .quantityIcon { width: 20px; height: 20px; }
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 1101px) and (max-width: 1235px) {
+  .cartItem { width: 100%; max-width: 600px; height: 140px; gap: 20px; }
+  .imageContainer { width: 140px; height: 140px; }
+  .productTitle { font-size: 16px; }
+  .currentPrice { font-size: 28px; }
+  .oldPrice { font-size: 14px; }
+  .controlsRow { gap: 20px; }
+  .quantityButton { width: 44px; height: 44px; }
+  .quantityValue { width: 72px; height: 44px; font-size: 16px; }
+  .quantityIcon { width: 18px; height: 18px; }
+}
+
+@media (min-width: 1236px) and (max-width: 1300px) {
   .cartItem { width: 100%; max-width: 780px; }
 }
 
+@media (max-width: 1100px) {
+  .cartItem { width: 100%; max-width: 600px; height: 140px; gap: 20px; }
+  .imageContainer { width: 140px; height: 140px; }
+  .productTitle { font-size: 16px; }
+  .currentPrice { font-size: 28px; }
+  .oldPrice { font-size: 14px; }
+  .controlsRow { gap: 20px; }
+  .quantityButton { width: 44px; height: 44px; }
+  .quantityValue { width: 72px; height: 44px; font-size: 16px; }
+  .quantityIcon { width: 18px; height: 18px; }
+}
+
 @media (max-width: 900px) {
-  .cartItem { height: auto; min-height: 180px; flex-direction: column; padding: var(--spacing-lg); gap: var(--spacing-sm); }
-  .imageContainer { width: 100%; height: 200px; max-width: 300px; margin: 0 auto; }
+  .cartItem { width: 100%; max-width: 500px; height: auto; min-height: 160px; flex-direction: row; padding: 16px; gap: 16px; }
+  .imageContainer { width: 120px; height: 120px; margin: 0; }
   .productInfo { width: 100%; height: auto; padding: 0; }
-  .controlsRow { flex-direction: column; gap: var(--spacing-sm); align-items: flex-start; }
+  .productTitle { font-size: 16px; margin-bottom: 8px; }
+  .currentPrice { font-size: 24px; }
+  .oldPrice { font-size: 14px; margin-top: 4px; }
+  .controlsRow { flex-direction: row; gap: 16px; align-items: center; justify-content: space-between; }
   .quantityControls { justify-content: flex-start; }
   .priceContainer { align-items: flex-start; }
+  .quantityButton { width: 40px; height: 40px; }
+  .quantityValue { width: 64px; height: 40px; font-size: 14px; }
+  .quantityIcon { width: 16px; height: 16px; }
+}
+
+@media (max-width: 768px) {
+  .cartItem { max-width: 100%; padding: 12px; gap: 12px; }
+  .imageContainer { width: 100px; height: 100px; }
+  .productTitle { font-size: 14px; }
+  .currentPrice { font-size: 20px; }
+  .oldPrice { font-size: 12px; }
+  .controlsRow { gap: 12px; }
+  .quantityButton { width: 36px; height: 36px; }
+  .quantityValue { width: 56px; height: 36px; font-size: 14px; }
+  .quantityIcon { width: 14px; height: 14px; }
+}
+
+@media (max-width: 600px) {
+  .cartItem { flex-direction: column; height: auto; min-height: 200px; padding: 16px; gap: 16px; }
+  .imageContainer { width: 100%; height: 150px; max-width: 250px; margin: 0 auto; }
+  .productInfo { width: 100%; }
+  .productTitle { font-size: 16px; text-align: center; }
+  .controlsRow { flex-direction: column; gap: 16px; align-items: center; }
+  .quantityControls { justify-content: center; }
+  .priceContainer { justify-content: center; }
+  .currentPrice { font-size: 24px; }
+  .oldPrice { font-size: 16px; }
+  .quantityButton { width: 44px; height: 44px; }
+  .quantityValue { width: 72px; height: 44px; font-size: 16px; }
+  .quantityIcon { width: 18px; height: 18px; }
 }
 
 @media (max-width: 480px) {
-  .cartItem { padding: var(--spacing-sm); }
-  .productTitle { font-size: 18px; }
-  .currentPrice { font-size: 24px; }
-  .oldPrice { font-size: 18px; margin-top: 2px; }
-  .quantityButton { width: 48px; height: 48px; }
-  .quantityValue { width: 80px; height: 48px; font-size: 18px; }
+  .cartItem { padding: 12px; gap: 12px; min-height: 180px; }
+  .imageContainer { height: 120px; max-width: 200px; }
+  .productTitle { font-size: 14px; }
+  .currentPrice { font-size: 20px; }
+  .oldPrice { font-size: 14px; }
+  .quantityButton { width: 40px; height: 40px; }
+  .quantityValue { width: 64px; height: 40px; font-size: 14px; }
+  .quantityIcon { width: 16px; height: 16px; }
+}
+
+@media (max-width: 360px) {
+  .cartItem { padding: 8px; gap: 8px; min-height: 160px; }
+  .imageContainer { height: 100px; max-width: 150px; }
+  .productTitle { font-size: 13px; }
+  .currentPrice { font-size: 18px; }
+  .oldPrice { font-size: 12px; }
+  .quantityButton { width: 36px; height: 36px; }
+  .quantityValue { width: 56px; height: 36px; font-size: 13px; }
+  .quantityIcon { width: 14px; height: 14px; }
 }

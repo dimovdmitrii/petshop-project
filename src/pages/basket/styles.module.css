@@ -296,7 +296,7 @@
 
 @media (max-width: 1200px) {
   .mainContent {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr auto;
     gap: 32px;
   }
   .orderDetails {
@@ -325,7 +325,7 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: var(--container-padding-mobile);
+    padding: 40px;
   }
   .header {
     flex-direction: column;
@@ -351,7 +351,11 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 678px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
   .title {
     font-size: 28px;
   }

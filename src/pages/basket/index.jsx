@@ -26,7 +26,6 @@ const Basket = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Compact responsive font sizes
   const getSize = (base) => base * (windowWidth <= 1000 ? 0.6 : windowWidth <= 1100 ? 0.65 : windowWidth <= 1300 ? 0.7 : windowWidth <= 1320 ? 0.75 : windowWidth <= 1439 ? 0.8 : 1);
   const fontSize = {
     orderTitle: getSize(40),
@@ -35,7 +34,6 @@ const Basket = () => {
     totalAmount: windowWidth > 1439 ? 64 : getSize(40)
   };
 
-  // Common typography styles
   const textStyle = (size, color = '#282828', weight = 700) => ({
     fontFamily: 'Montserrat, sans-serif',
     fontSize: `${size}px`,
@@ -138,14 +136,15 @@ const Basket = () => {
 
           <form onSubmit={handleSubmit(onSubmit)} className={styles.orderForm}>
             <input
-              {...register('name', { required: 'Name is required' })}
+              {...register('name')}
               placeholder="Name"
               className={styles.formInput}
+              required
             />
 
             <input
               {...register('phone', { 
-                required: 'Phone is required',
+                
                 pattern: {
                   value: /^[\+]?[0-9][\d]{0,15}$/,
                   message: 'Invalid phone number'
@@ -153,11 +152,11 @@ const Basket = () => {
               })}
               placeholder="Phone number"
               className={styles.formInput}
+              required
             />
 
             <input
-              {...register('email', { 
-                required: 'Email is required',
+              {...register('email', {
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: 'Invalid email address'
@@ -165,6 +164,7 @@ const Basket = () => {
               })}
               placeholder="Email"
               className={styles.formInput}
+              required 
             />
 
             <Button

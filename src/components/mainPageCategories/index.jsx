@@ -11,6 +11,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+// Constants
+const SHOW_NAVIGATION_THRESHOLD = 4;
+const SWIPER_BREAKPOINTS = {
+  320: { slidesPerView: 1.7, spaceBetween: 4, centeredSlides: true },
+  480: { slidesPerView: 2, spaceBetween: 20, centeredSlides: true },
+  768: { slidesPerView: 3, spaceBetween: 24, centeredSlides: true },
+  1024: { slidesPerView: 3, spaceBetween: 28, centeredSlides: false },
+  1440: { slidesPerView: 4, spaceBetween: 32, centeredSlides: false },
+};
+
 const MainPageCategories = () => {
   const dispatch = useDispatch();
   const { categories, loading, error } = useSelector((state) => state.categories);
@@ -19,16 +29,40 @@ const MainPageCategories = () => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
+  const showNavigation = categories.length > SHOW_NAVIGATION_THRESHOLD;
+
+  const renderHeader = () => (
+    <div className={styles.header}>
+      <h2 className={styles.title}>Categories</h2>
+      <Link to="/categories" className={styles.allCategoriesBtn}>All categories</Link>
+    </div>
+  );
+
+  const getSwiperConfig = () => ({
+    modules: [Navigation, Pagination, Autoplay],
+    spaceBetween: 32,
+    slidesPerView: "auto",
+    navigation: showNavigation ? { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' } : false,
+    pagination: showNavigation ? { clickable: true, el: '.swiper-pagination' } : false,
+    autoplay: showNavigation ? { delay: 3000, disableOnInteraction: false } : false,
+    loop: showNavigation,
+    breakpoints: SWIPER_BREAKPOINTS,
+    className: styles.swiper,
+  });
+
+  const renderNavigation = () => showNavigation && (
+    <>
+      <div className={`swiper-button-prev ${styles.navButton}`}></div>
+      <div className={`swiper-button-next ${styles.navButton}`}></div>
+      <div className={`swiper-pagination ${styles.pagination}`}></div>
+    </>
+  );
+
   if (loading) {
     return (
       <section className={styles.categoriesSection}>
         <div className={styles.container}>
-          <div className={styles.header}>
-            <h2 className={styles.title}>Categories</h2>
-            <Link to="/categories" className={styles.allCategoriesBtn}>
-              All categories
-            </Link>
-          </div>
+          {renderHeader()}
           <div className={styles.loading}>Loading categories...</div>
         </div>
       </section>
@@ -39,12 +73,7 @@ const MainPageCategories = () => {
     return (
       <section className={styles.categoriesSection}>
         <div className={styles.container}>
-          <div className={styles.header}>
-            <h2 className={styles.title}>Categories</h2>
-            <Link to="/categories" className={styles.allCategoriesBtn}>
-              All categories
-            </Link>
-          </div>
+          {renderHeader()}
           <div className={styles.error}>Error loading categories: {error}</div>
         </div>
       </section>
@@ -54,77 +83,16 @@ const MainPageCategories = () => {
   return (
     <section className={styles.categoriesSection}>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>Categories</h2>
-          <Link to="/categories" className={styles.allCategoriesBtn}>
-            All categories
-          </Link>
-        </div>
-        
+        {renderHeader()}
         <div className={styles.swiperContainer}>
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={32}
-            slidesPerView="auto"
-            navigation={categories.length > 4 ? {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            } : false}
-            pagination={categories.length > 4 ? {
-              clickable: true,
-              el: '.swiper-pagination',
-            } : false}
-            autoplay={categories.length > 4 ? {
-              delay: 3000,
-              disableOnInteraction: false,
-            } : false}
-            loop={categories.length > 4}
-            breakpoints={{
-              320: {
-                slidesPerView: 1.7,
-                spaceBetween: 4,
-                centeredSlides: true,
-              },
-              480: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-                centeredSlides: true,
-              },
-              768: {
-                slidesPerView: 3,
-                spaceBetween: 24,
-                centeredSlides: true,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 28,
-                centeredSlides: false,
-              },
-              1440: {
-                slidesPerView: 4,
-                spaceBetween: 32,
-                centeredSlides: false,
-              },
-            }}
-            className={styles.swiper}
-          >
+          <Swiper {...getSwiperConfig()}>
             {categories.map((category) => (
               <SwiperSlide key={category.id} className={styles.swiperSlide}>
                 <CategoryCard category={category} />
               </SwiperSlide>
             ))}
           </Swiper>
-          
-          {categories.length > 4 && (
-            <>
-              <div className={`swiper-button-prev ${styles.navButton}`}></div>
-              <div className={`swiper-button-next ${styles.navButton}`}></div>
-            </>
-          )}
-          
-          {categories.length > 4 && (
-            <div className={`swiper-pagination ${styles.pagination}`}></div>
-          )}
+          {renderNavigation()}
         </div>
       </div>
     </section>

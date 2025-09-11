@@ -3,15 +3,12 @@
   margin: 0 auto;
   padding: var(--container-padding);
 }
-
-
 .breadcrumbs {
   display: flex;
   align-items: center;
   gap: 0;
   margin-bottom: 40px;
 }
-
 .breadcrumbItem {
   display: flex;
   align-items: center;
@@ -31,12 +28,10 @@
   line-height: 130%;
   transition: all 0.3s ease;
 }
-
 .breadcrumbLink:hover {
   background-color: #ddd;
   color: #282828;
 }
-
 .breadcrumbCurrent {
   padding: var(--spacing-xs) var(--spacing-sm);
   border: var(--border-width) solid var(--border-color);
@@ -48,7 +43,6 @@
   font-weight: 500;
   line-height: 130%;
 }
-
 .breadcrumbSeparator {
   width: 16px;
   height: 1px;
@@ -64,7 +58,6 @@
   gap: 140px;
   align-items: start;
 }
-
 .imageContainer {
   width: 548px;
   height: 572px;
@@ -74,13 +67,11 @@
   align-items: center;
   justify-content: center;
 }
-
 .productImage {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-
 .productInfo {
   display: flex;
   flex-direction: column;
@@ -88,19 +79,16 @@
   max-width: 548px;
 }
 
-
 .priceContainer {
   display: flex;
   align-items: flex-end;
   position: relative;
 }
-
 .currentPrice {
   font-size: 44px;
   font-weight: 600;
   color: #282828;
 }
-
 .oldPrice {
   font-size: 28px;
   font-weight: 500;
@@ -108,7 +96,6 @@
   text-decoration: line-through;
   margin-left: 16px;
 }
-
 .discountBadge {
   background: #0d50ff;
   border-radius: 6px;
@@ -125,7 +112,6 @@
   gap: 24px;
   flex-wrap: wrap;
 }
-
 .quantityContainer {
   display: flex;
   align-items: center;
@@ -135,7 +121,6 @@
   display: flex;
   align-items: center;
 }
-
 .quantityButton {
   width: 58px;
   height: 58px;
@@ -151,30 +136,24 @@
   position: relative;
   z-index: 1;
 }
-
 .quantityButton:first-child {
   margin-right: -5px;
 }
-
 .quantityButton:last-child {
   margin-left: -5px;
 }
-
 .quantityButton:hover {
   border-color: #339933;
   background: #f8f8f8;
 }
-
 .quantityButton:active {
   background: #e8e8e8;
 }
-
 .quantityIcon {
   width: 24px;
   height: 24px;
   object-fit: contain;
 }
-
 .quantityValue {
   margin: 0 16px;
   min-width: 24px;
@@ -208,29 +187,24 @@
   align-items: center;
   transition: background 0.3s ease;
 }
-
 .addToCartButton:hover {
   background: #2d7a2d;
 }
-
 .descriptionSection {
   max-width: 548px;
 }
-
 .descriptionTitle {
   font-size: 20px;
   font-weight: 600;
   color: #282828;
   margin-bottom: 16px;
 }
-
 .descriptionText {
   font-size: 16px;
   color: #282828;
   line-height: 1.6;
   margin-bottom: 8px;
 }
-
 .readMoreButton {
   font-size: 16px;
   font-weight: 500;
@@ -241,7 +215,6 @@
   background: transparent;
   transition: color 0.3s ease;
 }
-
 .readMoreButton:hover {
   color: #2d7a2d;
   text-decoration: underline;
@@ -252,11 +225,9 @@
   .container {
     padding: 32px;
   }
-
   .productContent {
     gap: 32px;
   }
-
   .imageContainer {
     width: 100%;
     max-width: 548px;
@@ -268,24 +239,20 @@
   .container {
     padding: 24px;
   }
-
   .productContent {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-
   .imageContainer {
     width: 100%;
     max-width: 548px;
     height: 300px;
   }
-
   .quantitySection {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
   }
-
   .addToCartButton {
     width: 100%;
     max-width: 316px;
@@ -297,32 +264,26 @@
   .container {
     padding: 16px;
   }
-
   .breadcrumbs {
     flex-wrap: wrap;
     gap: 8px;
   }
-
   .breadcrumbLink,
   .breadcrumbCurrent {
     font-size: 14px;
     padding: 6px 12px;
   }
-
   .imageContainer {
     width: 100%;
     max-width: 548px;
     height: 250px;
   }
-
   .currentPrice {
     font-size: 32px;
   }
-
   .oldPrice {
     font-size: 20px;
   }
-
   .discountBadge {
     top: -4px;
     right: -4px;

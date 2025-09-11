@@ -25,7 +25,6 @@
   color: #282828;
   font-family: "Montserrat", sans-serif;
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
   line-height: 130%;
   transition: color 0.3s ease;
@@ -60,32 +59,32 @@
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
   user-select: none;
 }
-@media (max-width: 425px) {
-  .header {
-    padding: 10px;
-  }
-  .logo {
-    height: 40px;
-    width: 40px;
-    cursor: pointer;
-  }
-  .cartIcon {
-    height: 28px;
-    width: 28px;
-  }
-  .nav a {
-    font-size: 12px;
-  }
-  .nav {
-    gap: 10px;
-  }
-}
+/* Responsive styles */
 @media (max-width: 720px) {
-  .nav {
-    display: flex;
-    gap: 16px;
-  }
-  .nav a {
-    font-size: 14px;
-  }
+  .nav { gap: 16px; }
+  .nav a { font-size: 14px; }
+  .header { padding: 25px; }
+  .logo { height: 55px; width: 55px; }
+  .cartIcon { height: 38px; width: 38px; }
+}
+
+@media (max-width: 570px) {
+  .header { padding: 15px; }
+}
+
+@media (max-width: 500px) {
+  .logo { height: 40px; width: 40px; }
+  .cartIcon { height: 28px; width: 28px; }
+  .nav { gap: 10px; }
+  .nav a { font-size: 10px; }
+}
+
+@media (max-width: 425px) {
+  .header { padding: 5px; }
+  .nav a { font-size: 12px; }
+}
+
+@media (max-width: 338px) {
+  .nav { gap: 10px; }
+  .nav a { font-size: 9px; }
 }

@@ -32,7 +32,6 @@
 .title {
   font-family: var(--font-family);
   font-size: var(--font-size-title);
-  font-style: normal;
   font-weight: 700;
   line-height: 110%;
   color: var(--color-primary);
@@ -43,22 +42,19 @@
   z-index: 1;
 }
 .allSalesBtn {
-    color: var(--color-secondary);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--border-radius);
-    border: var(--border-width) solid var(--border-color);
-    text-decoration: none;
-    text-align: center;
-    font-family: var(--font-family);
-    font-size: var(--font-size-body);
-    font-style: normal;
-    font-weight: 500;
-    line-height: 126%;
-    transition: all 0.3s ease;  
-    cursor: pointer;
-    background-color: var(--color-white);
-    position: relative;
-    z-index: 1;
+  color: var(--color-secondary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid var(--border-color);
+  text-decoration: none;
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  font-weight: 500;
+  line-height: 126%;
+  transition: all 0.3s ease;
+  background-color: var(--color-white);
+  position: relative;
+  z-index: 1;
 }
 
 .allSalesBtn:hover {
@@ -94,7 +90,6 @@
   .productsGrid {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    justify-items: center;
   }
 }
 
@@ -115,7 +110,6 @@
   .productsGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    justify-items: center;
   }
 }
 
@@ -144,7 +138,6 @@
   .productsGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-    justify-items: center;
   }
 }
 
@@ -169,7 +162,6 @@
   .productsGrid {
     grid-template-columns: 1fr;
     gap: 12px;
-    justify-items: center;
   }
 }
 
@@ -185,6 +177,5 @@
   
   .productsGrid {
     gap: 8px;
-    justify-items: center;
   }
 }

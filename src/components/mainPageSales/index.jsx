@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from '@mui/material';
 import { fetchAllProducts } from '../../redux/slices/productSlice';
 import CartSales from '../cartSales';
 import styles from './styles.module.css';
@@ -17,12 +16,7 @@ const MainPageSales = () => {
   }, [dispatch, allProducts.length]);
 
   const salesProducts = allProducts
-    .filter(product => 
-      product.price && 
-      product.discont_price && 
-      product.discont_price !== null && 
-      product.discont_price < product.price
-    )
+    .filter(product => product.price && product.discont_price && product.discont_price < product.price)
     .sort(() => 0.5 - Math.random())
     .slice(0, 4);
 

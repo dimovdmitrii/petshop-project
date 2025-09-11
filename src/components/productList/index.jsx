@@ -7,15 +7,10 @@ import CartSales from '../cartSales';
 import { 
   fetchAllProducts, 
   fetchProductsByCategory, 
-  setPriceFrom, 
-  setPriceTo, 
-  setDiscountedOnly, 
-  setSortBy,
-  setCurrentContext,
-  setSalesMode,
+  setFilter,
+  setContext,
   applyFilters,
-  clearAllProductsError,
-  clearCategoryProductsError
+  clearError
 } from '../../redux/slices/productSlice';
 import styles from './styles.module.css';
 
@@ -154,14 +149,12 @@ const ProductList = ({
 
   useEffect(() => {
     if (apiEndpoint.includes('/products/all')) {
-      dispatch(setCurrentContext('all'));
-      dispatch(setSalesMode(!showDiscountFilter));
+      dispatch(setContext({ context: 'all', salesMode: !showDiscountFilter }));
       if (allProducts.length === 0) {
         dispatch(fetchAllProducts());
       }
     } else if (apiEndpoint.includes('/categories/')) {
-      dispatch(setCurrentContext('category'));
-      dispatch(setSalesMode(false));
+      dispatch(setContext({ context: 'category', salesMode: false }));
       const categoryId = apiEndpoint.split('/categories/')[1];
       dispatch(fetchProductsByCategory(categoryId));
     }
@@ -174,19 +167,19 @@ const ProductList = ({
   }, [products, filters, dispatch]);
 
   const handlePriceFromChange = (e) => {
-    dispatch(setPriceFrom(e.target.value));
+    dispatch(setFilter({ key: 'priceFrom', value: e.target.value }));
   };
 
   const handlePriceToChange = (e) => {
-    dispatch(setPriceTo(e.target.value));
+    dispatch(setFilter({ key: 'priceTo', value: e.target.value }));
   };
 
   const handleDiscountedChange = (e) => {
-    dispatch(setDiscountedOnly(e.target.checked));
+    dispatch(setFilter({ key: 'discountedOnly', value: e.target.checked }));
   };
 
   const handleSortChange = (e) => {
-    dispatch(setSortBy(e.target.value));
+    dispatch(setFilter({ key: 'sortBy', value: e.target.value }));
   };
 
   if (isLoading) {

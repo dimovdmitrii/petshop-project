@@ -26,53 +26,22 @@ const Basket = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const getResponsiveStyles = () => {
-    if (windowWidth <= 1000) {
-      return {
-        orderTitle: { fontSize: '24px' },
-        itemsCount: { fontSize: '24px' },
-        totalLabel: { fontSize: '24px' },
-        totalAmount: { fontSize: '24px' }
-      };
-    } else if (windowWidth <= 1100) {
-      return {
-        orderTitle: { fontSize: '26px' },
-        itemsCount: { fontSize: '26px' },
-        totalLabel: { fontSize: '26px' },
-        totalAmount: { fontSize: '26px' }
-      };
-    } else if (windowWidth <= 1300) {
-      return {
-        orderTitle: { fontSize: '28px' },
-        itemsCount: { fontSize: '28px' },
-        totalLabel: { fontSize: '28px' },
-        totalAmount: { fontSize: '28px' }
-      };
-    } else if (windowWidth <= 1320) {
-      return {
-        orderTitle: { fontSize: '30px' },
-        itemsCount: { fontSize: '30px' },
-        totalLabel: { fontSize: '30px' },
-        totalAmount: { fontSize: '30px' }
-      };
-    } else if (windowWidth <= 1439) {
-      return {
-        orderTitle: { fontSize: '32px' },
-        itemsCount: { fontSize: '32px' },
-        totalLabel: { fontSize: '32px' },
-        totalAmount: { fontSize: '32px' }
-      };
-    } else {
-      return {
-        orderTitle: { fontSize: '40px' },
-        itemsCount: { fontSize: '40px' },
-        totalLabel: { fontSize: '40px' },
-        totalAmount: { fontSize: '64px' }
-      };
-    }
+  // Simple responsive font sizes
+  const getFontSize = (base) => {
+    if (windowWidth <= 1000) return base * 0.6;
+    if (windowWidth <= 1100) return base * 0.65;
+    if (windowWidth <= 1300) return base * 0.7;
+    if (windowWidth <= 1320) return base * 0.75;
+    if (windowWidth <= 1439) return base * 0.8;
+    return base;
   };
 
-  const responsiveStyles = getResponsiveStyles();
+  const fontSize = {
+    orderTitle: getFontSize(40),
+    itemsCount: getFontSize(24),
+    totalLabel: getFontSize(24),
+    totalAmount: windowWidth > 1439 ? 64 : getFontSize(40)
+  };
 
   const {
     register,
@@ -129,12 +98,12 @@ const Basket = () => {
         
         <div className={styles.emptyCart}>
           <Typography sx={{
-    fontFamily: 'Montserrat, sans-serif',
-    fontSize: 20,
-    fontStyle: 'normal',
-    fontWeight: 500,
-    lineHeight: '130%',
-  }}>Looks like you have no items in your basket currently.</Typography>
+            fontFamily: 'Montserrat, sans-serif',
+            fontSize: 20,
+            fontWeight: 500,
+            lineHeight: '130%',
+            color: '#8B8B8B'
+          }}>Looks like you have no items in your basket currently.</Typography>
           <Link to="/categories" className={styles.shopBtn}>
             Continue Shopping
           </Link>
@@ -162,8 +131,7 @@ const Basket = () => {
         <div className={styles.orderDetails}>
           <h3 style={{
             fontFamily: 'Montserrat, sans-serif',
-            fontSize: responsiveStyles.orderTitle.fontSize,
-            fontStyle: 'normal',
+            fontSize: `${fontSize.orderTitle}px`,
             fontWeight: 700,
             lineHeight: '110%',
             color: '#282828',
@@ -174,8 +142,7 @@ const Basket = () => {
             <p style={{
               color: '#8B8B8B',
               fontFamily: 'Montserrat, sans-serif',
-              fontSize: responsiveStyles.itemsCount.fontSize,
-              fontStyle: 'normal',
+              fontSize: `${fontSize.itemsCount}px`,
               fontWeight: 500,
               lineHeight: '130%',
               margin: 0
@@ -184,8 +151,7 @@ const Basket = () => {
               <p style={{
                 color: '#8B8B8B',
                 fontFamily: 'Montserrat, sans-serif',
-                fontSize: responsiveStyles.totalLabel.fontSize,
-                fontStyle: 'normal',
+                fontSize: `${fontSize.totalLabel}px`,
                 fontWeight: 500,
                 lineHeight: '130%',
                 margin: 0
@@ -193,8 +159,7 @@ const Basket = () => {
               <p style={{
                 color: '#282828',
                 fontFamily: 'Montserrat, sans-serif',
-                fontSize: responsiveStyles.totalAmount.fontSize,
-                fontStyle: 'normal',
+                fontSize: `${fontSize.totalAmount}px`,
                 fontWeight: 700,
                 lineHeight: '110%',
                 margin: 0
@@ -241,24 +206,14 @@ const Basket = () => {
                 height: '58px',
                 backgroundColor: '#0D50FF',
                 color: '#FFF',
-                border: 'none',
                 borderRadius: '6px',
                 fontFamily: 'Montserrat, sans-serif',
                 fontSize: '16px',
                 fontWeight: 600,
                 textTransform: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
                 marginTop: 'auto',
-                '&:hover': {
-                  backgroundColor: '#0a3dcc',
-                  color: '#FFF'
-                },
-                '&:disabled': {
-                  backgroundColor: '#8B8B8B',
-                  color: '#FFF',
-                  cursor: 'not-allowed'
-                }
+                '&:hover': { backgroundColor: '#0a3dcc' },
+                '&:disabled': { backgroundColor: '#8B8B8B', cursor: 'not-allowed' }
               }}
             >
               {isSubmitting ? 'Processing...' : 'Order'}

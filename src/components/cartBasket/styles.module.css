@@ -174,6 +174,30 @@
   margin-top: 15px;
 }
 
+@media (max-width: 1439px) {
+  .cartItem { width: 700px; height: 160px; gap: 28px; }
+  .imageContainer { width: 180px; height: 160px; }
+  .productTitle { font-size: 18px; }
+  .currentPrice { font-size: 36px; }
+  .oldPrice { font-size: 18px; }
+  .controlsRow { gap: 28px; }
+  .quantityButton { width: 52px; height: 52px; }
+  .quantityValue { width: 88px; height: 52px; font-size: 18px; }
+  .quantityIcon { width: 22px; height: 22px; }
+}
+
+@media (max-width: 1300px) {
+  .cartItem { width: 650px; height: 150px; gap: 24px; }
+  .imageContainer { width: 160px; height: 150px; }
+  .productTitle { font-size: 16px; }
+  .currentPrice { font-size: 32px; }
+  .oldPrice { font-size: 16px; }
+  .controlsRow { gap: 24px; }
+  .quantityButton { width: 48px; height: 48px; }
+  .quantityValue { width: 80px; height: 48px; font-size: 16px; }
+  .quantityIcon { width: 20px; height: 20px; }
+}
+
 @media (max-width: 1200px) {
   .cartItem { width: 100%; max-width: 780px; }
 }

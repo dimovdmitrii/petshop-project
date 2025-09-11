@@ -14,31 +14,30 @@ import {
 } from '../../redux/slices/productSlice';
 import styles from './styles.module.css';
 
-const TYPOGRAPHY_STYLES = {
-  title: {
-    fontFamily: 'Montserrat, sans-serif',
-    fontSize: { xs: "24px", sm: "32px", md: "64px", lg: "64px" },
-    fontWeight: 700,
-    color: "#282828",          
-    lineHeight: "110%",
-    margin: "40px 0 40px 0"
-  },
-  filterLabel: {
-    color: '#282828',
-    fontFamily: 'Montserrat, sans-serif',
-    fontSize: '20px',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    lineHeight: '130%',
-  },
-  menuItem: {
-    fontFamily: 'Montserrat',
-    fontSize: '16px',
-    fontWeight: 500,
-  }
+// Common styles
+const commonStyle = {
+  fontFamily: 'Montserrat, sans-serif',
+  fontWeight: 500
 };
 
-const TEXT_FIELD_STYLES = {
+const titleStyle = {
+  ...commonStyle,
+  fontSize: { xs: "24px", sm: "32px", md: "64px" },
+  fontWeight: 700,
+  color: "#282828",
+  lineHeight: "110%",
+  margin: "40px 0"
+};
+
+const filterStyle = {
+  ...commonStyle,
+  color: '#282828',
+  fontSize: '20px',
+  fontWeight: 600,
+  lineHeight: '130%'
+};
+
+const inputStyle = {
   width: "112px",
   height: "36px",
   '& .MuiInputBase-root': {
@@ -48,15 +47,13 @@ const TEXT_FIELD_STYLES = {
     padding: "8px 16px",
   },
   '& .MuiInputBase-input': {
-    fontFamily: 'Montserrat',
+    ...commonStyle,
     fontSize: '16px',
-    fontWeight: 500,
     padding: 0,
   },
   '& .MuiInputBase-input::placeholder': {
-    fontFamily: 'Montserrat',
+    ...commonStyle,
     fontSize: '16px',
-    fontWeight: 500,
     opacity: 0.7,
   },
   '& .MuiOutlinedInput-notchedOutline': {
@@ -166,20 +163,8 @@ const ProductList = ({
     }
   }, [products, filters, dispatch]);
 
-  const handlePriceFromChange = (e) => {
-    dispatch(setFilter({ key: 'priceFrom', value: e.target.value }));
-  };
-
-  const handlePriceToChange = (e) => {
-    dispatch(setFilter({ key: 'priceTo', value: e.target.value }));
-  };
-
-  const handleDiscountedChange = (e) => {
-    dispatch(setFilter({ key: 'discountedOnly', value: e.target.checked }));
-  };
-
-  const handleSortChange = (e) => {
-    dispatch(setFilter({ key: 'sortBy', value: e.target.value }));
+  const handleFilterChange = (key, value) => {
+    dispatch(setFilter({ key, value }));
   };
 
   if (isLoading) {
@@ -220,7 +205,7 @@ const ProductList = ({
 
       <Typography 
         className={styles.title}
-        sx={TYPOGRAPHY_STYLES.title}
+        sx={titleStyle}
       >
         {finalTitle}
       </Typography>
@@ -228,25 +213,22 @@ const ProductList = ({
       {showFilters && (
         <Box className={styles.filtersContainer}>
         <Box className={styles.priceFilter}>
-          <Typography sx={TYPOGRAPHY_STYLES.filterLabel} className={styles.filterLabel}>Price</Typography>
+          <Typography sx={filterStyle} className={styles.filterLabel}>Price</Typography>
           <TextField
             type="number"
             placeholder="from"
             value={filters.priceFrom}
-            onChange={handlePriceFromChange}
+            onChange={(e) => handleFilterChange('priceFrom', e.target.value)}
             size="small"
-            sx={{ 
-              ...TEXT_FIELD_STYLES,
-              marginRight: "8px",
-            }}
+            sx={{ ...inputStyle, marginRight: "8px" }}
           />
           <TextField
             type="number"
             placeholder="to"
             value={filters.priceTo}
-            onChange={handlePriceToChange}
+            onChange={(e) => handleFilterChange('priceTo', e.target.value)}
             size="small"
-            sx={TEXT_FIELD_STYLES}
+            sx={inputStyle}
           />
         </Box>
 
@@ -255,11 +237,11 @@ const ProductList = ({
             control={
               <CustomCheckbox
                 checked={filters.discountedOnly}
-                onChange={handleDiscountedChange}
+                onChange={(e) => handleFilterChange('discountedOnly', e.target.checked)}
               />
             }
             label={
-              <Typography sx={TYPOGRAPHY_STYLES.filterLabel}>
+              <Typography sx={filterStyle}>
                 Discounted items
               </Typography>
             }
@@ -275,19 +257,18 @@ const ProductList = ({
         )}
 
         <Box className={styles.sortContainer}>
-          <Typography sx={TYPOGRAPHY_STYLES.filterLabel} className={styles.filterLabel}>Sorted</Typography>
+          <Typography sx={filterStyle} className={styles.filterLabel}>Sorted</Typography>
           <FormControl size="small" sx={{ minWidth: 200 }}>
             <Select
               value={filters.sortBy}
-              onChange={handleSortChange}
+              onChange={(e) => handleFilterChange('sortBy', e.target.value)}
               displayEmpty
               sx={{
                 width: '200px',
                 height: '36px',
                 '& .MuiSelect-select': {
-                  fontFamily: 'Montserrat',
+                  ...commonStyle,
                   fontSize: '16px',
-                  fontWeight: 500,
                   color: '#282828',
                   padding: '8px 8px 8px 16px',
                   height: '36px',
@@ -306,18 +287,10 @@ const ProductList = ({
                 }
               }}
             >
-              <MenuItem value="default" sx={TYPOGRAPHY_STYLES.menuItem}>
-                by default
-              </MenuItem>
-              <MenuItem value="newest" sx={TYPOGRAPHY_STYLES.menuItem}>
-                newest
-              </MenuItem>
-              <MenuItem value="price-high-low" sx={TYPOGRAPHY_STYLES.menuItem}>
-                price: high-low
-              </MenuItem>
-              <MenuItem value="price-low-high" sx={TYPOGRAPHY_STYLES.menuItem}>
-                price: low-high
-              </MenuItem>
+              <MenuItem value="default" sx={commonStyle}>by default</MenuItem>
+              <MenuItem value="newest" sx={commonStyle}>newest</MenuItem>
+              <MenuItem value="price-high-low" sx={commonStyle}>price: high-low</MenuItem>
+              <MenuItem value="price-low-high" sx={commonStyle}>price: low-high</MenuItem>
             </Select>
           </FormControl>
         </Box>

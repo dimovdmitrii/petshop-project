@@ -3,73 +3,74 @@ import InstagramIcon from "../../assets/icons/ic-instagram.svg";
 import WhatsappIcon from "../../assets/icons/ic-whatsapp.svg";
 import { Box, Typography } from "@mui/material";
 
+// Constants
+const CONTACT_DATA = [
+  { label: "Phone", value: "+49 30 915-88492" },
+  { label: "Socials", value: "socials", isSocial: true },
+  { label: "Address", value: "Wallstraße 9-13, 10179 Berlin, Deutschland" },
+  { label: "Working Hours", value: "24 hours a day" },
+];
+
+const SOCIAL_ICONS = [
+  { src: InstagramIcon, alt: "Instagram" },
+  { src: WhatsappIcon, alt: "WhatsApp" },
+];
+
+const COMMON_STYLES = {
+  fontFamily: "Montserrat, sans-serif",
+  fontWeight: 500,
+  lineHeight: 1.3,
+};
+
+const TITLE_STYLES = {
+  ...COMMON_STYLES,
+  fontSize: "64px",
+  fontWeight: 700,
+  lineHeight: 1.1,
+  marginBottom: "40px",
+};
+
+const LABEL_STYLES = {
+  ...COMMON_STYLES,
+  color: "#8B8B8B",
+  fontSize: "20px",
+};
+
+const VALUE_STYLES = {
+  ...COMMON_STYLES,
+  color: "#282828",
+  fontSize: "40px",
+  fontWeight: 600,
+  lineHeight: 1.1,
+};
+
 const Footer = () => {
-  const titleStyles = {
-    fontFamily: "Montserrat, sans-serif",
-    fontSize: "64px",
-    fontWeight: 700,
-    lineHeight: 1.1,
-    marginBottom: "40px",
-    fontStyle: "normal",
-  };
-
-  const labelStyles = {
-    color: "#8B8B8B",
-    fontFamily: "Montserrat, sans-serif",
-    fontSize: "20px",
-    fontWeight: 500,
-    fontStyle: "normal",
-    lineHeight: 1.3,
-  };
-
-  const valueStyles = {
-    color: "#282828",
-    fontFamily: "Montserrat, sans-serif",
-    fontSize: "40px",
-    fontWeight: 600,
-    fontStyle: "normal",
-    lineHeight: "1.1",
-  };
+  const renderContactBlock = (item, index) => (
+    <Box key={index} className={styles.infoBlock}>
+      <Typography component="p" sx={LABEL_STYLES}>
+        {item.label}
+      </Typography>
+      {item.isSocial ? (
+        <Box className={styles.socialIcons}>
+          {SOCIAL_ICONS.map((icon, i) => (
+            <img key={i} src={icon.src} alt={icon.alt} className={styles.icon} />
+          ))}
+        </Box>
+      ) : (
+        <Typography component="p" sx={VALUE_STYLES}>
+          {item.value}
+        </Typography>
+      )}
+    </Box>
+  );
 
   return (
     <Box component="footer" className={styles.footer}>
-      <Typography sx={titleStyles} className={styles.title}>
+      <Typography sx={TITLE_STYLES} className={styles.title}>
         Contact
       </Typography>
       <Box className={styles.infoGrid}>
-        <Box className={styles.infoBlock1}>
-          <Typography component="p" sx={labelStyles}>
-            Phone
-          </Typography>
-          <Typography component="p" sx={valueStyles}>
-            +49 30 915-88492
-          </Typography>
-        </Box>
-        <Box className={styles.infoBlock2}>
-          <Typography component="p" sx={labelStyles}>
-            Socials
-          </Typography>
-          <Box className={styles.socialIcons}>
-            <img src={InstagramIcon} alt="Instagram" className={styles.icon} />
-            <img src={WhatsappIcon} alt="WhatsApp" className={styles.icon} />
-          </Box>
-        </Box>
-        <Box className={styles.infoBlock1}>
-          <Typography component="p" sx={labelStyles}>
-            Address
-          </Typography>
-          <Typography component="p" sx={valueStyles}>
-            Wallstraße 9-13, 10179 Berlin, Deutschland
-          </Typography>
-        </Box>
-        <Box className={styles.infoBlock2}>
-          <Typography component="p" sx={labelStyles}>
-            Working Hours
-          </Typography>
-          <Typography component="p" sx={valueStyles}>
-            24 hours a day
-          </Typography>
-        </Box>
+        {CONTACT_DATA.map(renderContactBlock)}
       </Box>
       <Box className={styles.mapWrapper}>
         <iframe
@@ -81,7 +82,7 @@ const Footer = () => {
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+        />
       </Box>
     </Box>
   );

@@ -14,21 +14,11 @@
   margin-bottom: 32px;
 }
 
-.infoBlock1 {
+.infoBlock {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   min-height: 150px;
-  gap: 16px;
-  align-self: stretch;
-  background-color: #f1f3f4;
-  border-radius: 12px;
-  padding: 32px;
-}
-.infoBlock2 {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   gap: 16px;
   align-self: stretch;
   background-color: #f1f3f4;
@@ -57,55 +47,26 @@
   border-radius: 10px;
   overflow: hidden;
 }
-@media (max-width: 480px) {
-  .footer {
-    padding: 20px;
-  }
-
-  .title {
-    font-size: 24px !important;
-    margin-bottom: 20px !important;
-  }
-
-  .infoBlock1 p:first-child,
-  .infoBlock2 p:first-child {
-    font-size: 8px !important;
-  }
-
-  .infoBlock1 p:last-child,
-  .infoBlock2 p:last-child {
-    font-size: 16px !important;
-  }
-
-  .infoBlock1,
-  .infoBlock2 {
-    padding: 20px;
-    min-height: 120px;
-  }
-}
-@media (max-width: 410px) {
-  .footer {
-    padding: 10px;
-  }
-}
-@media (max-width: 720px) {
-  .infoGrid {
-    grid-template-columns: 1fr;
-  }
-}
+/* Responsive styles */
 @media (max-width: 768px) {
-  .infoGrid {
-    grid-template-columns: 1fr;
-  }
-  .title {
-    font-size: 36px !important;
-  }
-  .infoBlock1 p:first-child,
-  .infoBlock2 p:first-child {
-    font-size: 10px !important;
-  }
-  .infoBlock1 p:last-child,
-  .infoBlock2 p:last-child {
-    font-size: 20px !important;
-  }
+  .infoGrid { grid-template-columns: 1fr; }
+  .title { font-size: 36px !important; }
+  .infoBlock p:first-child { font-size: 10px !important; }
+  .infoBlock p:last-child { font-size: 20px !important; }
+}
+
+@media (max-width: 720px) {
+  .infoGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .footer { padding: 20px; }
+  .title { font-size: 24px !important; margin-bottom: 20px !important; }
+  .infoBlock p:first-child { font-size: 8px !important; }
+  .infoBlock p:last-child { font-size: 16px !important; }
+  .infoBlock { padding: 20px; min-height: 120px; }
+}
+
+@media (max-width: 410px) {
+  .footer { padding: 10px; }
 }

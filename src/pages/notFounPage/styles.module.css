@@ -22,29 +22,11 @@
   margin-bottom: 30px;
 }
 
-.title {
-  margin-bottom: 20px;
-}
-
-.description {
-  margin-bottom: 40px;
-  line-height: 1.6;
-}
-
-.button {
-  transition: all 0.3s ease;
-}
+.title { margin-bottom: 20px; }
+.description { margin-bottom: 40px; line-height: 1.6; }
+.button { transition: all 0.3s ease; }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 20px 15px;
-  }
-  
-  .image {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    aspect-ratio: 691/270;
-    margin-bottom: 20px;
-  }
+  .container { padding: 20px 15px; }
+  .image { width: 100%; max-width: 400px; height: auto; aspect-ratio: 691/270; margin-bottom: 20px; }
 }

@@ -5,14 +5,6 @@ import CartCategories from '../../components/cartCategories';
 import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
-// Simple responsive font size
-const getTitleSize = () => {
-  const width = window.innerWidth;
-  if (width <= 900) return '24px';
-  if (width <= 1200) return '36px';
-  return '64px';
-};
-
 const Categories = () => {
   const [state, setState] = useState({ data: [], loading: true, error: null });
 
@@ -22,12 +14,15 @@ const Categories = () => {
         setState(prev => ({ ...prev, loading: true }));
         const response = await fetch(`${API_URL}/categories/all`);
         if (!response.ok) throw new Error('Failed to fetch categories');
-        const data = await response.json();
-        setState({ data, loading: false, error: null });
+        const result = await response.json();
+        // Проверяем, есть ли поле data и является ли массивом
+        const categories = Array.isArray(result.data) ? result.data : [];
+        setState({ data: categories, loading: false, error: null });
       } catch (err) {
-        setState({ data: [], loading: false, error: err.message });
+        setState({ data: [], loading: false, error: err.message || 'Unknown error' });
       }
     };
+
     fetchCategories();
   }, []);
 
@@ -65,13 +60,7 @@ const Categories = () => {
         <Typography 
           sx={{
             fontFamily: 'Montserrat, sans-serif',
-            fontSize: {
-              xs: '24px',
-              sm: '28px', 
-              md: '36px',
-              lg: '64px',
-              xl: '64px'
-            },
+            fontSize: { xs: '24px', sm: '28px', md: '36px', lg: '64px', xl: '64px' },
             fontStyle: 'normal',
             fontWeight: 700,
             lineHeight: '110%',
@@ -83,11 +72,15 @@ const Categories = () => {
           Categories
         </Typography>
 
-        <div className={styles.categoriesGrid}>
-          {state.data.map((category) => (
-            <CartCategories key={category.id} category={category} />
-          ))}
-        </div>
+        {state.data.length === 0 ? (
+          <div className={styles.noData}>No categories found.</div>
+        ) : (
+          <div className={styles.categoriesGrid}>
+            {state.data.map((category) => (
+              <CartCategories key={category.id} category={category} />
+            ))}
+          </div>
+        )}
       </div>
     </main>
   );

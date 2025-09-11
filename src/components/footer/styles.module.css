@@ -47,11 +47,18 @@
   border-radius: 10px;
   overflow: hidden;
 }
+@media (max-width: 840px) {
+  .infoGrid { grid-template-columns: 1fr; }
+  .title { font-size: 32px !important; }
+  
+ 
+}
 @media (max-width: 768px) {
   .infoGrid { grid-template-columns: 1fr; }
   .title { font-size: 36px !important; }
-  .infoBlock p:first-child { font-size: 10px !important; }
-  .infoBlock p:last-child { font-size: 20px !important; }
+  .infoBlock { padding: 20px; min-height: 120px; }
+  .infoBlock p:first-child { font-size: 12px !important; }
+  .infoBlock p:last-child { font-size: 24px !important; }
 }
 
 @media (max-width: 720px) {
@@ -63,7 +70,7 @@
   .title { font-size: 24px !important; margin-bottom: 20px !important; }
   .infoBlock p:first-child { font-size: 8px !important; }
   .infoBlock p:last-child { font-size: 16px !important; }
-  .infoBlock { padding: 20px; min-height: 120px; }
+  .infoBlock { padding: 10px; min-height: 80px; }
 }
 
 @media (max-width: 410px) {

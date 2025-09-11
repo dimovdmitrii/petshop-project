@@ -26,22 +26,24 @@ const Basket = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Simple responsive font sizes
-  const getFontSize = (base) => {
-    if (windowWidth <= 1000) return base * 0.6;
-    if (windowWidth <= 1100) return base * 0.65;
-    if (windowWidth <= 1300) return base * 0.7;
-    if (windowWidth <= 1320) return base * 0.75;
-    if (windowWidth <= 1439) return base * 0.8;
-    return base;
+  // Compact responsive font sizes
+  const getSize = (base) => base * (windowWidth <= 1000 ? 0.6 : windowWidth <= 1100 ? 0.65 : windowWidth <= 1300 ? 0.7 : windowWidth <= 1320 ? 0.75 : windowWidth <= 1439 ? 0.8 : 1);
+  const fontSize = {
+    orderTitle: getSize(40),
+    itemsCount: getSize(24),
+    totalLabel: getSize(24),
+    totalAmount: windowWidth > 1439 ? 64 : getSize(40)
   };
 
-  const fontSize = {
-    orderTitle: getFontSize(40),
-    itemsCount: getFontSize(24),
-    totalLabel: getFontSize(24),
-    totalAmount: windowWidth > 1439 ? 64 : getFontSize(40)
-  };
+  // Common typography styles
+  const textStyle = (size, color = '#282828', weight = 700) => ({
+    fontFamily: 'Montserrat, sans-serif',
+    fontSize: `${size}px`,
+    fontWeight: weight,
+    lineHeight: weight === 700 ? '110%' : '130%',
+    color,
+    margin: 0
+  });
 
   const {
     register,
@@ -86,24 +88,24 @@ const Basket = () => {
     reset();
   };
 
+  const renderHeader = () => (
+    <div className={styles.header}>
+      <h2 className={styles.title}>Shopping cart</h2>
+      <Link to="/categories" className={styles.backToStoreBtn}>
+        Back to the store
+      </Link>
+    </div>
+  );
+
   if (items.length === 0) {
     return (
       <div className={styles.container}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>Shopping cart</h2>
-          <Link to="/categories" className={styles.backToStoreBtn}>
-            Back to the store
-          </Link>
-        </div>
+        {renderHeader()}
         
         <div className={styles.emptyCart}>
-          <Typography sx={{
-            fontFamily: 'Montserrat, sans-serif',
-            fontSize: 20,
-            fontWeight: 500,
-            lineHeight: '130%',
-            color: '#8B8B8B'
-          }}>Looks like you have no items in your basket currently.</Typography>
+          <Typography sx={textStyle(20, '#8B8B8B', 500)}>
+            Looks like you have no items in your basket currently.
+          </Typography>
           <Link to="/categories" className={styles.shopBtn}>
             Continue Shopping
           </Link>
@@ -114,12 +116,7 @@ const Basket = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Shopping cart</h2>
-        <Link to="/categories" className={styles.backToStoreBtn}>
-          Back to the store
-        </Link>
-      </div>
+      {renderHeader()}
 
       <div className={styles.mainContent}>
         <div className={styles.cartItems}>
@@ -129,41 +126,13 @@ const Basket = () => {
         </div>
 
         <div className={styles.orderDetails}>
-          <h3 style={{
-            fontFamily: 'Montserrat, sans-serif',
-            fontSize: `${fontSize.orderTitle}px`,
-            fontWeight: 700,
-            lineHeight: '110%',
-            color: '#282828',
-            margin: 0
-          }}>Order details</h3>
+          <h3 style={textStyle(fontSize.orderTitle)}>Order details</h3>
           
           <div className={styles.summary}>
-            <p style={{
-              color: '#8B8B8B',
-              fontFamily: 'Montserrat, sans-serif',
-              fontSize: `${fontSize.itemsCount}px`,
-              fontWeight: 500,
-              lineHeight: '130%',
-              margin: 0
-            }}>{count} items</p>
+            <p style={textStyle(fontSize.itemsCount, '#8B8B8B', 500)}>{count} items</p>
             <div className={styles.totalRow}>
-              <p style={{
-                color: '#8B8B8B',
-                fontFamily: 'Montserrat, sans-serif',
-                fontSize: `${fontSize.totalLabel}px`,
-                fontWeight: 500,
-                lineHeight: '130%',
-                margin: 0
-              }}>Total</p>
-              <p style={{
-                color: '#282828',
-                fontFamily: 'Montserrat, sans-serif',
-                fontSize: `${fontSize.totalAmount}px`,
-                fontWeight: 700,
-                lineHeight: '110%',
-                margin: 0
-              }}>${total.toFixed(2).replace('.', ',')}</p>
+              <p style={textStyle(fontSize.totalLabel, '#8B8B8B', 500)}>Total</p>
+              <p style={textStyle(fontSize.totalAmount)}>${total.toFixed(2).replace('.', ',')}</p>
             </div>
           </div>
 
@@ -202,16 +171,9 @@ const Basket = () => {
               type="submit"
               disabled={isSubmitting}
               sx={{
-                width: '100%',
-                height: '58px',
-                backgroundColor: '#0D50FF',
-                color: '#FFF',
-                borderRadius: '6px',
-                fontFamily: 'Montserrat, sans-serif',
-                fontSize: '16px',
-                fontWeight: 600,
-                textTransform: 'none',
-                marginTop: 'auto',
+                width: '100%', height: '58px', backgroundColor: '#0D50FF', color: '#FFF',
+                borderRadius: '6px', fontFamily: 'Montserrat', fontSize: '16px',
+                fontWeight: 600, textTransform: 'none', marginTop: 'auto',
                 '&:hover': { backgroundColor: '#0a3dcc' },
                 '&:disabled': { backgroundColor: '#8B8B8B', cursor: 'not-allowed' }
               }}
@@ -231,22 +193,12 @@ const Basket = () => {
           zIndex: 9999
         }}
       >
-        <Box 
-          sx={{
-            position: 'absolute',
-            top: 'calc(50% - 155px)',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: { xs: '327px', md: '548px' },
-            height: { xs: '155px', md: '236px' },
-            bgcolor: '#0D50FF',
-            borderRadius: '12px',
-            boxShadow: 24,
-            p: { xs: '8px', md: '32px' },
-            textAlign: 'left',
-            zIndex: 10000
-          }}
-        >
+        <Box sx={{
+          position: 'absolute', top: 'calc(50% - 155px)', left: '50%', transform: 'translate(-50%, -50%)',
+          width: { xs: '327px', md: '548px' }, height: { xs: '155px', md: '236px' },
+          bgcolor: '#0D50FF', borderRadius: '12px', boxShadow: 24,
+          p: { xs: '8px', md: '32px' }, textAlign: 'left', zIndex: 10000
+        }}>
           <button className={styles.closeButton}
             onClick={handleCloseModal}            
             aria-label="Close modal"
@@ -262,13 +214,8 @@ const Basket = () => {
             variant="h5" 
             component="h2" 
             sx={{ 
-              mb: '24px',
-              color: 'white',
-              fontFamily: 'Montserrat',
-              fontSize: { xs: '20px', md: '40px' },
-              fontStyle: 'normal',
-              fontWeight: 600,
-              lineHeight: '110%'
+              mb: '24px', color: 'white', fontFamily: 'Montserrat',
+              fontSize: { xs: '20px', md: '40px' }, fontWeight: 600, lineHeight: '110%'
             }}
           >
             Congratulations!
@@ -276,13 +223,8 @@ const Basket = () => {
           <Typography 
             id="modal-description" 
             sx={{ 
-              color: 'white',
-              fontFamily: 'Montserrat',
-              fontSize: { xs: '16px', md: '20px' },
-              fontStyle: 'normal',
-              fontWeight: 600,
-              lineHeight: '110%',
-              maxWidth: '424px'
+              color: 'white', fontFamily: 'Montserrat', fontSize: { xs: '16px', md: '20px' },
+              fontWeight: 600, lineHeight: '110%', maxWidth: '424px'
             }}
           >
             Your order has been successfully placed on the website.<br /> <br />

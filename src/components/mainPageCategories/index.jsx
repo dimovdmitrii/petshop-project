@@ -7,7 +7,6 @@ import { fetchCategories } from '../../redux/slices/categorySlice';
 import CategoryCard from '../cartCategories';
 import styles from './styles.module.css';
 
-// Импорт стилей Swiper
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -78,8 +77,8 @@ const MainPageCategories = () => {
             autoplay={categories.length > 4 ? {
               delay: 3000,
               disableOnInteraction: false,
-            } : false} // Автопрокрутка только если категорий больше 4
-            loop={categories.length > 4} // Включаем loop только если категорий больше 4
+            } : false}
+            loop={categories.length > 4}
             breakpoints={{
               320: {
                 slidesPerView: 1.7,
@@ -116,7 +115,6 @@ const MainPageCategories = () => {
             ))}
           </Swiper>
           
-          {/* Кастомные кнопки навигации - показываем только если категорий больше 4 */}
           {categories.length > 4 && (
             <>
               <div className={`swiper-button-prev ${styles.navButton}`}></div>
@@ -124,7 +122,6 @@ const MainPageCategories = () => {
             </>
           )}
           
-          {/* Пагинация - показываем только если категорий больше 4 */}
           {categories.length > 4 && (
             <div className={`swiper-pagination ${styles.pagination}`}></div>
           )}

@@ -21,7 +21,6 @@ const CartPage = () => {
   }, [id, dispatch]);
 
   useEffect(() => {
-    // Product data loaded
   }, [currentProduct, currentProductLoading, currentProductError]);
 
   const handleQuantityChange = (change) => {
@@ -41,7 +40,6 @@ const CartPage = () => {
         image: product.image,
         quantity: quantity
       }));
-      // Сбрасываем счетчик после добавления
       setQuantity(1);
     }
   };
@@ -82,9 +80,6 @@ const CartPage = () => {
     ? Math.round(((product.price - product.discont_price) / product.price) * 100)
     : 0;
 
-  // Product data is available
-  
-  // Category data is available
 
   const breadcrumbs = [
     { text: 'Main page', link: '/' },
@@ -106,7 +101,6 @@ const CartPage = () => {
 
   return (
     <div className={styles.container}>
-      {/* Breadcrumbs */}
       <div className={styles.breadcrumbs}>
         {breadcrumbs.map((crumb, index) => (
           <div key={index} className={styles.breadcrumbItem}>
@@ -124,9 +118,7 @@ const CartPage = () => {
         ))}
       </div>
 
-      {/* Product Content */}
       <div className={styles.productContent}>
-        {/* Product Image */}
         <div className={styles.imageContainer}>
           {product.image ? (
             <img 
@@ -134,11 +126,9 @@ const CartPage = () => {
               alt={product.title}
               className={styles.productImage}
               onError={(e) => {
-                // Image failed to load
                 e.target.style.display = 'none';
               }}
               onLoad={() => {
-                // Image loaded successfully
               }}
             />
           ) : (
@@ -155,9 +145,7 @@ const CartPage = () => {
           )}
         </div>
 
-        {/* Product Info */}
         <div className={styles.productInfo}>
-          {/* Product Title */}
           <Typography         
             className={styles.productTitle}
             sx={{
@@ -172,7 +160,6 @@ const CartPage = () => {
             {product.title}
           </Typography>
 
-          {/* Price Section */}
           <div className={styles.priceSection}>
             <div className={styles.priceContainer}>
               <Typography                
@@ -223,7 +210,6 @@ const CartPage = () => {
             </div>
           </div>
 
-          {/* Quantity and Add to Cart */}
           <div className={styles.quantitySection}>
             <div className={styles.quantityContainer}>
                             
@@ -271,7 +257,6 @@ const CartPage = () => {
             </Button>
           </div>
 
-          {/* Description */}
           <div className={styles.descriptionSection}>
             <Typography               
               className={styles.descriptionTitle}

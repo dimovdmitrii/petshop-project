@@ -56,7 +56,6 @@ const Categories = () => {
   return (
     <main className={styles.main}>
       <div className={styles.content}>
-        {/* Breadcrumbs */}
         <div className={styles.breadcrumbs}>
           <Link to="/" className={styles.breadcrumbLink}>
             Main page
@@ -65,7 +64,6 @@ const Categories = () => {
           <span className={styles.breadcrumbCurrent}>Categories</span>
         </div>
 
-        {/* Page Title */}
         <Typography 
           sx={{
             fontFamily: 'Montserrat, sans-serif',
@@ -87,7 +85,6 @@ const Categories = () => {
           Categories
         </Typography>
 
-        {/* Categories Grid */}
         <div className={styles.categoriesGrid}>
           {categories.map((category) => (
             <CartCategories key={category.id} category={category} />

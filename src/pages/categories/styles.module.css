@@ -67,7 +67,6 @@
   padding: 40px 0;
 }
 
-/* Responsive styles */
 @media (max-width: 1400px) {
   .categoriesGrid {
     gap: 28px;

@@ -6,7 +6,6 @@ import { addToBasket } from '../../redux/slices/basketSlice';
 import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
-// Функция для расчета процента скидки
 const calculateDiscountPercentage = (originalPrice, discountPrice) => {
   if (!originalPrice || !discountPrice || discountPrice >= originalPrice) {
     return 0;
@@ -18,22 +17,19 @@ const CartSales = ({ product }) => {
   const [isAdded, setIsAdded] = useState(false);
   const dispatch = useDispatch();
   
-  // Вычисляем процент скидки
   const discountPercentage = calculateDiscountPercentage(product.price, product.discont_price);
   const hasDiscount = discountPercentage > 0;
 
   const handleAddToCart = (e) => {
-    e.preventDefault(); // Предотвращаем переход по ссылке
+    e.preventDefault();
     e.stopPropagation();
     
-    // Добавляем товар в корзину через Redux с количеством 1
     dispatch(addToBasket({
       ...product,
       quantity: 1
     }));
     setIsAdded(true);
     
-    // Через 2 секунды возвращаем кнопку в исходное состояние
     setTimeout(() => {
       setIsAdded(false);
     }, 2000);
@@ -56,7 +52,6 @@ const CartSales = ({ product }) => {
           </div>
         )}
         
-        {/* Кнопка Add to cart */}
         <div className={styles.addToCartContainer}>
           <Button 
             className={`${styles.addToCartButton} ${isAdded ? styles.added : ''}`}

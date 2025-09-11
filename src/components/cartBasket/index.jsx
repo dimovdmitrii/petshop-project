@@ -25,7 +25,6 @@ const CartBasket = ({ product }) => {
 
   return (
     <div className={styles.cartItem}>
-      {/* Remove Button */}
       <button 
         onClick={handleRemove}
         className={styles.removeButton}
@@ -34,7 +33,6 @@ const CartBasket = ({ product }) => {
         <img src="/src/assets/icons/close.svg" alt="close" className={styles.removeIcon} />
       </button>
 
-      {/* Product Image */}
       <div className={styles.imageContainer}>
         <img 
           src={`${API_URL}${product.image}`} 
@@ -46,12 +44,10 @@ const CartBasket = ({ product }) => {
         />
       </div>
 
-      {/* Product Info */}
       <div className={styles.productInfo}>
         <h3 className={styles.productTitle}>{product.title}</h3>
         
         <div className={styles.controlsRow}>
-          {/* Quantity Controls */}
           <div className={styles.quantityControls}>
             <button 
               onClick={() => handleQuantityChange(-1)}
@@ -72,7 +68,6 @@ const CartBasket = ({ product }) => {
             </button>
           </div>
 
-          {/* Price */}
           <div className={styles.priceContainer}>
             <span className={styles.currentPrice}>${currentPrice}</span>
             {hasDiscount && (

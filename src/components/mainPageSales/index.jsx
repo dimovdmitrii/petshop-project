@@ -11,13 +11,11 @@ const MainPageSales = () => {
   const { allProducts, allProductsLoading, allProductsError } = useSelector(state => state.products);
 
   useEffect(() => {
-    // Загружаем продукты только если они еще не загружены
     if (allProducts.length === 0) {
       dispatch(fetchAllProducts());
     }
   }, [dispatch, allProducts.length]);
 
-  // Фильтруем товары со скидкой и берем случайные 4
   const salesProducts = allProducts
     .filter(product => 
       product.price && 

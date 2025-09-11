@@ -12,12 +12,10 @@ import Basket from "./pages/basket";
 import CartPage from "./components/cartPage";
 import NotFounPage from "./pages/notFounPage";
 
-// Компонент для прокрутки в начало страницы при изменении маршрута
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Прокручиваем в начало страницы при изменении маршрута
     window.scrollTo(0, 0);
   }, [pathname]);
 

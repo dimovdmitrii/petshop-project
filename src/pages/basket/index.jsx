@@ -17,7 +17,6 @@ const Basket = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  // Обработчик изменения размера окна
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -27,7 +26,6 @@ const Basket = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Функция для получения адаптивных стилей
   const getResponsiveStyles = () => {
     if (windowWidth <= 1000) {
       return {
@@ -99,13 +97,11 @@ const Basket = () => {
         total: total
       };
       
-      // Отправляем запрос на бэкенд (не ждем ответа)
       axios.post(`${API_URL}/order/send`, orderData)
         .catch(error => {
           console.error('Error sending order:', error);
         });
       
-      // Сразу показываем модальное окно
       setIsModalOpen(true);
       
     } catch (error) {
@@ -117,7 +113,6 @@ const Basket = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    // Очищаем корзину и форму только после закрытия модалки
     dispatch(clearBasket());
     reset();
   };
@@ -150,7 +145,6 @@ const Basket = () => {
 
   return (
     <div className={styles.container}>
-      {/* Header */}
       <div className={styles.header}>
         <h2 className={styles.title}>Shopping cart</h2>
         <Link to="/categories" className={styles.backToStoreBtn}>
@@ -158,16 +152,13 @@ const Basket = () => {
         </Link>
       </div>
 
-      {/* Main Content */}
       <div className={styles.mainContent}>
-        {/* Cart Items */}
         <div className={styles.cartItems}>
           {items.map((item) => (
             <CartBasket key={item.id} product={item} />
           ))}
         </div>
 
-        {/* Order Details */}
         <div className={styles.orderDetails}>
           <h3 style={{
             fontFamily: 'Montserrat, sans-serif',
@@ -276,7 +267,6 @@ const Basket = () => {
         </div>
       </div>
 
-      {/* Success Modal */}
       <Modal
         open={isModalOpen}
         onClose={handleCloseModal}
@@ -302,7 +292,6 @@ const Basket = () => {
             zIndex: 10000
           }}
         >
-          {/* Крестик для закрытия */}
           <button className={styles.closeButton}
             onClick={handleCloseModal}            
             aria-label="Close modal"

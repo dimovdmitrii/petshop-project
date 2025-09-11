@@ -1,10 +1,8 @@
 :root {
-  /* Общие переменные */
   --container-max-width: 1440px;
   --container-padding: 40px;
   --container-padding-mobile: 20px;
   
-  /* Цвета */
   --color-primary: #282828;
   --color-secondary: #8B8B8B;
   --color-border: #DDD;
@@ -12,20 +10,17 @@
   --color-blue: #0D50FF;
   --color-white: #FFF;
   
-  /* Шрифты */
   --font-family: "Montserrat", sans-serif;
   --font-size-title: 64px;
   --font-size-subtitle: 20px;
   --font-size-body: 16px;
   
-  /* Отступы */
   --spacing-xs: 8px;
   --spacing-sm: 16px;
   --spacing-md: 24px;
   --spacing-lg: 32px;
   --spacing-xl: 40px;
   
-  /* Границы */
   --border-radius: 6px;
   --border-radius-large: 12px;
   --border-width: 1px;

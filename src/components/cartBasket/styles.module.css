@@ -153,7 +153,6 @@
 
 .priceContainer {
   display: flex;
-  /* flex-direction: column; */
   align-items: flex-start;
   gap: 16px;
 }
@@ -175,7 +174,6 @@
   margin-top: 15px;
 }
 
-/* Адаптив для экранов 1439px - 1200px */
 @media (max-width: 1439px) and (min-width: 1201px) {
   .cartItem {
     width: 700px !important;
@@ -311,7 +309,6 @@
   }
 }
 
-/* Дополнительные медиа-запросы для плавного уменьшения карточек */
 @media (max-width: 1100px) and (min-width: 1201px) {
   .cartItem {
     width: 580px !important;
@@ -402,7 +399,6 @@
   }
 }
 
-/* Адаптив для экранов 1200px - 901px */
 @media (max-width: 1200px) and (min-width: 901px) {
   .cartItem {
     width: 100% !important;
@@ -449,7 +445,6 @@
   }
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .cartItem {
     width: 100%;

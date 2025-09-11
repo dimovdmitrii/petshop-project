@@ -19,7 +19,6 @@ import {
 } from '../../redux/slices/productSlice';
 import styles from './styles.module.css';
 
-// Константы стилей
 const TYPOGRAPHY_STYLES = {
   title: {
     fontFamily: 'Montserrat, sans-serif',
@@ -70,7 +69,6 @@ const TEXT_FIELD_STYLES = {
   }
 };
 
-// Кастомные стили для чекбокса
 const CustomCheckboxIcon = styled('span')(({ theme }) => ({
   borderRadius: 6,
   width: 36,
@@ -102,7 +100,6 @@ const CustomCheckedIcon = styled(CustomCheckboxIcon)({
   },
 });
 
-// Кастомный чекбокс компонент
 function CustomCheckbox(props) {
   return (
     <Checkbox
@@ -127,7 +124,6 @@ const ProductList = ({
 }) => {
   const dispatch = useDispatch();
   
-  // Получаем состояние из Redux
   const {
     allProducts,
     categoryProducts,
@@ -140,12 +136,10 @@ const ProductList = ({
     currentCategory
   } = useSelector(state => state.products);
 
-  // Определяем, какой тип загрузки использовать
   const isLoading = apiEndpoint.includes('/products/all') ? allProductsLoading : categoryProductsLoading;
   const error = apiEndpoint.includes('/products/all') ? allProductsError : categoryProductsError;
   const products = apiEndpoint.includes('/products/all') ? allProducts : categoryProducts;
 
-  // Динамические breadcrumbs и title
   const finalBreadcrumbs = dynamicBreadcrumbs && currentCategory 
     ? [
         { text: 'Main page', link: '/' },
@@ -159,35 +153,26 @@ const ProductList = ({
     : title;
 
   useEffect(() => {
-    // Загружаем продукты в зависимости от endpoint
     if (apiEndpoint.includes('/products/all')) {
-      // Устанавливаем контекст для всех продуктов
       dispatch(setCurrentContext('all'));
-      // Устанавливаем режим sales если showDiscountFilter = false
       dispatch(setSalesMode(!showDiscountFilter));
-      // Если продукты уже загружены, не делаем повторный запрос
       if (allProducts.length === 0) {
         dispatch(fetchAllProducts());
       }
     } else if (apiEndpoint.includes('/categories/')) {
-      // Устанавливаем контекст для продуктов категории
       dispatch(setCurrentContext('category'));
-      // Сбрасываем режим sales для категорий
       dispatch(setSalesMode(false));
-      // Извлекаем ID категории из endpoint
       const categoryId = apiEndpoint.split('/categories/')[1];
       dispatch(fetchProductsByCategory(categoryId));
     }
   }, [apiEndpoint, dispatch, allProducts.length, showDiscountFilter]);
 
-  // Применяем фильтры при изменении
   useEffect(() => {
     if (products.length > 0) {
       dispatch(applyFilters());
     }
   }, [products, filters, dispatch]);
 
-  // Обработчики для фильтров
   const handlePriceFromChange = (e) => {
     dispatch(setPriceFrom(e.target.value));
   };
@@ -223,7 +208,6 @@ const ProductList = ({
 
   return (
     <div className={styles.container}>
-      {/* Хлебные крошки */}
       <div className={styles.breadcrumbs}>
         {finalBreadcrumbs.map((crumb, index) => (
           <div key={index} className={styles.breadcrumbItem}>
@@ -241,7 +225,6 @@ const ProductList = ({
         ))}
       </div>
 
-      {/* Заголовок */}
       <Typography 
         className={styles.title}
         sx={TYPOGRAPHY_STYLES.title}
@@ -249,7 +232,6 @@ const ProductList = ({
         {finalTitle}
       </Typography>
 
-      {/* Фильтры */}
       {showFilters && (
         <Box className={styles.filtersContainer}>
         <Box className={styles.priceFilter}>
@@ -349,7 +331,6 @@ const ProductList = ({
         </Box>
       )}
 
-      {/* Сетка продуктов */}
       {!Array.isArray(filteredProducts) || filteredProducts.length === 0 ? (
         <div className={styles.noProducts}>
           <p>No products found.</p>

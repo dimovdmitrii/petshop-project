@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_URL } from '../../config/api';
 
-// Асинхронные thunks для работы с продуктами
 export const fetchAllProducts = createAsyncThunk(
   'products/fetchAllProducts',
   async (_, { rejectWithValue }) => {
@@ -10,7 +9,6 @@ export const fetchAllProducts = createAsyncThunk(
       const response = await axios.get(`${API_URL}/products/all`);
       const data = response.data;
       
-      // Обрабатываем данные с API
       let productsData = [];
       if (Array.isArray(data)) {
         productsData = data;
@@ -34,7 +32,6 @@ export const fetchProductsByCategory = createAsyncThunk(
       const response = await axios.get(`${API_URL}/categories/${categoryId}`);
       const data = response.data;
       
-      // Обрабатываем данные с API
       let productsData = [];
       let categoryData = null;
       
@@ -65,7 +62,6 @@ export const fetchProductById = createAsyncThunk(
       const response = await axios.get(`${API_URL}/products/${productId}`);
       const data = response.data;
       
-      // API возвращает массив, берем первый элемент
       let product = null;
       if (Array.isArray(data) && data.length > 0) {
         product = data[0];
@@ -73,22 +69,17 @@ export const fetchProductById = createAsyncThunk(
         product = data;
       }
 
-      // Если у товара есть categoryId, получаем информацию о категории
       if (product && product.categoryId) {
         try {
           const categoryResponse = await axios.get(`${API_URL}/categories/${product.categoryId}`);
           const categoryData = categoryResponse.data;
           
-          // Обрабатываем данные категории согласно API структуре
           let category = null;
           if (categoryData && categoryData.category) {
-            // API возвращает {category: {...}, data: [...]}
             category = categoryData.category;
           } else if (Array.isArray(categoryData) && categoryData.length > 0) {
-            // Если API возвращает массив
             category = categoryData[0];
           } else if (categoryData && categoryData.title) {
-            // Если API возвращает объект напрямую
             category = categoryData;
           }
           
@@ -97,7 +88,6 @@ export const fetchProductById = createAsyncThunk(
             category: category
           };
                 } catch (categoryError) {
-                  // Failed to fetch category, return product without category
                   return product;
                 }
       }
@@ -112,25 +102,20 @@ export const fetchProductById = createAsyncThunk(
 const productSlice = createSlice({
   name: 'products',
   initialState: {
-    // Все продукты
     allProducts: [],
     allProductsLoading: false,
     allProductsError: null,
     
-    // Продукты по категории
     categoryProducts: [],
     categoryProductsLoading: false,
     categoryProductsError: null,
     
-    // Текущая категория
     currentCategory: null,
     
-    // Отдельный продукт
     currentProduct: null,
     currentProductLoading: false,
     currentProductError: null,
     
-    // Фильтры и сортировка
     filters: {
       priceFrom: '',
       priceTo: '',
@@ -138,17 +123,13 @@ const productSlice = createSlice({
       sortBy: 'default'
     },
     
-    // Текущий контекст (какие продукты показывать)
-    currentContext: 'all', // 'all' или 'category'
+    currentContext: 'all',
     
-    // Режим отображения только товаров со скидкой
     salesMode: false,
     
-    // Отфильтрованные продукты
     filteredProducts: []
   },
   reducers: {
-    // Очистка ошибок
     clearAllProductsError: (state) => {
       state.allProductsError = null;
     },
@@ -159,7 +140,6 @@ const productSlice = createSlice({
       state.currentProductError = null;
     },
     
-    // Управление фильтрами
     setPriceFrom: (state, action) => {
       state.filters.priceFrom = action.payload;
     },
@@ -173,10 +153,10 @@ const productSlice = createSlice({
       state.filters.sortBy = action.payload;
     },
     setCurrentContext: (state, action) => {
-      state.currentContext = action.payload; // 'all' или 'category'
+      state.currentContext = action.payload;
     },
     setSalesMode: (state, action) => {
-      state.salesMode = action.payload; // true или false
+      state.salesMode = action.payload;
     },
     resetFilters: (state) => {
       state.filters = {
@@ -187,22 +167,18 @@ const productSlice = createSlice({
       };
     },
     
-    // Применение фильтров и сортировки
     applyFilters: (state) => {
       let products = [];
       
-      // Определяем, какие продукты использовать на основе контекста
       if (state.currentContext === 'category' && state.categoryProducts.length > 0) {
         products = [...state.categoryProducts];
       } else if (state.currentContext === 'all' && state.allProducts.length > 0) {
         products = [...state.allProducts];
       }
       
-      // Применяем фильтры
       products = products.filter(product => {
         const currentPrice = product.discont_price || product.price;
         
-        // Фильтр по цене
         if (state.filters.priceFrom && currentPrice < parseFloat(state.filters.priceFrom)) {
           return false;
         }
@@ -210,12 +186,10 @@ const productSlice = createSlice({
           return false;
         }
         
-        // Фильтр по скидке (если не в режиме sales)
         if (!state.salesMode && state.filters.discountedOnly && (!product.discont_price || product.discont_price >= product.price)) {
           return false;
         }
         
-        // В режиме sales показываем только товары со скидкой
         if (state.salesMode && (!product.discont_price || product.discont_price >= product.price)) {
           return false;
         }
@@ -223,7 +197,6 @@ const productSlice = createSlice({
         return true;
       });
       
-      // Применяем сортировку
       if (state.filters.sortBy !== 'default') {
         products.sort((a, b) => {
           switch (state.filters.sortBy) {
@@ -242,7 +215,6 @@ const productSlice = createSlice({
       state.filteredProducts = products;
     },
     
-    // Очистка данных
     clearAllProducts: (state) => {
       state.allProducts = [];
       state.filteredProducts = [];
@@ -258,7 +230,6 @@ const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Fetch All Products
       .addCase(fetchAllProducts.pending, (state) => {
         state.allProductsLoading = true;
         state.allProductsError = null;
@@ -266,7 +237,6 @@ const productSlice = createSlice({
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
         state.allProductsLoading = false;
         state.allProducts = action.payload;
-        // Автоматически применяем фильтры после загрузки
         productSlice.caseReducers.applyFilters(state);
       })
       .addCase(fetchAllProducts.rejected, (state, action) => {
@@ -274,7 +244,6 @@ const productSlice = createSlice({
         state.allProductsError = action.payload;
       })
       
-      // Fetch Products by Category
       .addCase(fetchProductsByCategory.pending, (state) => {
         state.categoryProductsLoading = true;
         state.categoryProductsError = null;
@@ -283,7 +252,6 @@ const productSlice = createSlice({
         state.categoryProductsLoading = false;
         state.categoryProducts = action.payload.products;
         state.currentCategory = action.payload.category;
-        // Автоматически применяем фильтры после загрузки
         productSlice.caseReducers.applyFilters(state);
       })
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
@@ -291,7 +259,6 @@ const productSlice = createSlice({
         state.categoryProductsError = action.payload;
       })
       
-      // Fetch Product by ID
       .addCase(fetchProductById.pending, (state) => {
         state.currentProductLoading = true;
         state.currentProductError = null;

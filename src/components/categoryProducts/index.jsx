@@ -8,7 +8,7 @@ const CategoryProducts = () => {
   const breadcrumbs = [
     { text: 'Main page', link: '/' },
     { text: 'Categories', link: '/categories' },
-    { text: 'Category' } // Название будет получено из API
+    { text: 'Category' }
   ];
 
   return (

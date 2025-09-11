@@ -40,15 +40,12 @@ const basketSlice = createSlice({
       
       if (item) {
         if (quantity <= 0) {
-          // Удаляем товар если количество <= 0
           state.items = state.items.filter(item => item.id !== id);
         } else {
-          // Обновляем количество
           item.quantity = quantity;
         }
       }
       
-      // Пересчитываем общие значения
       state.count = state.items.reduce((total, item) => total + item.quantity, 0);
       state.total = state.items.reduce((total, item) => {
         const price = item.discont_price || item.price;
@@ -65,7 +62,6 @@ const basketSlice = createSlice({
 
 export const { addToBasket, removeFromBasket, updateQuantity, clearBasket } = basketSlice.actions;
 
-// Селекторы для удобства использования
 export const selectBasketItems = (state) => state.basket.items;
 export const selectBasketTotal = (state) => state.basket.total;
 export const selectBasketCount = (state) => state.basket.count;

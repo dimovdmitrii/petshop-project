@@ -5,35 +5,34 @@ import CartCategories from '../../components/cartCategories';
 import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
+// Simple responsive font size
+const getTitleSize = () => {
+  const width = window.innerWidth;
+  if (width <= 900) return '24px';
+  if (width <= 1200) return '36px';
+  return '64px';
+};
+
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [state, setState] = useState({ data: [], loading: true, error: null });
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        setLoading(true);
+        setState(prev => ({ ...prev, loading: true }));
         const response = await fetch(`${API_URL}/categories/all`);
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch categories');
-        }
-        
+        if (!response.ok) throw new Error('Failed to fetch categories');
         const data = await response.json();
-        setCategories(data);
+        setState({ data, loading: false, error: null });
       } catch (err) {
-        setError(err.message);
+        setState({ data: [], loading: false, error: err.message });
         console.error('Error fetching categories:', err);
-      } finally {
-        setLoading(false);
       }
     };
-
     fetchCategories();
   }, []);
 
-  if (loading) {
+  if (state.loading) {
     return (
       <main className={styles.main}>
         <div className={styles.content}>
@@ -43,11 +42,11 @@ const Categories = () => {
     );
   }
 
-  if (error) {
+  if (state.error) {
     return (
       <main className={styles.main}>
         <div className={styles.content}>
-          <div className={styles.error}>Error: {error}</div>
+          <div className={styles.error}>Error: {state.error}</div>
         </div>
       </main>
     );
@@ -86,7 +85,7 @@ const Categories = () => {
         </Typography>
 
         <div className={styles.categoriesGrid}>
-          {categories.map((category) => (
+          {state.data.map((category) => (
             <CartCategories key={category.id} category={category} />
           ))}
         </div>

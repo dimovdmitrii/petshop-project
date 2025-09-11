@@ -6,9 +6,9 @@
 }
 
 .container {
-  max-width: var(--container-max-width);
+  max-width: 1440px;
   margin: 0 auto;
-  padding: var(--container-padding);
+  padding: 40px;
 }
 
 .header {
@@ -31,34 +31,34 @@
 }
 
 .title {
-  font-family: var(--font-family);
+  font-family: "Montserrat";
   font-size: 64px;
   font-style: normal;
   font-weight: 700;
   line-height: 110%;
-  color: var(--color-primary);
+  color: #282828;
   margin: 0;
-  background-color: var(--color-white);
+  background-color: #FFF;
   padding-right: 20px;
   position: relative;
   z-index: 1;
 }
 
 .backToStoreBtn {
-  color: var(--color-secondary);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius);
-  border: var(--border-width) solid var(--border-color);
+  color: #8B8B8B;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #DDD;
   text-decoration: none;
   text-align: center;
-  font-family: var(--font-family);
-  font-size: var(--font-size-body);
+  font-family: "Montserrat";
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 126%;
   transition: all 0.3s ease;
   cursor: pointer;
-  background-color: var(--color-white);
+  background-color: #FFF;
   position: relative;
   z-index: 1;
 }
@@ -146,12 +146,12 @@
   background-color: var(--color-blue);
   color: var(--color-white);
   text-decoration: none;
-  font-family: var(--font-family);
-  font-size: var(--font-size-body);
+  font-family: "Montserrat";
+  font-size: 16px;
   font-weight: 500;
   padding: 16px 56px;
-  border: var(--border-width) solid var(--color-blue);
-  border-radius: var(--border-radius);
+  border: 1px solid #0D50FF;
+  border-radius: 6px;
   transition: all 0.3s ease;
   display: inline-block;
   width: fit-content;
@@ -167,7 +167,7 @@
   max-width: 100%;
   height: 582px;
   background-color: #f1f3f4;
-  border-radius: var(--border-radius-large);
+  border-radius: 12px;
   padding: var(--basket-order-padding);
   display: flex;
   flex-direction: column;
@@ -181,9 +181,9 @@
 }
 
 .itemsCount {
-  font-family: var(--font-family);
-  font-size: var(--font-size-body);
-  color: var(--color-secondary);
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: #8B8B8B;
   margin: 0;
 }
 
@@ -194,17 +194,17 @@
 }
 
 .totalLabel {
-  font-family: var(--font-family);
-  font-size: var(--font-size-body);
-  color: var(--color-secondary);
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: #8B8B8B;
   margin: 0;
 }
 
 .totalAmount {
-  font-family: var(--font-family);
+  font-family: "Montserrat";
   font-size: 36px;
   font-weight: 600;
-  color: var(--color-primary);
+  color: #282828;
   margin: 0;
 }
 
@@ -219,12 +219,12 @@
   width: 100%;
   height: 58px;
   padding: 16px 32px;
-  border: var(--border-width) solid var(--border-color);
-  border-radius: var(--border-radius);
-  font-family: var(--font-family);
-  font-size: var(--font-size-body);
-  color: var(--color-primary);
-  background-color: var(--color-white);
+  border: 1px solid #DDD;
+  border-radius: 6px;
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: #282828;
+  background-color: #FFF;
   outline: none;
   transition: border-color 0.3s ease;
 }
@@ -234,7 +234,7 @@
 }
 
 .formInput::placeholder {
-  color: var(--color-secondary);
+  color: #8B8B8B;
 }
 
 .modalOverlay {
@@ -251,8 +251,8 @@
 }
 
 .modalContent {
-  background-color: var(--color-white);
-  border-radius: var(--border-radius-large);
+  background-color: #FFF;
+  border-radius: 12px;
   padding: var(--spacing-xl);
   max-width: 400px;
   width: 90%;
@@ -263,17 +263,17 @@
 }
 
 .modalTitle {
-  font-family: var(--font-family);
+  font-family: "Montserrat";
   font-size: 24px;
   font-weight: 600;
-  color: var(--color-primary);
+  color: #282828;
   margin: 0;
 }
 
 .modalText {
-  font-family: var(--font-family);
-  font-size: var(--font-size-body);
-  color: var(--color-secondary);
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: #8B8B8B;
   margin: 0;
 }
 

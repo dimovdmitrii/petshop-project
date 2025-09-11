@@ -1,6 +1,6 @@
 .footer {
-  max-width: var(--container-max-width);
-  padding: var(--container-padding) var(--container-padding) 80px var(--container-padding);
+  max-width: 1440px;
+  padding: 40px 40px 80px 40px;
   margin: 0 auto;
   background-color: var(--color-white);
 }

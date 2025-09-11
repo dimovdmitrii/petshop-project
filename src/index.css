@@ -1,35 +1,7 @@
-:root {
-  --container-max-width: 1440px;
-  --container-padding: 40px;
-  --container-padding-mobile: 20px;
-  
-  --color-primary: #282828;
-  --color-secondary: #8B8B8B;
-  --color-border: #DDD;
-  --color-accent: #339933;
-  --color-blue: #0D50FF;
-  --color-white: #FFF;
-  
-  --font-family: "Montserrat", sans-serif;
-  --font-size-title: 64px;
-  --font-size-subtitle: 20px;
-  --font-size-body: 16px;
-  
-  --spacing-xs: 8px;
-  --spacing-sm: 16px;
-  --spacing-md: 24px;
-  --spacing-lg: 32px;
-  --spacing-xl: 40px;
-  
-  --border-radius: 6px;
-  --border-radius-large: 12px;
-  --border-width: 1px;
-  --border-color: #DDD;
-}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: var(--font-family);
+  font-family: "Montserrat";
 }

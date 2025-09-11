@@ -6,9 +6,9 @@
   width: 100%;
   max-width: 316px;
   height: 422px;
-  background-color: var(--color-white);
-  border-radius: var(--border-radius-large);
-  border: var(--border-width) solid var(--border-color);
+  background-color: #FFF;
+  border-radius: 12px;
+  border: 1px solid #DDD;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -57,7 +57,7 @@
   right: 16px;
   background-color: rgba(13, 80, 255, 1);
   color: #FFF;
-  font-family: var(--font-family);
+  font-family: "Montserrat";
   font-size: 20px;
   font-weight: 600;
   line-height: 130%;
@@ -81,9 +81,9 @@
   overflow: hidden;   
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-family: var(--font-family);
-  color: var(--color-primary);
-  font-size: var(--font-size-subtitle);
+  font-family: "Montserrat";
+  color: #282828;
+  font-size: 20px;
   font-weight: 500;
   line-height: 130%;
 }
@@ -97,7 +97,7 @@
 
 .currentPrice {
   color:#282828;
-  font-family: var(--font-family);
+  font-family: "Montserrat";
   font-size: 40px;
   font-weight: 600;
   line-height: 110%;
@@ -105,7 +105,7 @@
 
 .oldPrice {
   color: #8B8B8B;
-  font-family: var(--font-family);
+  font-family: "Montserrat";
   font-size: 20px;
   font-weight: 500;
   line-height: 130%;

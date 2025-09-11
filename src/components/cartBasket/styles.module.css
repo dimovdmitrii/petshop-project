@@ -1,12 +1,12 @@
 .cartItem {
   width: 780px;
   height: 180px;
-  background-color: var(--color-white);
-  border: var(--border-width) solid var(--border-color);
-  border-radius: var(--border-radius-large);
+  background-color: #FFF;
+  border: 1px solid #DDD;
+  border-radius: 12px;
   display: flex;
   align-items: center;
-  padding: var(--spacing-sm);
+  padding: 16px;
   position: relative;
   gap: 32px;
   overflow: hidden;
@@ -37,18 +37,18 @@
 
 .removeButton:hover {
   background-color: #f8f9fa;
-  color: var(--color-primary);
+  color: #282828;
 }
 
 .imageContainer {
   width: 200px;
   height: 180px;
-  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  border-radius: 6px 0 0 6px;
   overflow: hidden;
   flex-shrink: 0;
-  margin-left: calc(-1 * var(--spacing-sm));
-  margin-top: calc(-1 * var(--spacing-sm));
-  margin-bottom: calc(-1 * var(--spacing-sm));
+  margin-left: -16px;
+  margin-top: -16px;
+  margin-bottom: -16px;
 }
 
 .productImage {
@@ -63,15 +63,15 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  padding: var(--spacing-sm) 0;
+  padding: 16px 0;
 }
 
 .productTitle {
-  font-family: var(--font-family);
+  font-family: "Montserrat";
   font-size: 20px;
   font-weight: 500;
-  color: var(--color-primary);
-  margin: 0 0 var(--spacing-sm) 0;
+  color: #282828;
+  margin: 0 0 16px 0;
   line-height: 130%;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -136,7 +136,7 @@
   margin: 0 16px;
   min-width: 24px;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat";
   font-size: 20px;
   font-weight: 600;
   color: #282828;
@@ -158,14 +158,14 @@
 }
 
 .currentPrice {
-    font-family: var(--font-family);
+    font-family: "Montserrat";
   font-size: 40px;
   font-weight: 600;
   line-height: 110%;
 }
 
 .oldPrice {   
-  font-family: var(--font-family);
+  font-family: "Montserrat";
   font-size: 20px;
   font-weight: 500;
   color:#8B8B8B;

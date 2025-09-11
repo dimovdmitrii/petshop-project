@@ -1,8 +1,8 @@
 .categoriesSection {
   width: 100%;
-  max-width: var(--container-max-width);
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 80px var(--container-padding) 66px var(--container-padding);
+  padding: 80px 40px 66px 40px;
 }
 
 .container {
@@ -31,30 +31,30 @@
 }
 
 .title {
-  font-family: var(--font-family);
-  font-size: var(--font-size-title);
+  font-family: "Montserrat";
+  font-size: 64px;
   font-weight: 700;
   line-height: 110%;
-  color: var(--color-primary);
+  color: #282828;
   margin: 0;
-  background-color: var(--color-white);
+  background-color: #FFF;
   padding-right: 20px;
   position: relative;
   z-index: 1;
 }
 
 .allCategoriesBtn {
-  color: var(--color-secondary);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius);
-  border: var(--border-width) solid var(--border-color);
+  color: #8B8B8B;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #DDD;
   text-decoration: none;
-  font-family: var(--font-family);
-  font-size: var(--font-size-body);
+  font-family: "Montserrat";
+  font-size: 16px;
   font-weight: 500;
   line-height: 126%;
   transition: all 0.3s ease;
-  background-color: var(--color-white);
+  background-color: #FFF;
   position: relative;
   z-index: 1;
 }
@@ -68,7 +68,7 @@
 .swiperContainer {
   position: relative;
   padding: 0 0 50px 0;
-  max-width: var(--container-max-width);
+  max-width: 1440px;
   margin: 0 auto;
   min-height: 200px;
   overflow: visible;
@@ -181,8 +181,8 @@
 
 @media (max-width: 768px) {
   .categoriesSection { padding: 10px; }
-  .header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
-  .header::after { display: none; }
+  .header {  align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+  /* .header::after { display: none; } */
   .title { padding-right: 0; font-size: 22px; }
   .allCategoriesBtn { padding: 8px 16px; font-size: 14px; }
   .swiperContainer { padding: 0 0 50px 0; min-height: 200px; }
@@ -195,7 +195,7 @@
 @media (max-width: 480px) {
   .categoriesSection { padding: 16px; }
   .header { margin-bottom: 16px; }
-  .header::after { display: none; }
+
   .title { padding-right: 0; font-size: 20px; }
   .allCategoriesBtn { padding: 6px 12px; font-size: 13px; }
   .swiperContainer { padding: 0 0 60px 0; min-height: 350px; }

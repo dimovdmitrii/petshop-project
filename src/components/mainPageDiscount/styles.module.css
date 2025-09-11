@@ -22,7 +22,7 @@
 .title {
   color: var(--txt-white, #FFF);
   text-align: center;
-  font-family: var(--font-family);
+  font-family: "Montserrat";
   font-size: 64px;
   font-weight: 700;
   line-height: 110%;

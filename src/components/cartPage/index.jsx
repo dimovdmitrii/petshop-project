@@ -114,15 +114,47 @@ const CartPage = () => {
     useSelector((state) => state.products);
   const [quantity, setQuantity] = useState(1);
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const [isValidProduct, setIsValidProduct] = useState(null); // null = loading, true = valid, false = invalid
 
-  // Проверяем, является ли ID числом (валидные ID продуктов)
-  if (!id || isNaN(Number(id)) || Number(id) < 1) {
+  // Проверяем, является ли ID валидным числом (только цифры, больше 0)
+  if (!id || !/^\d+$/.test(id) || Number(id) < 1) {
     return <Navigate to="/404" replace />;
   }
 
   useEffect(() => {
-    if (id) dispatch(fetchProductById(id));
-  }, [id, dispatch]);
+    const checkProductExists = async () => {
+      try {
+        const response = await fetch(`${API_URL}/products/all`);
+        if (!response.ok) {
+          setIsValidProduct(false);
+          return;
+        }
+        const products = await response.json();
+        const productExists = products.some(product => product.id === Number(id));
+        setIsValidProduct(productExists);
+      } catch (error) {
+        setIsValidProduct(false);
+      }
+    };
+
+    checkProductExists();
+  }, [id]);
+
+  useEffect(() => {
+    if (id && isValidProduct === true) {
+      dispatch(fetchProductById(id));
+    }
+  }, [id, dispatch, isValidProduct]);
+
+  // Показываем загрузку пока проверяем существование продукта
+  if (isValidProduct === null) {
+    return <div style={{ textAlign: 'center', padding: '40px', fontFamily: 'Montserrat' }}>Loading...</div>;
+  }
+
+  // Если продукт не существует, перенаправляем на 404
+  if (isValidProduct === false) {
+    return <Navigate to="/404" replace />;
+  }
 
   const handleQuantityChange = (change) => {
     const newQ = quantity + change;

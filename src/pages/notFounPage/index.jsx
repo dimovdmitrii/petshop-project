@@ -12,7 +12,20 @@ function NotFounPage() {
   return (
     <div className={styles.container}>
       <Box className={styles.content}>
-        <img src={img404} alt="404" className={styles.image} />
+        <div className={styles.imageContainer}>
+          <img 
+            src={img404} 
+            alt="404" 
+            className={styles.image}
+            onError={(e) => {
+              e.target.style.display = 'none';
+              const container = e.target.parentElement;
+              if (container) {
+                container.innerHTML = '<div style="font-size: 64px; color: #8B8B8B; margin-bottom: 30px;">404</div>';
+              }
+            }}
+          />
+        </div>
         
         <Typography 
           variant="h1" 

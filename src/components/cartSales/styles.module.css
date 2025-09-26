@@ -158,6 +158,12 @@
   .oldPrice { font-size: 12px; }
 }
 
+@media (max-width: 425px) {
+  .addToCartContainer {
+    display: none !important;
+  }
+}
+
 @media (max-width: 320px) {
   .productCard { max-width: 240px; height: 200px; }
   .imageContainer { height: 120px; }

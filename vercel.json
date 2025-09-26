@@ -1,6 +1,30 @@
 {
   "rewrites": [
     {
+      "source": "/categories/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/products/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/categories",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/products",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/sales",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/basket",
+      "destination": "/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

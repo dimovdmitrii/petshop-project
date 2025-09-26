@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Typography, Button } from "@mui/material";
 import { fetchProductById } from "../../redux/slices/productSlice";
@@ -114,6 +114,11 @@ const CartPage = () => {
     useSelector((state) => state.products);
   const [quantity, setQuantity] = useState(1);
   const [showFullDescription, setShowFullDescription] = useState(false);
+
+  // Проверяем, является ли ID числом (валидные ID продуктов)
+  if (!id || isNaN(Number(id)) || Number(id) < 1) {
+    return <Navigate to="/404" replace />;
+  }
 
   useEffect(() => {
     if (id) dispatch(fetchProductById(id));

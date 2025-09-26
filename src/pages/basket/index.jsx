@@ -128,7 +128,7 @@ const Basket = () => {
             <p style={textStyle(fontSize.itemsCount, '#8B8B8B', 500)}>{count} items</p>
             <div className={styles.totalRow}>
               <p style={textStyle(fontSize.totalLabel, '#8B8B8B', 500)}>Total</p>
-              <p style={textStyle(fontSize.totalAmount)}>${total.toFixed(2).replace('.', ',')}</p>
+              <p style={textStyle(fontSize.totalAmount)}>${Math.round(total)}</p>
             </div>
           </div>
 

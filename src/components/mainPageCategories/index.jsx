@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { fetchCategories } from '../../redux/slices/categorySlice';
 import CategoryCard from '../cartCategories';
-import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
 import 'swiper/css';
@@ -86,7 +85,7 @@ const MainPageCategories = () => {
       </section>
     );
   }
-
+  
   return (
     <section className={styles.categoriesSection}>
       <div className={styles.container}>

@@ -202,7 +202,7 @@ const Basket = () => {
             aria-label="Close modal"
           >
             <img className={styles.closeIcon}
-              src="/src/assets/icons/modalx.svg" 
+              src={modalx} 
               alt="close"               
             />
           </button>

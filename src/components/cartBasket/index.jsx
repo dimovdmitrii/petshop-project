@@ -5,6 +5,9 @@ import {
   updateQuantity,
 } from "../../redux/slices/basketSlice";
 import { API_URL } from "../../config/api";
+import closeIcon from "../../assets/icons/close.svg";
+import minusIcon from "../../assets/icons/minus.svg";
+import plusIcon from "../../assets/icons/plus.svg";
 
 import styles from "./styles.module.css";
 
@@ -32,7 +35,7 @@ const CartBasket = ({ product }) => {
         aria-label="Remove item"
       >
         <img
-          src="/src/assets/icons/close.svg"
+          src={closeIcon}
           alt="close"
           className={styles.removeIcon}
         />
@@ -40,7 +43,7 @@ const CartBasket = ({ product }) => {
 
       <div className={styles.imageContainer}>
         <img
-          src={`${API_URL}${product.image}`}
+          src={product.image}
           alt={product.title}
           className={styles.productImage}
           onError={(e) => {
@@ -59,7 +62,7 @@ const CartBasket = ({ product }) => {
               className={styles.quantityButton}
             >
               <img
-                src="/src/assets/icons/minus.svg"
+                src={minusIcon}
                 alt="minus"
                 className={styles.quantityIcon}
               />
@@ -70,7 +73,7 @@ const CartBasket = ({ product }) => {
               className={styles.quantityButton}
             >
               <img
-                src="/src/assets/icons/plus.svg"
+                src={plusIcon}
                 alt="plus"
                 className={styles.quantityIcon}
               />

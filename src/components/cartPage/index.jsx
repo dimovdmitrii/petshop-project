@@ -5,6 +5,8 @@ import { Typography, Button } from "@mui/material";
 import { fetchProductById } from "../../redux/slices/productSlice";
 import { addToBasket } from "../../redux/slices/basketSlice";
 import { API_URL } from "../../config/api";
+import minusIcon from "../../assets/icons/minus.svg";
+import plusIcon from "../../assets/icons/plus.svg";
 import styles from "./styles.module.css";
 
 const STYLES = {
@@ -189,7 +191,7 @@ const CartPage = () => {
         <div className={styles.imageContainer}>
           {product.image ? (
             <img
-              src={`${API_URL}${product.image}`}
+              src={product.image}
               alt={product.title}
               className={styles.productImage}
               onError={(e) => {
@@ -240,7 +242,7 @@ const CartPage = () => {
                   className={styles.quantityButton}
                 >
                   <img
-                    src="/src/assets/icons/minus.svg"
+                    src={minusIcon}
                     alt="minus"
                     className={styles.quantityIcon}
                   />
@@ -255,7 +257,7 @@ const CartPage = () => {
                   className={styles.quantityButton}
                 >
                   <img
-                    src="/src/assets/icons/plus.svg"
+                    src={plusIcon}
                     alt="plus"
                     className={styles.quantityIcon}
                   />

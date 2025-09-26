@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addToBasket } from '../../redux/slices/basketSlice';
-import { API_URL } from '../../config/api';
 import styles from './styles.module.css';
 
 const TIMEOUT_DURATION = 2000;
@@ -15,7 +14,7 @@ const calculateDiscountPercentage = (originalPrice, discountPrice) => {
 
 const getImageSrc = (image) => {
   if (!image) return '/placeholder-image.png';
-  return image.startsWith('http') ? image : `${API_URL}${image}`;
+  return image;
 };
 
 const getButtonStyles = (isAdded) => ({
